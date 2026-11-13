@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raw Lombok | Authentic Expeditions & Cultural Journeys</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #FAF9F6; 
+            color: #1F2937; 
+            scroll-behavior: smooth;
+        }
+        /* Animasi halus untuk accordion */
+        .accordion-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-[#1F2937] text-white text-xs py-2 px-4 text-center tracking-wide">
+        <span>PT Homeland Nusa Indonesia • Authentic Lombok Expeditions & Sustainable Tourism</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo (Secondary Logo RAW + Lombok Wordmark) -->
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="switchView('home')">
+                <!-- Custom SVG Recreation of Secondary Logo RAW -->
+                <div class="bg-[#FAF9F6] border border-gray-200 group-hover:border-[#C83E2B] px-3 py-1.5 rounded-xl transition duration-300 shadow-2xs">
+                    <svg class="h-8 w-auto" viewBox="0 0 240 105" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="RAW Secondary Logo">
+                        <!-- Titik / Aksen Organik di atas huruf R -->
+                        <ellipse cx="64" cy="22" rx="16" ry="9" transform="rotate(-22 64 22)" fill="#C83E2B"/>
+                        <!-- Huruf R Organik Membulat -->
+                        <path d="M36 48C48 39 74 33 84 41C92 48 83 59 69 62C79 66 87 74 91 83C94 90 84 95 77 89C70 82 63 72 53 71C44 70 38 80 31 87C24 94 14 86 21 77C28 68 38 61 48 58C39 58 29 53 36 48Z" fill="#1F2937"/>
+                        <!-- Huruf A Organik Membulat -->
+                        <path d="M123 39C133 39 145 64 150 81C152 89 141 93 137 86L134 78H113L109 86C105 93 95 89 98 81C104 64 113 39 123 39ZM123 55L117 68H129L123 55Z" fill="#1F2937"/>
+                        <!-- Huruf W Organik Membulat dengan Ekor Naik -->
+                        <path d="M156 54C161 52 166 57 169 66L173 75L180 60C183 54 189 54 192 60L199 75L208 45C211 35 224 34 227 42C230 50 220 57 215 66L205 84C201 91 193 91 190 84L186 74L181 84C178 91 170 91 167 84L154 62C151 57 153 55 156 54Z" fill="#1F2937"/>
+                    </svg>
+                </div>
+                <div class="border-l border-gray-200 pl-3">
+                    <span class="text-lg font-extrabold tracking-tight block text-[#1F2937] leading-none">RAW LOMBOK</span>
+                    <span class="text-[10px] uppercase tracking-widest text-[#C83E2B] font-bold block mt-1">Expeditions</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-gray-600">
+                <button onclick="switchView('home')" class="hover:text-[#C83E2B] transition">Explore Trips</button>
+                <a href="#destinations" onclick="switchView('home')" class="hover:text-[#C83E2B] transition">Destinations</a>
+                <a href="#styles" onclick="switchView('home')" class="hover:text-[#C83E2B] transition">Travel Styles</a>
+                <a href="#philosophy" onclick="switchView('home')" class="hover:text-[#C83E2B] transition">Our Philosophy</a>
+            </nav>
+
+            <!-- Header CTA -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/6281234567890?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20inquire%20about%20a%20Lombok%20expedition." 
+                   target="_blank" 
+                   class="bg-[#25D366] hover:bg-[#1ebe5d] text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-sm transition flex items-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>Chat WA</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow">
+
+        <!-- VIEW 1: HOME PAGE -->
+        <div id="homeView" class="view-section">
+            
+            <!-- Hero Section -->
+            <section class="relative bg-gray-900 text-white py-24 lg:py-32 overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=2000&q=80" alt="Lombok Nature" class="w-full h-full object-cover opacity-45 scale-105 transform">
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-900/40 to-transparent"></div>
+                </div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <span class="bg-[#C83E2B] text-white text-xs uppercase tracking-widest font-bold px-3.5 py-1.5 rounded-full inline-block mb-5 shadow-sm">
+                        Small Group & Tailor-Made Expeditions
+                    </span>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 max-w-3xl mx-auto leading-tight">
+                        Discover the Untamed Spirit of Lombok.
+                    </h1>
+                    <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light">
+                        Immersive cultural journeys, sacred volcano treks, and hidden coastal paradises led by expert local leaders.
+                    </p>
+
+                    <!-- Search Bar Box -->
+                    <div class="bg-white p-4 rounded-2xl shadow-2xl max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3 text-gray-800 text-left">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Destination</label>
+                            <select id="filterDest" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold focus:outline-none focus:border-[#C83E2B]">
+                                <option value="">All Destinations</option>
+                                <option value="Rinjani">Mount Rinjani</option>
+                                <option value="South">South & Central Lombok</option>
+                                <option value="Gili">Gili Islands & East</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Travel Style</label>
+                            <select id="filterStyle" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold focus:outline-none focus:border-[#C83E2B]">
+                                <option value="">All Styles</option>
+                                <option value="Trekking">Trekking & Hiking</option>
+                                <option value="Cultural">Cultural & Heritage</option>
+                                <option value="Island">Island Hopping</option>
+                            </select>
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="filterTrips()" class="w-full bg-[#C83E2B] hover:bg-[#b03524] text-white font-bold py-3 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2">
+                                <i data-lucide="search" class="w-4 h-4"></i>
+                                <span>Find Expeditions</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust Bar -->
+            <section class="bg-white border-b border-gray-200/70 py-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-[#C83E2B]/10 p-3 rounded-2xl mb-2.5">
+                            <i data-lucide="users" class="w-6 h-6 text-[#C83E2B]"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-gray-900">Small Group Sizes</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Average 8–12 travelers per group</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-[#C83E2B]/10 p-3 rounded-2xl mb-2.5">
+                            <i data-lucide="compass" class="w-6 h-6 text-[#C83E2B]"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-gray-900">100% Local Leaders</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Born and raised in Lombok</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-[#C83E2B]/10 p-3 rounded-2xl mb-2.5">
+                            <i data-lucide="heart-handshake" class="w-6 h-6 text-[#C83E2B]"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-gray-900">Community Impact</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Fair wages & village support</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-[#C83E2B]/10 p-3 rounded-2xl mb-2.5">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-[#C83E2B]"></i>
+                        </div>
+                        <h4 class="font-bold text-sm text-gray-900">Guaranteed Departures</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Book with total confidence</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Expeditions Grid -->
+            <section id="destinations" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-10 gap-4">
+                    <div>
+                        <span class="text-[#C83E2B] font-bold text-xs uppercase tracking-widest block mb-1">Handcrafted Journeys</span>
+                        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">Featured Raw Lombok Expeditions</h2>
+                    </div>
+                    <button onclick="resetFilters()" id="resetFilterBtn" class="hidden text-sm font-bold text-[#C83E2B] hover:underline self-start sm:self-auto">
+                        Reset Filter & Show All
+                    </button>
+                </div>
+
+                <div id="tripGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Trip Card 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-xl transition duration-300 flex flex-col" data-dest="Rinjani" data-style="Trekking">
+                        <div class="relative h-64 overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80" alt="Mount Rinjani" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-gray-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">4 Days • Trekking</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-amber-500 text-xs font-bold mb-2">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <span>4.9 (124 Reviews)</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900 leading-snug">Mount Rinjani Crater Rim & Summit Expedition</h3>
+                                <p class="text-gray-600 text-sm mb-5 line-clamp-2">Conquer Indonesia's majestic volcano, camp above the clouds at Segara Anak lake rim.</p>
+                                <div class="flex items-center gap-4 text-xs font-medium text-gray-500 mb-6">
+                                    <span class="flex items-center gap-1.5"><i data-lucide="activity" class="w-4 h-4 text-[#C83E2B]"></i> Physical: 4/5</span>
+                                    <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-[#C83E2B]"></i> Max 10 pax</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold block">From</span>
+                                    <span class="text-lg font-extrabold text-[#C83E2B]">IDR 3.250.000</span>
+                                </div>
+                                <button onclick="openTripDetail('rinjani')" class="bg-[#1F2937] hover:bg-[#C83E2B] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-xs">
+                                    View Trip
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-xl transition duration-300 flex flex-col" data-dest="South" data-style="Cultural">
+                        <div class="relative h-64 overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Sasak Village" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-gray-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">3 Days • Cultural</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-amber-500 text-xs font-bold mb-2">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <span>4.8 (89 Reviews)</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900 leading-snug">Sasak Culture & South Lombok Coastal Trails</h3>
+                                <p class="text-gray-600 text-sm mb-5 line-clamp-2">Immerse in indigenous Sasak weaving traditions, pristine beaches, and hidden waterfalls.</p>
+                                <div class="flex items-center gap-4 text-xs font-medium text-gray-500 mb-6">
+                                    <span class="flex items-center gap-1.5"><i data-lucide="activity" class="w-4 h-4 text-[#C83E2B]"></i> Physical: 2/5</span>
+                                    <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-[#C83E2B]"></i> Max 12 pax</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold block">From</span>
+                                    <span class="text-lg font-extrabold text-[#C83E2B]">IDR 2.400.000</span>
+                                </div>
+                                <button onclick="openTripDetail('sasak')" class="bg-[#1F2937] hover:bg-[#C83E2B] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-xs">
+                                    View Trip
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trip Card 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-200/80 shadow-sm hover:shadow-xl transition duration-300 flex flex-col" data-dest="Gili" data-style="Island">
+                        <div class="relative h-64 overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=800&q=80" alt="Gili Islands" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-gray-900 text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">5 Days • Island Hopping</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-amber-500 text-xs font-bold mb-2">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <span>5.0 (64 Reviews)</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900 leading-snug">Secret Gilis & East Lombok Marine Safari</h3>
+                                <p class="text-gray-600 text-sm mb-5 line-clamp-2">Snorkel untouched coral gardens, sleep in eco-lodges, and sail traditional wooden boats.</p>
+                                <div class="flex items-center gap-4 text-xs font-medium text-gray-500 mb-6">
+                                    <span class="flex items-center gap-1.5"><i data-lucide="activity" class="w-4 h-4 text-[#C83E2B]"></i> Physical: 2/5</span>
+                                    <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-[#C83E2B]"></i> Max 8 pax</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-wider text-gray-400 font-semibold block">From</span>
+                                    <span class="text-lg font-extrabold text-[#C83E2B]">IDR 3.900.000</span>
+                                </div>
+                                <button onclick="openTripDetail('gili')" class="bg-[#1F2937] hover:bg-[#C83E2B] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-xs">
+                                    View Trip
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empty Filter State -->
+                <div id="emptyFilterState" class="hidden text-center py-16 bg-white rounded-3xl border border-gray-200 mt-6">
+                    <i data-lucide="compass" class="w-12 h-12 text-gray-400 mx-auto mb-3"></i>
+                    <h3 class="text-lg font-bold text-gray-900">No expeditions match your exact filter</h3>
+                    <p class="text-sm text-gray-500 mt-1 mb-5">Try selecting different destination or travel style options.</p>
+                    <button onclick="resetFilters()" class="bg-[#C83E2B] text-white px-5 py-2.5 rounded-xl text-sm font-bold">Show All Expeditions</button>
+                </div>
+            </section>
+
+            <!-- Travel Styles Section -->
+            <section id="styles" class="bg-white py-16 border-y border-gray-200/70">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-12">
+                        <span class="text-[#C83E2B] font-bold text-xs uppercase tracking-widest block mb-1">Find Your Pace</span>
+                        <h2 class="text-3xl font-extrabold text-gray-900">Explore by Travel Style</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div onclick="quickFilterStyle('Trekking')" class="cursor-pointer group bg-[#FAF9F6] hover:bg-[#1F2937] p-8 rounded-3xl border border-gray-200 transition duration-300">
+                            <i data-lucide="mountain" class="w-10 h-10 text-[#C83E2B] mb-4"></i>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2">Volcano & Highland Treks</h3>
+                            <p class="text-sm text-gray-600 group-hover:text-gray-300">Multi-day ridge walks, crater lake camping, and guided summit expeditions on Mount Rinjani.</p>
+                        </div>
+                        <div onclick="quickFilterStyle('Cultural')" class="cursor-pointer group bg-[#FAF9F6] hover:bg-[#1F2937] p-8 rounded-3xl border border-gray-200 transition duration-300">
+                            <i data-lucide="landmark" class="w-10 h-10 text-[#C83E2B] mb-4"></i>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2">Indigenous Sasak Heritage</h3>
+                            <p class="text-sm text-gray-600 group-hover:text-gray-300">Authentic village stays, traditional hand-loom weaving, and home-cooked Sasak culinary experiences.</p>
+                        </div>
+                        <div onclick="quickFilterStyle('Island')" class="cursor-pointer group bg-[#FAF9F6] hover:bg-[#1F2937] p-8 rounded-3xl border border-gray-200 transition duration-300">
+                            <i data-lucide="waves" class="w-10 h-10 text-[#C83E2B] mb-4"></i>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-white mb-2">Secret Gilis & Marine</h3>
+                            <p class="text-sm text-gray-600 group-hover:text-gray-300">Off-the-beaten-path coral reefs, uninhabited sandbars, and sustainable coastal conservation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Philosophy Section -->
+            <section id="philosophy" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="bg-[#1F2937] rounded-3xl p-8 sm:p-14 text-white grid grid-cols-1 lg:grid-cols-2 gap-10 items-center shadow-xl">
+                    <div>
+                        <span class="text-[#C83E2B] font-bold text-xs uppercase tracking-widest block mb-2">Why Raw Lombok?</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight">Raw, Unfiltered, and Deeply Rooted in Lombok.</h2>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                            Operated under <strong>PT Homeland Nusa Indonesia</strong>, Raw Lombok was born from a simple belief: travel should benefit the people who call the destination home. We bypass mass-tourism traps to connect curious travelers directly with Lombok's raw landscapes and living traditions.
+                        </p>
+                        <a href="https://wa.me/6281234567890?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20plan%20a%20custom%20private%20trip." target="_blank" class="inline-flex items-center gap-2 bg-[#C83E2B] hover:bg-[#b03524] text-white font-bold px-6 py-3.5 rounded-xl text-sm transition">
+                            <span>Plan a Tailor-Made Trip</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 border border-white/10 p
