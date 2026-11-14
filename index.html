@@ -23,8 +23,9 @@
     <!-- Navigation Header -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo RL Hitam Elegan -->
             <div class="flex items-center gap-2 cursor-pointer" onclick="switchView('home')">
-                <div class="bg-[#C83E2B] text-white p-2.5 rounded-xl font-black text-xl tracking-wider shadow-md">RL</div>
+                <div class="bg-gray-900 text-white p-2.5 rounded-xl font-black text-xl tracking-wider shadow-md">RL</div>
                 <div>
                     <span class="text-xl font-extrabold tracking-tight block text-[#1F2937]">RAW LOMBOK</span>
                     <span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold block">Expeditions</span>
@@ -35,10 +36,12 @@
                 <a href="#destinations" class="hover:text-[#C83E2B] transition">Destinations</a>
             </nav>
             <div class="flex items-center gap-3">
-                <a href="https://wa.me/6281325523231?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20inquire%20about%20a%20trip." target="_blank" class="bg-[#25D366] hover:bg-[#1ebe5d] text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-sm transition flex items-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>Chat WA</span>
-                </a>
+                <!-- Trip Cart Trigger Button (Menggantikan Chat WA di Header) -->
+                <button onclick="toggleCartDrawer()" class="relative bg-gray-900 hover:bg-[#C83E2B] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 shadow-sm">
+                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                    <span>Trip Cart</span>
+                    <span id="cartBadge" class="absolute -top-1 -right-1 bg-[#C83E2B] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden border-2 border-white">0</span>
+                </button>
             </div>
         </div>
     </header>
@@ -123,32 +126,37 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Sticky Booking Card -->
+                    <!-- Right Column: Booking & Add to Cart Card -->
                     <div>
                         <div class="sticky top-28 bg-white p-6 rounded-3xl border border-gray-200 shadow-xl space-y-6">
                             <div>
                                 <span class="text-xs text-gray-400 block font-semibold uppercase">Expedition Price</span>
                                 <div class="flex items-baseline gap-2">
-                                    <span id="detailPrice" class="text-3xl font-black text-[#C83E2B]">IDR 3.250.000</span>
+                                    <!-- Harga menggunakan teks gelap elegan (bukan merah) -->
+                                    <span id="detailPrice" class="text-3xl font-black text-gray-900">IDR 3.250.000</span>
                                     <span class="text-xs text-gray-500">/ person</span>
                                 </div>
                             </div>
 
                             <hr class="border-gray-100">
 
-                            <!-- Booking Form inside Card -->
-                            <form onsubmit="event.preventDefault(); window.open('https://wa.me/6281325523231?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20book%20this%20trip.', '_blank');" class="space-y-4">
-                                <div class="bg-gray-50 p-4 rounded-2xl flex items-center justify-between">
-                                    <span class="text-sm font-bold text-gray-700">Total Estimate:</span>
-                                    <span id="totalPriceDisplay" class="text-lg font-extrabold text-[#C83E2B]">IDR 3.250.000</span>
+                            <!-- Form Tambah ke Keranjang -->
+                            <div class="space-y-4">
+                                <input type="hidden" id="currentTripId" value="">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Select Departure Date</label>
+                                    <input type="date" id="bookingDate" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Number of Travelers</label>
+                                    <input type="number" id="guestCount" min="1" max="15" value="1" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]">
                                 </div>
 
-                                <button type="submit" class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold py-3.5 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2">
-                                    <i data-lucide="message-circle" class="w-5 h-5"></i>
-                                    <span>Book via WhatsApp</span>
+                                <button onclick="addCurrentTripToCart()" class="w-full bg-[#C83E2B] hover:bg-[#b03524] text-white font-bold py-3.5 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2">
+                                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                                    <span>Add to Trip Cart</span>
                                 </button>
-                                <p class="text-[11px] text-center text-gray-400">Direct booking with PT Homeland Nusa Indonesia local team.</p>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,12 +165,58 @@
 
     </main>
 
+    <!-- TRIP CART DRAWER / MODAL -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <div class="flex items-center justify-between px-6 py-6 border-b border-gray-100">
+                    <h2 class="text-xl font-extrabold text-gray-900 flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="text-[#C83E2B]"></i> Your Trip Cart
+                    </h2>
+                    <button onclick="toggleCartDrawer()" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cartItemsContainer" class="flex-grow overflow-y-auto px-6 py-4 space-y-4">
+                    <!-- Diisi lewat JS -->
+                </div>
+
+                <!-- Cart Footer & Checkout Form -->
+                <div class="border-t border-gray-100 px-6 py-6 bg-gray-50 space-y-4">
+                    <div class="space-y-2">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name</label>
+                            <input type="text" id="clientName" placeholder="e.g. Jan van der Meer" class="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-[#C83E2B]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email / WhatsApp Contact</label>
+                            <input type="text" id="clientContact" placeholder="e.g. +31 6 12345678" class="w-full bg-white border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-[#C83E2B]">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <span class="text-sm font-bold text-gray-700">Total Estimate:</span>
+                        <span id="cartTotalPrice" class="text-xl font-black text-gray-900">IDR 0</span>
+                    </div>
+
+                    <button onclick="checkoutToWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold py-3.5 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        <span>Consult & Book via WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-12 pb-8 mt-20 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
                 <div class="flex items-center gap-2 mb-4">
-                    <div class="bg-[#C83E2B] text-white p-2 rounded-xl font-black text-lg">RL</div>
+                    <div class="bg-white text-gray-900 p-2 rounded-xl font-black text-lg">RL</div>
                     <span class="text-lg font-extrabold tracking-tight">RAW LOMBOK</span>
                 </div>
                 <p class="text-gray-400 text-sm mb-4">Operated under PT Homeland Nusa Indonesia. Crafting sustainable, community-driven travel expeditions across Lombok and beyond.</p>
@@ -197,10 +251,11 @@
     <!-- Memanggil Database Produk dari catalog.js -->
     <script src="assets/js/catalog.js"></script>
 
-    <!-- JavaScript Application Logic, Slideshow, & Detail Handler -->
+    <!-- JavaScript Application Logic, Slideshow, & Cart Management -->
     <script>
         lucide.createIcons();
         let slideshowIntervals = {};
+        let tripCart = [];
 
         // Fungsi beralih tampilan antara Home (Grid) dan Detail Page
         function switchView(viewName) {
@@ -251,7 +306,8 @@
                             <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                                 <div>
                                     <span class="text-xs text-gray-400 block">From</span>
-                                    <span class="text-lg font-extrabold text-[#C83E2B]">${prod.priceStr}</span>
+                                    <!-- Harga kartu menggunakan warna gelap profesional -->
+                                    <span class="text-lg font-extrabold text-gray-900">${prod.priceStr}</span>
                                 </div>
                                 <button onclick="openTripDetail('${prod.id}')" class="bg-gray-900 hover:bg-[#C83E2B] text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
                                     View Trip
@@ -262,7 +318,7 @@
                 `;
                 grid.insertAdjacentHTML('beforeend', card);
 
-                // Slideshow otomatis (Diatur berganti setiap 2 detik / 2000 ms)
+                // Slideshow otomatis (Berganti setiap 2 detik)
                 if (prod.images && prod.images.length > 1) {
                     let imgIndex = 0;
                     slideshowIntervals[index] = setInterval(() => {
@@ -283,12 +339,12 @@
             const product = rawProductsDatabase.find(p => p.id === productId);
             if (!product) return;
 
+            document.getElementById('currentTripId').value = product.id;
             document.getElementById('detailBadge').innerText = product.badge;
             document.getElementById('detailTitle').innerText = product.title;
             document.getElementById('detailDuration').innerHTML = `<i data-lucide="clock" class="w-4 h-4 text-[#C83E2B]"></i> ${product.duration}`;
             document.getElementById('detailImg').src = product.images[0];
             document.getElementById('detailPrice').innerText = product.priceStr;
-            document.getElementById('totalPriceDisplay').innerText = product.priceStr;
 
             // Render Highlights
             const highlightsEl = document.getElementById('detailHighlights');
@@ -308,6 +364,123 @@
 
             switchView('detail');
             lucide.createIcons();
+        }
+
+        // --- TRIP CART SYSTEM ---
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function addCurrentTripToCart() {
+            const tripId = document.getElementById('currentTripId').value;
+            const date = document.getElementById('bookingDate').value || "Flexible Date";
+            const travelers = parseInt(document.getElementById('guestCount').value) || 1;
+
+            const product = rawProductsDatabase.find(p => p.id === tripId);
+            if (!product) return;
+
+            const existingIndex = tripCart.findIndex(item => item.id === tripId);
+            if (existingIndex > -1) {
+                tripCart[existingIndex].travelers = travelers;
+                tripCart[existingIndex].date = date;
+            } else {
+                tripCart.push({
+                    id: product.id,
+                    title: product.title,
+                    priceVal: product.priceVal,
+                    priceStr: product.priceStr,
+                    duration: product.duration,
+                    travelers: travelers,
+                    date: date
+                });
+            }
+
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        function removeFromCart(index) {
+            tripCart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const badge = document.getElementById('cartBadge');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+
+            if (tripCart.length === 0) {
+                badge.classList.add('hidden');
+                container.innerHTML = `
+                    <div class="text-center py-16 text-gray-400">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-3 stroke-1"></i>
+                        <p class="text-sm">Your trip cart is empty.</p>
+                        <p class="text-xs mt-1">Explore our catalog and add your dream Lombok expeditions!</p>
+                    </div>
+                `;
+                totalPriceEl.innerText = "IDR 0";
+                lucide.createIcons();
+                return;
+            }
+
+            badge.classList.remove('hidden');
+            badge.innerText = tripCart.length;
+
+            let totalEstimate = 0;
+            container.innerHTML = "";
+
+            tripCart.forEach((item, index) => {
+                const subtotal = item.priceVal * item.travelers;
+                totalEstimate += subtotal;
+
+                container.innerHTML += `
+                    <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 relative space-y-2">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-bold text-sm text-gray-900 pr-6">${item.title}</h4>
+                            <button onclick="removeFromCart(${index})" class="text-gray-400 hover:text-red-500">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="text-xs text-gray-500 space-y-1">
+                            <p>📅 Date: <span class="font-semibold text-gray-700">${item.date}</span></p>
+                            <p>👥 Travelers: <span class="font-semibold text-gray-700">${item.travelers} Pax</span></p>
+                            <p>⏱️ Duration: <span class="font-semibold text-gray-700">${item.duration}</span></p>
+                        </div>
+                        <div class="flex justify-between items-center pt-2 border-t border-gray-200/60">
+                            <span class="text-xs text-gray-400">Subtotal</span>
+                            <span class="text-sm font-extrabold text-gray-900">IDR ${subtotal.toLocaleString('id-ID')}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalPriceEl.innerText = `IDR ${totalEstimate.toLocaleString('id-ID')}`;
+            lucide.createIcons();
+        }
+
+        function checkoutToWhatsApp() {
+            if (tripCart.length === 0) {
+                alert("Please add at least one trip to your cart before consulting.");
+                return;
+            }
+
+            const name = document.getElementById('clientName').value || "Guest Explorer";
+            const contact = document.getElementById('clientContact').value || "Not provided";
+
+            let message = `Hello Raw Lombok! 👋 My name is *${name}* (Contact: ${contact}). I would like to book/consult about the following custom itinerary:\n\n`;
+            
+            let grandTotal = 0;
+            tripCart.forEach((item, idx) => {
+                const subtotal = item.priceVal * item.travelers;
+                grandTotal += subtotal;
+                message += `${idx + 1}. *${item.title}*\n   - Date: ${item.date}\n   - Travelers: ${item.travelers} Pax\n   - Est. Subtotal: IDR ${subtotal.toLocaleString('id-ID')}\n\n`;
+            });
+
+            message += `💰 *Grand Total Estimate: IDR ${grandTotal.toLocaleString('id-ID')}*\n\nPlease help me arrange this expedition. Thank you!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6281325523231?text=${encodedMessage}`, '_blank');
         }
 
         // Jalankan saat halaman pertama kali dibuka
