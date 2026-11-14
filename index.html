@@ -277,8 +277,86 @@
     </a>
 
   
-    <!-- Memanggil Database Catalog.js -->
-<script src="assets/js/catalog.js"></script>
+ <!-- Memanggil Database Produk dari catalog.js -->
+    <script src="assets/js/catalog.js"></script>
+
+    <!-- JavaScript Application Logic & Slideshow -->
+    <script>
+        lucide.createIcons();
+        let slideshowIntervals = {};
+
+        // Fungsi merender kartu produk dari catalog.js + Slideshow Otomatis
+        function renderCatalog(products) {
+            const grid = document.getElementById('tripGrid');
+            grid.innerHTML = "";
+
+            // Bersihkan interval slideshow sebelumnya
+            Object.values(slideshowIntervals).forEach(clearInterval);
+            slideshowIntervals = {};
+
+            products.forEach((prod, index) => {
+                // Ambil foto pertama dari array catalog.js
+                const firstImg = (prod.images && prod.images.length > 0) ? prod.images[0] : prod.img;
+
+                const card = `
+                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col">
+                        <div class="relative h-64 overflow-hidden bg-gray-100">
+                            <!-- ID unik untuk slideshow otomatis -->
+                            <img id="slide-img-${index}" src="${firstImg}" alt="${prod.title}" class="w-full h-full object-cover transition-all duration-700">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">${prod.badge}</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center gap-1 text-amber-500 text-xs font-bold mb-2">
+                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                                    <span>${prod.rating} Reviews</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">${prod.title}</h3>
+                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">${prod.shortDesc}</p>
+                                <div class="flex items-center gap-4 text-xs text-gray-500 mb-6">
+                                    <span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4 text-[#C83E2B]"></i> ${prod.duration}</span>
+                                    <span class="flex items-center gap-1 uppercase font-semibold text-[#C83E2B]">${prod.cluster} Lombok</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">From</span>
+                                    <span class="text-lg font-extrabold text-[#C83E2B]">${prod.priceStr}</span>
+                                </div>
+                                <a href="https://wa.me/6281325523231?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(prod.title)}" 
+                                   target="_blank" 
+                                   class="bg-gray-900 hover:bg-[#C83E2B] text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
+                                    Inquire Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.insertAdjacentHTML('beforeend', card);
+
+                // Jalankan slideshow otomatis jika foto lebih dari 1
+                if (prod.images && prod.images.length > 1) {
+                    let imgIndex = 0;
+                    slideshowIntervals[index] = setInterval(() => {
+                        imgIndex = (imgIndex + 1) % prod.images.length;
+                        const imgEl = document.getElementById(`slide-img-${index}`);
+                        if (imgEl) {
+                            imgEl.src = prod.images[imgIndex];
+                        }
+                    }, 3000); // Berganti setiap 3 detik
+                }
+            });
+
+            lucide.createIcons();
+        }
+
+        // Jalankan saat halaman pertama kali dibuka
+        if (typeof rawProductsDatabase !== 'undefined') {
+            renderCatalog(rawProductsDatabase);
+        } else {
+            console.error("File assets/js/catalog.js tidak ditemukan atau belum dimuat.");
+        }
+    </script>
     
 </body>
 </html>
