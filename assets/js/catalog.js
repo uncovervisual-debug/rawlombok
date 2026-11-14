@@ -11,9 +11,14 @@ const rawProductsDatabase = [
         shortDesc: "Conquer Indonesia's majestic volcano, camp above the clouds at Segara Anak lake rim, and witness an unforgettable sunrise.",
         images: [
             "assets/images/destinations/east/rinjani/rinjani-summit-sunrise.jpg",
+            "assets/images/destinations/east/rinjani/rinjani-summit-sunrise1.jpg",
             "assets/images/destinations/east/rinjani/rinjani-segara-anak-camp.jpg",
             "assets/images/destinations/east/rinjani/rinjani-trail-savannah.jpg",
+             "assets/images/destinations/east/rinjani/rinjani-trail-savannah1.jpg",
+             "assets/images/destinations/east/rinjani/rinjani-trail-savannah2.jpg",
             "assets/images/destinations/east/rinjani/rinjani-porter-team.jpg"
+            "assets/images/destinations/east/rinjani/rinjani-porter-team1.jpg"
+            
         ],
         highlights: [
             "Professional licensed mountain guide and local porters from Sembalun village.",
