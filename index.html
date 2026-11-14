@@ -277,31 +277,44 @@
     </a>
 
   
- <!-- Memanggil Database Produk dari catalog.js -->
+<!-- Memanggil Database Produk dari catalog.js -->
     <script src="assets/js/catalog.js"></script>
 
-    <!-- JavaScript Application Logic & Slideshow -->
+    <!-- JavaScript Application Logic & Detail View -->
     <script>
         lucide.createIcons();
         let slideshowIntervals = {};
+
+        // Fungsi beralih tampilan antara Home (Grid) dan Detail Page
+        function switchView(viewName) {
+            const homeView = document.getElementById('homeView');
+            const detailView = document.getElementById('detailView');
+
+            if (viewName === 'home') {
+                detailView.classList.add('hidden');
+                homeView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (viewName === 'detail') {
+                homeView.classList.add('hidden');
+                detailView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
 
         // Fungsi merender kartu produk dari catalog.js + Slideshow Otomatis
         function renderCatalog(products) {
             const grid = document.getElementById('tripGrid');
             grid.innerHTML = "";
 
-            // Bersihkan interval slideshow sebelumnya
             Object.values(slideshowIntervals).forEach(clearInterval);
             slideshowIntervals = {};
 
             products.forEach((prod, index) => {
-                // Ambil foto pertama dari array catalog.js
                 const firstImg = (prod.images && prod.images.length > 0) ? prod.images[0] : prod.img;
 
                 const card = `
                     <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col">
-                        <div class="relative h-64 overflow-hidden bg-gray-100">
-                            <!-- ID unik untuk slideshow otomatis -->
+                        <div class="relative h-64 overflow-hidden bg-gray-100 cursor-pointer" onclick="openTripDetail('${prod.id}')">
                             <img id="slide-img-${index}" src="${firstImg}" alt="${prod.title}" class="w-full h-full object-cover transition-all duration-700">
                             <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">${prod.badge}</span>
                         </div>
@@ -311,7 +324,7 @@
                                     <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
                                     <span>${prod.rating} Reviews</span>
                                 </div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-900">${prod.title}</h3>
+                                <h3 class="text-xl font-bold mb-2 text-gray-900 cursor-pointer hover:text-[#C83E2B] transition" onclick="openTripDetail('${prod.id}')">${prod.title}</h3>
                                 <p class="text-gray-600 text-sm mb-4 line-clamp-2">${prod.shortDesc}</p>
                                 <div class="flex items-center gap-4 text-xs text-gray-500 mb-6">
                                     <span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4 text-[#C83E2B]"></i> ${prod.duration}</span>
@@ -323,18 +336,16 @@
                                     <span class="text-xs text-gray-400 block">From</span>
                                     <span class="text-lg font-extrabold text-[#C83E2B]">${prod.priceStr}</span>
                                 </div>
-                                <a href="https://wa.me/6281325523231?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20inquire%20about%20${encodeURIComponent(prod.title)}" 
-                                   target="_blank" 
-                                   class="bg-gray-900 hover:bg-[#C83E2B] text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
-                                    Inquire Now
-                                </a>
+                                <button onclick="openTripDetail('${prod.id}')" class="bg-gray-900 hover:bg-[#C83E2B] text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition">
+                                    View Trip
+                                </button>
                             </div>
                         </div>
                     </div>
                 `;
                 grid.insertAdjacentHTML('beforeend', card);
 
-                // Jalankan slideshow otomatis jika foto lebih dari 1
+                // Slideshow otomatis (2 detik sekali agar dinamis)
                 if (prod.images && prod.images.length > 1) {
                     let imgIndex = 0;
                     slideshowIntervals[index] = setInterval(() => {
@@ -343,10 +354,44 @@
                         if (imgEl) {
                             imgEl.src = prod.images[imgIndex];
                         }
-                    }, 2000); // Berganti setiap 3 detik
+                    }, 2000);
                 }
             });
 
+            lucide.createIcons();
+        }
+
+        // Fungsi Membuka Halaman Detail Berdasarkan ID Produk
+        function openTripDetail(productId) {
+            const product = rawProductsDatabase.find(p => p.id === productId);
+            if (!product) return;
+
+            // Masukkan data produk ke elemen halaman detail
+            document.getElementById('detailBadge').innerText = product.badge;
+            document.getElementById('detailTitle').innerText = product.title;
+            document.getElementById('detailDuration').innerHTML = `<i data-lucide="clock" class="w-4 h-4 text-[#C83E2B]"></i> ${product.duration}`;
+            document.getElementById('detailImg').src = product.images[0];
+            document.getElementById('detailPrice').innerText = product.priceStr;
+            document.getElementById('totalPriceDisplay').innerText = product.priceStr;
+
+            // Render Highlights
+            const highlightsEl = document.getElementById('detailHighlights');
+            highlightsEl.innerHTML = product.highlights.map(h => `
+                <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5"></i> <span>${h}</span></li>
+            `).join('');
+
+            // Render Itinerary
+            const itineraryEl = document.getElementById('detailItinerary');
+            itineraryEl.innerHTML = product.itinerary.map(item => `
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#C83E2B] block mb-1">${item.day}</span>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">${item.title}</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+
+            // Tampilkan view detail
+            switchView('detail');
             lucide.createIcons();
         }
 
@@ -354,7 +399,7 @@
         if (typeof rawProductsDatabase !== 'undefined') {
             renderCatalog(rawProductsDatabase);
         } else {
-            console.error("File assets/js/catalog.js tidak ditemukan atau belum dimuat.");
+            console.error("File assets/js/catalog.js tidak ditemukan.");
         }
     </script>
     
