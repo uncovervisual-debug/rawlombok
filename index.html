@@ -33,8 +33,6 @@
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-600">
                 <button onclick="switchView('home')" class="hover:text-[#C83E2B] transition">Explore Trips</button>
                 <a href="#destinations" class="hover:text-[#C83E2B] transition">Destinations</a>
-                <a href="#styles" class="hover:text-[#C83E2B] transition">Travel Styles</a>
-                <a href="#about" class="hover:text-[#C83E2B] transition">Our Philosophy</a>
             </nav>
             <div class="flex items-center gap-3">
                 <a href="https://wa.me/6281325523231?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20inquire%20about%20a%20trip." target="_blank" class="bg-[#25D366] hover:bg-[#1ebe5d] text-white px-4 py-2.5 rounded-xl font-semibold text-sm shadow-sm transition flex items-center gap-2">
@@ -67,60 +65,6 @@
                     <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light">
                         Immersive cultural journeys, sacred volcano treks, and hidden coastal paradises led by expert local leaders.
                     </p>
-
-                    <!-- Search Bar Box -->
-                    <div class="bg-white p-4 rounded-2xl shadow-2xl max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3 text-gray-800 text-left">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Destination</label>
-                            <select id="filterDest" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]">
-                                <option value="">All Destinations</option>
-                                <option value="Rinjani">Mount Rinjani</option>
-                                <option value="Senggigi">South & Central Lombok</option>
-                                <option value="Gili">Gili Islands & East</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Travel Style</label>
-                            <select id="filterStyle" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]">
-                                <option value="">All Styles</option>
-                                <option value="Trekking">Trekking & Hiking</option>
-                                <option value="Cultural">Cultural & Heritage</option>
-                                <option value="Island">Island Hopping</option>
-                            </select>
-                        </div>
-                        <div class="flex items-end">
-                            <button onclick="filterTrips()" class="w-full bg-[#C83E2B] hover:bg-[#b03524] text-white font-semibold py-3 px-6 rounded-xl transition shadow-md flex items-center justify-center gap-2">
-                                <i data-lucide="search" class="w-4 h-4"></i>
-                                <span>Find Expeditions</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Trust Bar -->
-            <section class="bg-white border-b border-gray-100 py-8">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="flex flex-col items-center">
-                        <i data-lucide="users" class="w-8 h-8 text-[#C83E2B] mb-2"></i>
-                        <h4 class="font-bold text-sm">Small Group Sizes</h4>
-                        <p class="text-xs text-gray-500">Average 8-12 travelers per group</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <i data-lucide="compass" class="w-8 h-8 text-[#C83E2B] mb-2"></i>
-                        <h4 class="font-bold text-sm">100% Local Leaders</h4>
-                        <p class="text-xs text-gray-500">Born and raised in Lombok</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <i data-lucide="heart-handshake" class="w-8 h-8 text-[#C83E2B] mb-2"></i>
-                        <h4 class="font-bold text-sm">Community Impact</h4>
-                        <p class="text-xs text-gray-500">Fair wages & village support</p>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <i data-lucide="shield-check" class="w-8 h-8 text-[#C83E2B] mb-2"></i>
-                        <h4 class="font-bold text-sm">Guaranteed Departures</h4>
-                        <p class="text-xs text-gray-500">Book with total confidence</p>
-                    </div>
                 </div>
             </section>
 
@@ -133,8 +77,9 @@
                     </div>
                 </div>
 
-                <div id="tripGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  
+                <!-- Kartu Produk Akan Dirender Otomatis Dari catalog.js -->
+                <div id="tripGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+            </section>
         </div>
 
         <!-- VIEW 2: TOUR DETAIL PAGE -->
@@ -151,7 +96,7 @@
                     <h1 id="detailTitle" class="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">Mount Rinjani Crater Rim Expedition</h1>
                     <div class="flex flex-wrap items-center gap-6 text-sm text-gray-600">
                         <span id="detailDuration" class="flex items-center gap-1.5 font-semibold"><i data-lucide="clock" class="w-4 h-4 text-[#C83E2B]"></i> 4 Days / 3 Nights</span>
-                        <span class="flex items-center gap-1.5 font-semibold"><i data-lucide="map-pin" class="w-4 h-4 text-[#C83E2B]"></i> Sembalun - Senaru, Lombok</span>
+                        <span class="flex items-center gap-1.5 font-semibold"><i data-lucide="map-pin" class="w-4 h-4 text-[#C83E2B]"></i> Lombok, Indonesia</span>
                         <span class="flex items-center gap-1.5 font-semibold text-amber-500"><i data-lucide="star" class="w-4 h-4 fill-current"></i> 4.9 Rating (124 reviews)</span>
                     </div>
                 </div>
@@ -160,27 +105,21 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <!-- Left Column: Itinerary & Details -->
                     <div class="lg:col-span-2 space-y-10">
-                        <!-- Main Image Gallery banner -->
-                        <div class="rounded-3xl overflow-hidden shadow-lg h-96">
-                            <img id="detailImg" src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80" alt="Trip Banner" class="w-full h-full object-cover">
+                        <!-- Main Image Banner -->
+                        <div class="rounded-3xl overflow-hidden shadow-lg h-96 bg-gray-100">
+                            <img id="detailImg" src="" alt="Trip Banner" class="w-full h-full object-cover">
                         </div>
 
                         <!-- Highlights -->
                         <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
                             <h3 class="text-xl font-bold mb-4">Why You'll Love This Trip</h3>
-                            <ul id="detailHighlights" class="space-y-3 text-gray-700 text-sm">
-                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5"></i> <span>Professional licensed mountain guide and local porters from Sembalun village.</span></li>
-                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5"></i> <span>High-quality camping gear provided: tents, thick sleeping mats, and warm sleeping bags.</span></li>
-                                <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5"></i> <span>Nutritious, freshly prepared meals served hot on the mountain by our camp cooks.</span></li>
-                            </ul>
+                            <ul id="detailHighlights" class="space-y-3 text-gray-700 text-sm"></ul>
                         </div>
 
-                        <!-- Itinerary Accordion -->
+                        <!-- Itinerary Section -->
                         <div>
                             <h3 class="text-2xl font-bold mb-6">Day-by-Day Itinerary</h3>
-                            <div id="detailItinerary" class="space-y-4">
-                                <!-- Populated dynamically -->
-                            </div>
+                            <div id="detailItinerary" class="space-y-4"></div>
                         </div>
                     </div>
 
@@ -198,28 +137,7 @@
                             <hr class="border-gray-100">
 
                             <!-- Booking Form inside Card -->
-                            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Select Departure Date</label>
-                                    <select id="bookingDate" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]" required>
-                                        <option value="20 Nov 2026">20 Nov 2026 (Guaranteed)</option>
-                                        <option value="05 Dec 2026">05 Dec 2026 (Guaranteed)</option>
-                                        <option value="18 Dec 2026">18 Dec 2026 (Available)</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Number of Travelers</label>
-                                    <input type="number" id="guestCount" min="1" max="10" value="1" onchange="calculateTotal()" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]" required>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full Name</label>
-                                    <input type="text" id="bookingName" placeholder="e.g. John Doe" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]" required>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email Address</label>
-                                    <input type="email" id="bookingEmail" placeholder="e.g. john@example.com" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-medium focus:outline-none focus:border-[#C83E2B]" required>
-                                </div>
-
+                            <form onsubmit="event.preventDefault(); window.open('https://wa.me/6281325523231?text=Hello%20Raw%20Lombok!%20I%20would%20like%20to%20book%20this%20trip.', '_blank');" class="space-y-4">
                                 <div class="bg-gray-50 p-4 rounded-2xl flex items-center justify-between">
                                     <span class="text-sm font-bold text-gray-700">Total Estimate:</span>
                                     <span id="totalPriceDisplay" class="text-lg font-extrabold text-[#C83E2B]">IDR 3.250.000</span>
@@ -276,11 +194,10 @@
         <span class="hidden sm:inline text-sm">Chat Local Expert</span>
     </a>
 
-  
-<!-- Memanggil Database Produk dari catalog.js -->
+    <!-- Memanggil Database Produk dari catalog.js -->
     <script src="assets/js/catalog.js"></script>
 
-    <!-- JavaScript Application Logic & Detail View -->
+    <!-- JavaScript Application Logic, Slideshow, & Detail Handler -->
     <script>
         lucide.createIcons();
         let slideshowIntervals = {};
@@ -345,7 +262,7 @@
                 `;
                 grid.insertAdjacentHTML('beforeend', card);
 
-                // Slideshow otomatis (2 detik sekali agar dinamis)
+                // Slideshow otomatis (Diatur berganti setiap 2 detik / 2000 ms)
                 if (prod.images && prod.images.length > 1) {
                     let imgIndex = 0;
                     slideshowIntervals[index] = setInterval(() => {
@@ -366,7 +283,6 @@
             const product = rawProductsDatabase.find(p => p.id === productId);
             if (!product) return;
 
-            // Masukkan data produk ke elemen halaman detail
             document.getElementById('detailBadge').innerText = product.badge;
             document.getElementById('detailTitle').innerText = product.title;
             document.getElementById('detailDuration').innerHTML = `<i data-lucide="clock" class="w-4 h-4 text-[#C83E2B]"></i> ${product.duration}`;
@@ -390,7 +306,6 @@
                 </div>
             `).join('');
 
-            // Tampilkan view detail
             switchView('detail');
             lucide.createIcons();
         }
@@ -402,6 +317,5 @@
             console.error("File assets/js/catalog.js tidak ditemukan.");
         }
     </script>
-    
 </body>
 </html>
