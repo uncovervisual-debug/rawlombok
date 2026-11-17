@@ -104,7 +104,7 @@
                 </div>
 
                 <div id="tripGridHome" class="flex overflow-x-auto gap-6 pb-6 pt-2 no-scrollbar snap-x snap-mandatory">
-                    <!-- Kartu Dirender Otomatis Dari catalog.js -->
+                    <!-- Kartu Dirender Otomatis -->
                 </div>
 
                 <div class="mt-8 text-center sm:hidden">
@@ -200,7 +200,7 @@
                 </div>
 
                 <div id="tripGridAll" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Kartu Dirender Otomatis Dari catalog.js -->
+                    <!-- Kartu Dirender Otomatis -->
                 </div>
             </div>
         </div>
@@ -286,7 +286,7 @@
         <span class="hidden sm:inline text-sm">Chat Local Expert</span>
     </a>
 
-    <!-- Memanggil Database Produk dari catalog.js -->
+    <!-- MEMANGGIL FILE CATALOG.JS DI FOLDER ASSETS/JS/ -->
     <script src="assets/js/catalog.js"></script>
 
     <!-- JavaScript Application Logic -->
@@ -537,14 +537,13 @@
             window.open(`https://wa.me/6281325523231?text=${encodedMessage}`, '_blank');
         }
 
-        // Jalankan setelah seluruh elemen dan skrip eksternal (catalog.js) termuat sempurna
+        // Jalankan otomatis saat halaman termuat
         window.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
             if (typeof rawProductsDatabase !== 'undefined') {
-                console.log("Database produk berhasil dimuat:", rawProductsDatabase.length, "destinasi.");
                 renderCatalog(rawProductsDatabase);
             } else {
-                console.error("PERHATIAN: rawProductsDatabase tidak terbaca! Periksa kembali lokasi file catalog.js di dalam folder assets/js/");
+                console.error("Database catalog.js tidak terbaca.");
             }
         });
     </script>
