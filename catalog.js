@@ -10,14 +10,14 @@ const rawProductsDatabase = [
         priceStr: "IDR 3.250.000",
         shortDesc: "Conquer Indonesia's majestic volcano, camp above the clouds at Segara Anak lake rim, and witness an unforgettable sunrise.",
         images: [
-            "assets/images/destinations/east/rinjani/rinjani-summit-sunrise.jpg",
-            "assets/images/destinations/east/rinjani/rinjani-summit-sunrise1.jpg",
-            "assets/images/destinations/east/rinjani/rinjani-segara-anak-camp.jpg",
-            "assets/images/destinations/east/rinjani/rinjani-trail-savannah.jpg",
-            "assets/images/destinations/east/rinjani/rinjani-trail-savannah1.jpg",
-            "assets/images/destinations/east/rinjani/rinjani-trail-savannah2.jpg",
-            "assets/images/destinations/east/rinjani/rinjani-porter-team.jpg",
-            "assets/images/destinations/east/rinjani/rinjani-porter-team1.jpg"
+            "./assets/images/destinations/east/rinjani/rinjani-summit-sunrise.jpg",
+            "./assets/images/destinations/east/rinjani/rinjani-summit-sunrise1.jpg",
+            "./assets/images/destinations/east/rinjani/rinjani-segara-anak-camp.jpg",
+            "./assets/images/destinations/east/rinjani/rinjani-trail-savannah.jpg",
+            "./assets/images/destinations/east/rinjani/rinjani-trail-savannah1.jpg",
+            "./assets/images/destinations/east/rinjani/rinjani-trail-savannah2.jpg",
+            "./assets/images/destinations/east/rinjani/rinjani-porter-team.jpg",
+            "./assets/images/destinations/east/rinjani/rinjani-porter-team1.jpg"
         ],
         highlights: [
             "Professional licensed mountain guide and local porters from Sembalun village.",
@@ -43,8 +43,8 @@ const rawProductsDatabase = [
         priceStr: "IDR 1.750.000",
         shortDesc: "Explore the lush agricultural plateau nestled at the foot of Rinjani, featuring strawberry farms, traditional villages, and rolling hills.",
         images: [
-            "assets/images/destinations/east/sembalun/east-sembalun.jpg",
-            "assets/images/destinations/east/sembalun/east-sembalun1.jpg"
+            "./assets/images/destinations/east/sembalun/east-sembalun.jpg",
+            "./assets/images/destinations/east/sembalun/east-sembalun1.jpg"
         ],
         highlights: [
             "Scenic drives through volcanic agricultural valleys.",
@@ -67,12 +67,12 @@ const rawProductsDatabase = [
         priceStr: "IDR 2.400.000",
         shortDesc: "Discover white sand curves, turquoise waters at Tanjung Aan, and modern coastal culture around Mandalika.",
         images: [
-            "assets/images/destinations/center/tanjung-aan/center-tanjungaan.jpg",
-            "assets/images/destinations/center/tanjung-aan/center-tanjungaan1.jpg",
-            "assets/images/destinations/center/tanjung-aan/center-tanjungaan2.jpg",
-            "assets/images/destinations/center/tanjung-aan/center-tanjungaan3.jpg",
-            "assets/images/destinations/center/tanjung-aan/center-tanjungaan4.jpg",
-            "assets/images/destinations/center/mandalika/center-mandalika.jpg"
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan.jpg",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan1.jpg",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan2.jpg",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan3.jpg",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan4.jpg",
+            "./assets/images/destinations/center/mandalika/center-mandalika.jpg"
         ],
         highlights: [
             "Relax on the pristine white sands of Tanjung Aan and Seger beach.",
@@ -96,8 +96,8 @@ const rawProductsDatabase = [
         priceStr: "IDR 950.000",
         shortDesc: "Step back in time at traditional Sasak weaving villages, witness live Presean stick-fighting exhibitions, and experience indigenous architecture.",
         images: [
-            "assets/images/destinations/center/sade/center-sade-kain.jpg",
-            "assets/images/destinations/center/sade/center-sade-presean.jpg"
+            "./assets/images/destinations/center/sade/center-sade-kain.jpg",
+            "./assets/images/destinations/center/sade/center-sade-presean.jpg"
         ],
         highlights: [
             "Guided walk through centuries-old traditional thatch-roof houses.",
@@ -119,7 +119,7 @@ const rawProductsDatabase = [
         priceStr: "IDR 1.600.000",
         shortDesc: "Unwind on the gentle sloping white sands of Selong Belanak, famous for beginner-friendly surf breaks and iconic buffalo afternoon walks.",
         images: [
-            "assets/images/destinations/center/selong-belanak/center-sekongbelanak.jpg"
+            "./assets/images/destinations/center/selong-belanak/center-sekongbelanak.jpg"
         ],
         highlights: [
             "Ideal gentle waves for surfing lessons and water relaxation.",
@@ -142,10 +142,10 @@ const rawProductsDatabase = [
         priceStr: "IDR 2.100.000",
         shortDesc: "Snorkel with sea turtles in crystal-clear turquoise waters across Gili Trawangan, Meno, and Air, surrounded by vibrant coral reefs.",
         images: [
-            "assets/images/destinations/north/snorkeling/gili-matra-snorkling.jpg",
-            "assets/images/destinations/north/snorkeling/gili-matra-snorkling1.jpg",
-            "assets/images/destinations/north/snorkeling/gili-matra-snorkling2.jpg",
-            "assets/images/destinations/north/snorkeling/gili-matra-snorkling3.jpg"
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkling.jpg",
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkling1.jpg",
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkling2.jpg",
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkling3.jpg"
         ],
         highlights: [
             "Private boat charter for snorkeling at iconic turtle points and underwater statues.",
@@ -168,10 +168,10 @@ const rawProductsDatabase = [
         priceStr: "IDR 850.000",
         shortDesc: "Hike the grassy rolling hills of Bukit Merese for panoramic vistas over hidden coves and breathtaking sunset oceans.",
         images: [
-            "assets/images/destinations/south/mereje/south-mereje1.jpg",
-            "assets/images/destinations/south/mereje/south-mereje2.jpg",
-            "assets/images/destinations/south/mereje/south-mereje3.jpg",
-            "assets/images/destinations/south/mereje/south-mereje4.jpg"
+            "./assets/images/destinations/south/mereje/south-mereje1.jpg",
+            "./assets/images/destinations/south/mereje/south-mereje2.jpg",
+            "./assets/images/destinations/south/mereje/south-mereje3.jpg",
+            "./assets/images/destinations/south/mereje/south-mereje4.jpg"
         ],
         highlights: [
             "Gentle hillside trek with sweeping 360-degree ocean views.",
