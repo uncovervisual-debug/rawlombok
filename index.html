@@ -12,7 +12,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF9F6; color: #1F2937; }
         
-        /* CSS Tambahan untuk Slideshow yang Smooth (Fade Effect) */
         .slide-img {
             opacity: 0;
             transition: opacity 1s ease-in-out;
@@ -27,7 +26,6 @@
             opacity: 1;
         }
 
-        /* Menyembunyikan scrollbar bawaan tapi tetap bisa digulir ke samping */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -47,7 +45,6 @@
     <!-- Navigation Header -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo RL Hitam Elegan -->
             <div class="flex items-center gap-2 cursor-pointer" onclick="switchView('home')">
                 <div class="bg-gray-900 text-white p-2.5 rounded-xl font-black text-xl tracking-wider shadow-md">RL</div>
                 <div>
@@ -60,7 +57,6 @@
                 <button onclick="switchView('all-destinations')" class="hover:text-[#C83E2B] transition cursor-pointer">All Destinations</button>
             </nav>
             <div class="flex items-center gap-3">
-                <!-- Trip Cart Trigger Button -->
                 <button onclick="toggleCartDrawer()" class="relative bg-gray-900 hover:bg-[#C83E2B] text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 shadow-sm cursor-pointer">
                     <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                     <span>Trip Cart</span>
@@ -75,7 +71,6 @@
 
         <!-- VIEW 1: HOME PAGE -->
         <div id="homeView" class="view-section">
-            <!-- Hero Section dengan Background Video -->
             <section class="relative bg-gray-900 text-white py-24 lg:py-32 overflow-hidden">
                 <div class="absolute inset-0 z-0">
                     <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-45 scale-105 transform">
@@ -102,19 +97,16 @@
                         <span class="text-[#C83E2B] font-bold text-xs uppercase tracking-widest block mb-1">Handcrafted Journeys</span>
                         <h2 class="text-3xl font-extrabold tracking-tight">Featured Raw Lombok Expeditions</h2>
                     </div>
-                    <!-- Tombol untuk menuju halaman khusus All Destinations -->
                     <button onclick="switchView('all-destinations')" class="hidden sm:flex items-center gap-1.5 text-sm font-bold text-[#C83E2B] hover:text-gray-900 transition cursor-pointer">
                         <span>View All Destinations</span>
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </button>
                 </div>
 
-                <!-- Container Scroll Menyamping untuk Beranda -->
                 <div id="tripGridHome" class="flex overflow-x-auto gap-6 pb-6 pt-2 no-scrollbar snap-x snap-mandatory">
                     <!-- Kartu Dirender Otomatis Dari catalog.js -->
                 </div>
 
-                <!-- Tombol View All versi Mobile di bawah list -->
                 <div class="mt-8 text-center sm:hidden">
                     <button onclick="switchView('all-destinations')" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-900 font-bold px-6 py-3 rounded-xl text-sm transition cursor-pointer">
                         <span>View All Destinations</span>
@@ -127,13 +119,11 @@
         <!-- VIEW 2: TOUR DETAIL PAGE -->
         <div id="detailView" class="view-section hidden py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Tombol Kembali -->
                 <button type="button" onclick="switchView('home')" class="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-[#C83E2B] mb-6 transition cursor-pointer">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i>
                     <span>Back to all expeditions</span>
                 </button>
 
-                <!-- Trip Title Header -->
                 <div class="mb-8">
                     <span id="detailBadge" class="bg-[#C83E2B]/10 text-[#C83E2B] font-bold text-xs uppercase px-3 py-1 rounded-full inline-block mb-3">Trekking & Volcano</span>
                     <h1 id="detailTitle" class="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">Mount Rinjani Crater Rim Expedition</h1>
@@ -144,29 +134,23 @@
                     </div>
                 </div>
 
-                <!-- Main Grid Layout -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    <!-- Left Column: Itinerary & Details -->
                     <div class="lg:col-span-2 space-y-10">
-                        <!-- Main Image Banner -->
                         <div class="rounded-3xl overflow-hidden shadow-lg h-96 bg-gray-100">
                             <img id="detailImg" src="" alt="Trip Banner" class="w-full h-full object-cover">
                         </div>
 
-                        <!-- Highlights -->
                         <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
                             <h3 class="text-xl font-bold mb-4">Why You'll Love This Trip</h3>
                             <ul id="detailHighlights" class="space-y-3 text-gray-700 text-sm"></ul>
                         </div>
 
-                        <!-- Itinerary Section -->
                         <div>
                             <h3 class="text-2xl font-bold mb-6">Day-by-Day Itinerary</h3>
                             <div id="detailItinerary" class="space-y-4"></div>
                         </div>
                     </div>
 
-                    <!-- Right Column: Booking & Add to Cart Card -->
                     <div>
                         <div class="sticky top-28 bg-white p-6 rounded-3xl border border-gray-200 shadow-xl space-y-6">
                             <div>
@@ -179,7 +163,6 @@
 
                             <hr class="border-gray-100">
 
-                            <!-- Form Tambah ke Keranjang -->
                             <div class="space-y-4">
                                 <input type="hidden" id="currentTripId" value="">
                                 <div>
@@ -202,10 +185,9 @@
             </div>
         </div>
 
-        <!-- VIEW 3: ALL DESTINATIONS PAGE (Halaman khusus yang menampilkan seluruh kartu dalam bentuk Grid) -->
+        <!-- VIEW 3: ALL DESTINATIONS PAGE -->
         <div id="allDestinationsView" class="view-section hidden py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Tombol Kembali ke Beranda -->
                 <button type="button" onclick="switchView('home')" class="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-[#C83E2B] mb-6 transition cursor-pointer">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i>
                     <span>Back to Home</span>
@@ -217,7 +199,6 @@
                     <p class="text-gray-600 text-sm sm:text-base mt-2">Explore our full range of handcrafted expeditions across Lombok's volcanic peaks, hidden waterfalls, and pristine coastlines.</p>
                 </div>
 
-                <!-- Grid Penuh untuk Menampilkan Semua Kartu -->
                 <div id="tripGridAll" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Kartu Dirender Otomatis Dari catalog.js -->
                 </div>
@@ -240,12 +221,8 @@
                     </button>
                 </div>
 
-                <!-- Cart Items List -->
-                <div id="cartItemsContainer" class="flex-grow overflow-y-auto px-6 py-4 space-y-4">
-                    <!-- Diisi lewat JS -->
-                </div>
+                <div id="cartItemsContainer" class="flex-grow overflow-y-auto px-6 py-4 space-y-4"></div>
 
-                <!-- Cart Footer & Checkout Form -->
                 <div class="border-t border-gray-100 px-6 py-6 bg-gray-50 space-y-4">
                     <div class="space-y-2">
                         <div>
@@ -312,19 +289,17 @@
     <!-- Memanggil Database Produk dari catalog.js -->
     <script src="assets/js/catalog.js"></script>
 
-    <!-- JavaScript Application Logic, Smooth Fade Slideshow, & Multi-View Navigation -->
+    <!-- JavaScript Application Logic -->
     <script>
         lucide.createIcons();
         let slideshowIntervals = {};
         let tripCart = [];
 
-        // Fungsi beralih tampilan antara Home, Detail, dan All Destinations
         function switchView(viewName) {
             const homeView = document.getElementById('homeView');
             const detailView = document.getElementById('detailView');
             const allDestinationsView = document.getElementById('allDestinationsView');
 
-            // Sembunyikan semua view terlebih dahulu
             homeView.classList.add('hidden');
             detailView.classList.add('hidden');
             allDestinationsView.classList.add('hidden');
@@ -339,11 +314,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Fungsi merender kartu produk untuk Beranda (Horizontal Scroll) dan Halaman All Destinations (Grid Penuh)
         function renderCatalog(products) {
             const gridHome = document.getElementById('tripGridHome');
             const gridAll = document.getElementById('tripGridAll');
             
+            if (!gridHome || !gridAll) return;
+
             gridHome.innerHTML = "";
             gridAll.innerHTML = "";
 
@@ -351,7 +327,6 @@
             slideshowIntervals = {};
 
             products.forEach((prod, index) => {
-                // Generate gambar HTML untuk slideshow halus berbasis fade
                 let imagesHtml = '';
                 if (prod.images && prod.images.length > 0) {
                     prod.images.forEach((imgSrc, imgIdx) => {
@@ -362,7 +337,6 @@
                     imagesHtml = `<img src="${prod.img}" alt="${prod.title}" class="slide-img active">`;
                 }
 
-                // Template Kartu untuk Beranda (Horizontal Scroll)
                 const cardHomeHtml = `
                     <div class="flex-shrink-0 w-[85vw] sm:w-[380px] snap-start bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col">
                         <div class="relative h-64 overflow-hidden bg-gray-100 cursor-pointer" onclick="openTripDetail('${prod.id}')">
@@ -395,47 +369,12 @@
                     </div>
                 `;
 
-                // Template Kartu untuk Halaman All Destinations (Grid Penuh)
-                const cardAllHtml = `
-                    <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col">
-                        <div class="relative h-64 overflow-hidden bg-gray-100 cursor-pointer" onclick="openTripDetail('${prod.id}')">
-                            ${imagesHtml}
-                            <span class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">${prod.badge}</span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-center gap-1 text-amber-500 text-xs font-bold mb-2">
-                                    <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
-                                    <span>${prod.rating} Reviews</span>
-                                </div>
-                                <h3 class="text-xl font-bold mb-2 text-gray-900 cursor-pointer hover:text-[#C83E2B] transition" onclick="openTripDetail('${prod.id}')">${prod.title}</h3>
-                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">${prod.shortDesc}</p>
-                                <div class="flex items-center gap-4 text-xs text-gray-500 mb-6">
-                                    <span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4 text-[#C83E2B]"></i> ${prod.duration}</span>
-                                    <span class="flex items-center gap-1 uppercase font-semibold text-[#C83E2B]">${prod.cluster} Lombok</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                                <div>
-                                    <span class="text-xs text-gray-400 block">From</span>
-                                    <span class="text-lg font-extrabold text-gray-900">${prod.priceStr}</span>
-                                </div>
-                                <button onclick="openTripDetail('${prod.id}')" class="bg-gray-900 hover:bg-[#C83E2B] text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer">
-                                    View Trip
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
                 gridHome.insertAdjacentHTML('beforeend', cardHomeHtml);
-                gridAll.insertAdjacentHTML('beforeend', cardAllHtml);
+                gridAll.insertAdjacentHTML('beforeend', cardHomeHtml);
 
-                // Slideshow halus (Smooth Fade) berganti setiap 3 detik untuk semua kartu
                 if (prod.images && prod.images.length > 1) {
                     let currentImgIdx = 0;
                     slideshowIntervals[index] = setInterval(() => {
-                        // Update gambar di beranda dan halaman all destinations sekaligus
                         prod.images.forEach((_, imgIdx) => {
                             const elHome = document.querySelector(`[data-slide-index="${index}-${imgIdx}"]`);
                             if (elHome) {
@@ -454,7 +393,6 @@
             lucide.createIcons();
         }
 
-        // Fungsi Membuka Halaman Detail Berdasarkan ID Produk
         function openTripDetail(productId) {
             const product = rawProductsDatabase.find(p => p.id === productId);
             if (!product) return;
@@ -466,13 +404,11 @@
             document.getElementById('detailImg').src = product.images[0];
             document.getElementById('detailPrice').innerText = product.priceStr;
 
-            // Render Highlights
             const highlightsEl = document.getElementById('detailHighlights');
             highlightsEl.innerHTML = product.highlights.map(h => `
                 <li class="flex items-start gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5"></i> <span>${h}</span></li>
             `).join('');
 
-            // Render Itinerary
             const itineraryEl = document.getElementById('detailItinerary');
             itineraryEl.innerHTML = product.itinerary.map(item => `
                 <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
@@ -486,7 +422,6 @@
             lucide.createIcons();
         }
 
-        // --- TRIP CART SYSTEM ---
         function toggleCartDrawer() {
             const drawer = document.getElementById('cartDrawer');
             drawer.classList.toggle('hidden');
