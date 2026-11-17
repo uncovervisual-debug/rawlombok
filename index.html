@@ -104,7 +104,7 @@
                 </div>
 
                 <div id="tripGridHome" class="flex overflow-x-auto gap-6 pb-6 pt-2 no-scrollbar snap-x snap-mandatory">
-                    <!-- Kartu Dirender Otomatis Dari catalog.js -->
+                    <!-- Kartu Dirender Otomatis -->
                 </div>
 
                 <div class="mt-8 text-center sm:hidden">
@@ -200,7 +200,7 @@
                 </div>
 
                 <div id="tripGridAll" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Kartu Dirender Otomatis Dari catalog.js -->
+                    <!-- Kartu Dirender Otomatis -->
                 </div>
             </div>
         </div>
@@ -286,12 +286,11 @@
         <span class="hidden sm:inline text-sm">Chat Local Expert</span>
     </a>
 
-    <!-- Memanggil Database Produk dari catalog.js -->
+    <!-- Memanggil Database Produk -->
     <script src="assets/js/catalog.js"></script>
 
     <!-- JavaScript Application Logic -->
     <script>
-        lucide.createIcons();
         let slideshowIntervals = {};
         let tripCart = [];
 
@@ -337,7 +336,7 @@
                     imagesHtml = `<img src="${prod.img}" alt="${prod.title}" class="slide-img active">`;
                 }
 
-                const cardHomeHtml = `
+                const cardHtml = `
                     <div class="flex-shrink-0 w-[85vw] sm:w-[380px] snap-start bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col">
                         <div class="relative h-64 overflow-hidden bg-gray-100 cursor-pointer" onclick="openTripDetail('${prod.id}')">
                             ${imagesHtml}
@@ -369,8 +368,8 @@
                     </div>
                 `;
 
-                gridHome.insertAdjacentHTML('beforeend', cardHomeHtml);
-                gridAll.insertAdjacentHTML('beforeend', cardHomeHtml);
+                gridHome.insertAdjacentHTML('beforeend', cardHtml);
+                gridAll.insertAdjacentHTML('beforeend', cardHtml);
 
                 if (prod.images && prod.images.length > 1) {
                     let currentImgIdx = 0;
@@ -538,12 +537,15 @@
             window.open(`https://wa.me/6281325523231?text=${encodedMessage}`, '_blank');
         }
 
-        // Jalankan saat halaman pertama kali dibuka
-        if (typeof rawProductsDatabase !== 'undefined') {
-            renderCatalog(rawProductsDatabase);
-        } else {
-            console.error("File assets/js/catalog.js tidak ditemukan.");
-        }
+        // Jalankan otomatis saat halaman termuat
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            if (typeof rawProductsDatabase !== 'undefined') {
+                renderCatalog(rawProductsDatabase);
+            } else {
+                console.error("Database catalog.js tidak terbaca.");
+            }
+        });
     </script>
 </body>
 </html>
