@@ -11,7 +11,6 @@ const rawProductsDatabase = [
     shortDesc:
       "Conquer Indonesia's majestic volcano, camp above the clouds at Segara Anak lake rim, and witness an unforgettable sunrise.",
     images: [
-      "./aseets/images/destinations/center/mandalika/center-mandalika.jpg",
       "./aseets/images/destinations/east/rinjani/rinjani-summit-sunrise1.jpg",
       "./aseets/images/destinations/east/rinjani/rinjani-segara-anak-camp.jpg",
       "./aseets/images/destinations/east/rinjani/rinjani-trail-savannah.jpg",
@@ -100,6 +99,7 @@ const rawProductsDatabase = [
       "./aseets/images/destinations/center/tanjung-aan/center-tanjungaan3.jpg",
       "./aseets/images/destinations/center/tanjung-aan/center-tanjungaan4.jpg",
       "./aseets/images/destinations/center/mandalika/center-mandalika.jpg",
+
     ],
     highlights: [
       "Relax on the pristine white sands of Tanjung Aan and Seger beach.",
