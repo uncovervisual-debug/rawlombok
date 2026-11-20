@@ -218,6 +218,50 @@
         const WHATSAPP_NUMBER = "6281325523231";
         let cart = [];
         let blogSlideTimer = null;
+        let destSlideTimer = null;
+
+        // 1B. SMOOTH CROSSFADE SLIDESHOW FOR DESTINATION CARDS
+        function setDestSlide(cardIdx, nextIdx) {
+            const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+            if (!slides || slides.length <= 1) return;
+
+            const safeIdx = ((nextIdx % slides.length) + slides.length) % slides.length;
+            slides.forEach((imgEl, idx) => {
+                const isActive = idx === safeIdx;
+                imgEl.dataset.activeIndex = safeIdx;
+                imgEl.classList.toggle('opacity-100', isActive);
+                imgEl.classList.toggle('opacity-0', !isActive);
+            });
+        }
+
+        function pauseDestCard(cardIdx) {
+            const firstSlide = document.querySelector(`.dest-slide-${cardIdx}`);
+            if (firstSlide) firstSlide.dataset.paused = "true";
+        }
+
+        function resumeDestCard(cardIdx) {
+            const firstSlide = document.querySelector(`.dest-slide-${cardIdx}`);
+            if (firstSlide) firstSlide.dataset.paused = "false";
+        }
+
+        function startDestSlideshow(items) {
+            if (destSlideTimer) clearInterval(destSlideTimer);
+            destSlideTimer = setInterval(() => {
+                items.forEach((item, cardIdx) => {
+                    const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+                    if (!slides || slides.length <= 1) return;
+                    if (slides[0].dataset.paused === "true") return;
+
+                    const current = parseInt(slides[0].dataset.activeIndex || "0", 10);
+                    const tick = parseInt(slides[0].dataset.tick || "0", 10) + 1;
+                    slides[0].dataset.tick = tick;
+                    const stepEvery = 2 + (cardIdx % 2);
+                    if (tick % stepEvery === 0) {
+                        setDestSlide(cardIdx, current + 1);
+                    }
+                });
+            }, 2200);
+        }
 
         // 1. RENDER DESTINATIONS
         function renderDestinations(filter = 'all') {
@@ -228,15 +272,34 @@
                 ? rawProductsDatabase
                 : rawProductsDatabase.filter(item => item.cluster === filter);
 
-            grid.innerHTML = filtered.map(product => {
-                const thumb = (product.images && product.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
+            grid.innerHTML = filtered.map((product, cardIdx) => {
+                const gallery = (Array.isArray(product.images) && product.images.length > 0)
+                    ? product.images
+                    : ["./assets/images/blog/outing/outing-hero.webp"];
+
+                const slidesHtml = gallery.map((imgSrc, imgIdx) => `
+                    <img
+                        src="${imgSrc}"
+                        alt="${product.title}"
+                        data-active-index="0"
+                        data-tick="0"
+                        class="dest-slide-${cardIdx} absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'} group-hover:scale-105 transition-transform duration-500"
+                    >
+                `).join('');
+
                 return `
-                    <div class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
-                        <div class="relative h-52 cursor-pointer overflow-hidden group" onclick="openProductModal('${product.id}')">
-                            <img src="${thumb}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+                    <div onmouseenter="pauseDestCard(${cardIdx})" onmouseleave="resumeDestCard(${cardIdx})" class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                        <div class="relative h-52 cursor-pointer overflow-hidden bg-stone-200 group" onclick="openProductModal('${product.id}')">
+                            ${slidesHtml}
+                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-950/35 via-transparent to-transparent"></div>
+                            <span class="relative z-10 inline-block mt-3 ml-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
                                 ${product.badge}
                             </span>
+                            ${gallery.length > 1 ? `
+                                <span class="pointer-events-none absolute bottom-2.5 right-3 z-10 bg-stone-950/55 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                                    ${gallery.length} photos
+                                </span>
+                            ` : ''}
                         </div>
                         <div class="p-5 flex flex-col flex-grow">
                             <div class="flex items-center justify-between text-xs text-stone-500 mb-1.5">
@@ -260,6 +323,8 @@
                     </div>
                 `;
             }).join('');
+
+            startDestSlideshow(filtered);
         }
 
         function filterDestinations(cluster) {
