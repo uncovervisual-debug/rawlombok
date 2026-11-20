@@ -1,252 +1,235 @@
 const rawProductsDatabase = [
-  {
-    id: "rinjani-summit",
-    title: "Mount Rinjani Crater Rim & Summit Expedition",
-    cluster: "east",
-    badge: "Trekking & Volcano",
-    duration: "4 Days / 3 Nights",
-    rating: "4.9 (124)",
-    priceVal: 3250000,
-    priceStr: "IDR 3.250.000",
-    shortDesc:
-      "Conquer Indonesia's majestic volcano, camp above the clouds at Segara Anak lake rim, and witness an unforgettable sunrise.",
-    images: [
-      "./aseets/images/destinations/east/rinjani/rinjani-summit-sunrise1.jpg",
-      "./aseets/images/destinations/east/rinjani/rinjani-segara-anak-camp.jpg",
-      "./aseets/images/destinations/east/rinjani/rinjani-trail-savannah.jpg",
-      "./aseets/images/destinations/east/rinjani/rinjani-trail-savannah1.jpg",
-      "./aseets/images/destinations/east/rinjani/rinjani-trail-savannah2.jpg",
-      "./aseets/images/destinations/east/rinjani/rinjani-porter-team.jpg",
-      "./aseets/images/destinations/east/rinjani/rinjani-porter-team1.jpg",
-    ],
-    highlights: [
-      "Professional licensed mountain guide and local porters from Sembalun village.",
-      "High-quality camping gear provided: tents, thick sleeping mats, and warm sleeping bags.",
-      "Nutritious, freshly prepared meals served hot on the mountain by our camp cooks.",
-      "Breathtaking sunrise view from the 3,726m summit and turquoise crater lake.",
-    ],
-    itinerary: [
-      {
-        day: "Day 1",
-        title: "Sembalun Village to Crater Rim",
-        desc: "Start early morning trek through savannah hills, steep ridges, arriving at Crater Rim for sunset.",
-      },
-      {
-        day: "Day 2",
-        title: "Summit Attack & Segara Anak Lake",
-        desc: "Pre-dawn summit push at 3:00 AM, descend to the crater lake and hot springs.",
-      },
-      {
-        day: "Day 3",
-        title: "Lake to Senaru Crater Rim",
-        desc: "Climb up to Senaru rim, enjoy panoramic views of the northern coast.",
-      },
-      {
-        day: "Day 4",
-        title: "Senaru Rim Descent & Transfer",
-        desc: "Descend through tropical rainforest, transfer back to your hotel.",
-      },
-    ],
-  },
-  {
-    id: "sembalun-highlands",
-    title: "Sembalun Valley & Cultural Highland Safari",
-    cluster: "east",
-    badge: "Valley & Culture",
-    duration: "2 Days / 1 Night",
-    rating: "4.8 (48)",
-    priceVal: 1750000,
-    priceStr: "IDR 1.750.000",
-    shortDesc:
-      "Explore the lush agricultural plateau nestled at the foot of Rinjani, featuring strawberry farms, traditional villages, and rolling hills.",
-    images: [
-      "./aseets/images/destinations/east/sembalun/east-sembalun.jpg",
-      "./aseets/images/destinations/east/sembalun/east-sembalun1.jpg",
-    ],
-    highlights: [
-      "Scenic drives through volcanic agricultural valleys.",
-      "Visit local organic farming and strawberry picking plots.",
-      "Panoramic photography of surrounding hills and traditional hillside houses.",
-    ],
-    itinerary: [
-      {
-        day: "Day 1",
-        title: "Valley Arrival & Farm Exploration",
-        desc: "Arrive in Sembalun, explore local farming communities and viewpoints.",
-      },
-      {
-        day: "Day 2",
-        title: "Hill Sunrise & Return",
-        desc: "Morning light over the valley, followed by local breakfast and transfer.",
-      },
-    ],
-  },
-  {
-    id: "kuta-mandalika-coast",
-    title: "Kuta Mandalika & Tanjung Aan Coastal Odyssey",
-    cluster: "center",
-    badge: "Coastal & Beach",
-    duration: "3 Days / 2 Nights",
-    rating: "4.9 (86)",
-    priceVal: 2400000,
-    priceStr: "IDR 2.400.000",
-    shortDesc:
-      "Discover white sand curves, turquoise waters at Tanjung Aan, and modern coastal culture around Mandalika.",
-    images: [
-      "./aseets/images/destinations/center/tanjung-aan/center-tanjungaan.jpg",
-      "./aseets/images/destinations/center/tanjung-aan/center-tanjungaan1.jpg",
-      "./aseets/images/destinations/center/tanjung-aan/center-tanjungaan2.jpg",
-      "./aseets/images/destinations/center/tanjung-aan/center-tanjungaan3.jpg",
-      "./aseets/images/destinations/center/tanjung-aan/center-tanjungaan4.jpg",
-      "./aseets/images/destinations/center/mandalika/center-mandalika.jpg",
-
-    ],
-    highlights: [
-      "Relax on the pristine white sands of Tanjung Aan and Seger beach.",
-      "Explore the scenic coastal curves of the Mandalika Special Economic Zone.",
-      "Swimming and coastal leisure in crystal clear southern waters.",
-    ],
-    itinerary: [
-      {
-        day: "Day 1",
-        title: "Mandalika Circuit & Coastal Setup",
-        desc: "Arrive in South Lombok, coastal drive, and sunset view.",
-      },
-      {
-        day: "Day 2",
-        title: "Tanjung Aan Full Beach Experience",
-        desc: "Swimming, relaxing, and drone photography spots along Tanjung Aan bays.",
-      },
-      {
-        day: "Day 3",
-        title: "Souvenir & Departure",
-        desc: "Final morning by the coast before heading out.",
-      },
-    ],
-  },
-  {
-    id: "sade-sasak-heritage",
-    title: "Sade & Ende Indigenous Sasak Heritage",
-    cluster: "center",
-    badge: "Culture & Tradition",
-    duration: "1 Day Trip",
-    rating: "4.7 (73)",
-    priceVal: 950000,
-    priceStr: "IDR 950.000",
-    shortDesc:
-      "Step back in time at traditional Sasak weaving villages, witness live Presean stick-fighting exhibitions, and experience indigenous architecture.",
-    images: [
-      "./aseets/images/destinations/center/sade/center-sade-kain.jpg",
-      "./aseets/images/destinations/center/sade/center-sade-presean.jpg",
-    ],
-    highlights: [
-      "Guided walk through centuries-old traditional thatch-roof houses.",
-      "Watch skilled local artisans weaving intricate traditional Lombok cloth (Kain Sasak).",
-      "Experience cultural performances including the traditional Presean martial art.",
-    ],
-    itinerary: [
-      {
-        day: "Day 1",
-        title: "Sasak Village Immersive Tour",
-        desc: "Full day exploring Sade and Ende villages, learning traditions, weaving, and stick fighting.",
-      },
-    ],
-  },
-  {
-    id: "selong-belanak-bay",
-    title: "Selong Belanak Surf & Crescent Bay",
-    cluster: "center",
-    badge: "Surf & Relax",
-    duration: "2 Days / 1 Night",
-    rating: "4.8 (64)",
-    priceVal: 1600000,
-    priceStr: "IDR 1.600.000",
-    shortDesc:
-      "Unwind on the gentle sloping white sands of Selong Belanak, famous for beginner-friendly surf breaks and iconic buffalo afternoon walks.",
-    images: [
-      "./aseets/images/destinations/center/selong-belanak/center-sekongbelanak.jpg",
-    ],
-    highlights: [
-      "Ideal gentle waves for surfing lessons and water relaxation.",
-      "Witness the iconic daily parade of water buffaloes crossing the beach at sunset.",
-      "Fresh seafood dining right on the beachfront.",
-    ],
-    itinerary: [
-      {
-        day: "Day 1",
-        title: "Bay Arrival & Surf Session",
-        desc: "Check-in, relax by the crescent bay, optional surf lesson.",
-      },
-      {
-        day: "Day 2",
-        title: "Buffalo Sunset & Departure",
-        desc: "Morning beach walk, coastal lunch, and transfer.",
-      },
-    ],
-  },
-  {
-    id: "gili-matra-snorkeling",
-    title: "Gili Matra Islands Marine & Snorkeling Safari",
-    cluster: "north",
-    badge: "Marine & Island",
-    duration: "2 Days / 1 Night",
-    rating: "4.9 (110)",
-    priceVal: 2100000,
-    priceStr: "IDR 2.100.000",
-    shortDesc:
-      "Snorkel with sea turtles in crystal-clear turquoise waters across Gili Trawangan, Meno, and Air, surrounded by vibrant coral reefs.",
-    images: [
-      "./aseets/images/destinations/north/snorkling/gili-matra-snorkling.jpg",
-      "./aseets/images/destinations/north/snorkling/gili-matra-snorkling1.jpg",
-      "./aseets/images/destinations/north/snorkling/gili-matra-snorkling2.jpg",
-      "./aseets/images/destinations/north/snorkling/gili-matra-snorkling3.jpg",
-    ],
-    highlights: [
-      "Private boat charter for snorkeling at iconic turtle points and underwater statues.",
-      "Crystal-clear visibility with vibrant marine life and coral gardens.",
-      "Island-hop across the famous Gili Triad (Trawangan, Meno, Air).",
-    ],
-    itinerary: [
-      {
-        day: "Day 1",
-        title: "North Coast Transfer & Island Hopping",
-        desc: "Board private boat to Gili islands, afternoon snorkeling and sunset beach dinner.",
-      },
-      {
-        day: "Day 2",
-        title: "Coral Reef Exploration & Return",
-        desc: "Morning turtle spotting swim, island cycle, and mainland transfer.",
-      },
-    ],
-  },
-  {
-    id: "bukit-merese-sunset",
-    title: "Bukit Merese Golden Hour & South Coast Ridge",
-    cluster: "south",
-    badge: "Scenic & Sunset",
-    duration: "1 Day Trip",
-    rating: "4.9 (95)",
-    priceVal: 850000,
-    priceStr: "IDR 850.000",
-    shortDesc:
-      "Hike the grassy rolling hills of Bukit Merese for panoramic vistas over hidden coves and breathtaking sunset oceans.",
-    images: [
-      "./aseets/images/destinations/south/mereje/south-mereje1.jpg",
-      "./aseets/images/destinations/south/mereje/south-mereje2.jpg",
-      "./aseets/images/destinations/south/mereje/south-mereje3.jpg",
-      "./aseets/images/destinations/south/mereje/south-mereje4.jpg",
-    ],
-    highlights: [
-      "Gentle hillside trek with sweeping 360-degree ocean views.",
-      "Premier sunset photography spot overlooking Tanjung Aan and Batu Payung.",
-      "Relaxed coastal atmosphere with local coconut vendors on the ridge.",
-    ],
-    itinerary: [
-      {
-        day: "Day 1",
-        title: "Afternoon Ridge Trek & Sunset",
-        desc: "Depart late afternoon, walk the green ridge of Bukit Merese, and watch the sun dip into the Indian Ocean.",
-      },
-    ],
-  },
+    {
+        id: "rinjani-summit-2d1n",
+        cluster: "east",
+        badge: "Volcanic Expedition",
+        title: "Mount Rinjani Crater Rim & Summit — 2D1N",
+        duration: "2 Days / 1 Night",
+        rating: "4.9",
+        priceVal: 3200000,
+        priceStr: "IDR 3.200.000",
+        shortDesc: "Guided high-altitude trek through savannah trails, crater rim camp, and sunrise summit views with dedicated local mountain support.",
+        images: [
+            "./assets/images/destinations/east/rinjani/rinjani-summit-sunrise.webp",
+            "./assets/images/destinations/east/rinjani/rinjani-summit-sunrise1.webp",
+            "./assets/images/destinations/east/rinjani/rinjani-segara-anak-camp.webp",
+            "./assets/images/destinations/east/rinjani/rinjani-trail-savannah.webp",
+            "./assets/images/destinations/east/rinjani/rinjani-trail-savannah1.webp",
+            "./assets/images/destinations/east/rinjani/rinjani-trail-savannah2.webp",
+            "./assets/images/destinations/east/rinjani/rinjani-porter-team.webp",
+            "./assets/images/destinations/east/rinjani/rinjani-porter-team1.webp"
+        ],
+        highlights: [
+            "Licensed mountain guide and experienced porter team",
+            "Savannah ascent, crater rim camp, and summit sunrise experience",
+            "Structured pacing and mountain camp logistics"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Savannah Trail to Crater Rim Camp",
+                desc: "Trek across open savannah and mountain ridges with full guide and porter support to camp."
+            },
+            {
+                day: "Day 2",
+                title: "Summit Sunrise & Descent",
+                desc: "Early summit push for sunrise panoramas, return for breakfast, and descend safely."
+            }
+        ]
+    },
+    {
+        id: "sembalun-highland-escape",
+        cluster: "east",
+        badge: "Highland & Views",
+        title: "Sembalun Highland & Valley Escape",
+        duration: "Full Day",
+        rating: "4.8",
+        priceVal: 950000,
+        priceStr: "IDR 950.000",
+        shortDesc: "Experience cool mountain air, sweeping highland views, and scenic valleys at the foot of Mount Rinjani.",
+        images: [
+            "./assets/images/destinations/east/sembalun/east-sembalun.webp",
+            "./assets/images/destinations/east/sembalun/east-sembalun1.webp"
+        ],
+        highlights: [
+            "Panoramic highland views across Sembalun",
+            "Private transport and relaxed day pacing",
+            "Ideal option for travelers seeking mountain scenery without multi-day trekking"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Sembalun Highland Exploration",
+                desc: "Scenic drive into Sembalun, explore viewpoint spots and valley landscapes, and return comfortably."
+            }
+        ]
+    },
+    {
+        id: "gili-matra-snorkeling",
+        cluster: "north",
+        badge: "Turquoise & Reefs",
+        title: "Gili Islands Snorkeling & Reef Expedition",
+        duration: "Full Day",
+        rating: "4.8",
+        priceVal: 1450000,
+        priceStr: "IDR 1.450.000",
+        shortDesc: "Explore clear waters and marine life across the Gili islands with flexible snorkeling stops and coastal time.",
+        images: [
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkeling.webp",
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkeling1.webp",
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkeling2.webp",
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkeling3.webp"
+        ],
+        highlights: [
+            "Multiple snorkeling spots around the Gilis",
+            "Clear tropical water and marine scenery",
+            "Private boat coordination and unhurried schedule"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Gili Snorkeling & Island Hopping",
+                desc: "Boat departure to key snorkeling sites, time in the water, and island break before returning."
+            }
+        ]
+    },
+    {
+        id: "sade-sasak-heritage",
+        cluster: "center",
+        badge: "Living Culture",
+        title: "Sade Sasak Village, Weaving & Presean Heritage",
+        duration: "Half / Full Day",
+        rating: "4.9",
+        priceVal: 750000,
+        priceStr: "IDR 750.000",
+        shortDesc: "Discover traditional Sasak architecture, handwoven textiles, and living cultural traditions like Presean.",
+        images: [
+            "./assets/images/destinations/center/sade/center-sade.webp",
+            "./assets/images/destinations/center/sade/center-sade-kain.webp",
+            "./assets/images/destinations/center/sade/center-sade-presean.webp"
+        ],
+        highlights: [
+            "Authentic Sasak village setting and traditional compounds",
+            "Insight into traditional woven cloth (kain) and local heritage",
+            "Cultural context with local guidance"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Sasak Heritage & Traditional Crafts",
+                desc: "Walk through Sade village, explore traditional weaving heritage, and learn about local cultural practices."
+            }
+        ]
+    },
+    {
+        id: "mandalika-coastline-journey",
+        cluster: "center",
+        badge: "Coastal & Modern Hub",
+        title: "Mandalika Coastal & Scenic Drive",
+        duration: "Half / Full Day",
+        rating: "4.8",
+        priceVal: 800000,
+        priceStr: "IDR 800.000",
+        shortDesc: "Enjoy clean coastal roads, open ocean views, and easy access around the Mandalika area.",
+        images: [
+            "./assets/images/destinations/center/mandalika/center-mandalika.webp"
+        ],
+        highlights: [
+            "Scenic coastal views around Mandalika",
+            "Comfortable private vehicle transfers",
+            "Easy to combine with nearby bays or cultural stops"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Mandalika Scenic Route",
+                desc: "Explore the Mandalika coastal area at a relaxed pace with photo and viewpoint stops."
+            }
+        ]
+    },
+    {
+        id: "selong-belanak-bay-escape",
+        cluster: "center",
+        badge: "Gentle Bay & Surf",
+        title: "Selong Belanak Bay Day Experience",
+        duration: "Half / Full Day",
+        rating: "4.9",
+        priceVal: 850000,
+        priceStr: "IDR 850.000",
+        shortDesc: "Spend a relaxed day by the sweeping curve of Selong Belanak—ideal for swimming, coastal walks, and beachside downtime.",
+        images: [
+            "./assets/images/destinations/center/selong-belanak/center-selongbelanak.webp"
+        ],
+        highlights: [
+            "Wide, welcoming bay with calm coastal atmosphere",
+            "Great for beginner surf, swimming, or relaxing by the shore",
+            "Flexible private schedule"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Coastal Time at Selong Belanak",
+                desc: "Arrive at Selong Belanak for beach time, ocean views, and a relaxed afternoon before heading back."
+            }
+        ]
+    },
+    {
+        id: "tanjung-aan-bays-headlands",
+        cluster: "center",
+        badge: "Bays & Headlands",
+        title: "Tanjung Aan Bays & Headland Views",
+        duration: "Full Day",
+        rating: "4.9",
+        priceVal: 850000,
+        priceStr: "IDR 850.000",
+        shortDesc: "Explore turquoise waters, curved bays, and scenic coastal viewpoints around Tanjung Aan.",
+        images: [
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan.webp",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan1.webp",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan2.webp",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan3.webp",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan4.webp"
+        ],
+        highlights: [
+            "Multiple angles and coastal viewpoints around Tanjung Aan",
+            "Clear turquoise water and dramatic headlands",
+            "Private transport and flexible photo/rest stops"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Tanjung Aan Bays & Viewpoints",
+                desc: "Explore the bays and headlands around Tanjung Aan with time for coastal walks and photography."
+            }
+        ]
+    },
+    {
+        id: "mereje-secluded-south-coves",
+        cluster: "south",
+        badge: "Hidden Coves",
+        title: "Mereje & Secluded Southern Coves",
+        duration: "Full Day",
+        rating: "4.9",
+        priceVal: 1150000,
+        priceStr: "IDR 1.150.000",
+        shortDesc: "Venture into quieter southern coves and rugged coastal scenery for a slower, more private island experience.",
+        images: [
+            "./assets/images/destinations/south/mereje/south-mereje1.webp",
+            "./assets/images/destinations/south/mereje/south-mereje2.webp",
+            "./assets/images/destinations/south/mereje/south-mereje3.webp",
+            "./assets/images/destinations/south/mereje/south-mereje4.webp"
+        ],
+        highlights: [
+            "Quiet, less crowded southern cove atmosphere",
+            "Distinctive coastal landscapes suited for slow travel and photography",
+            "Private local routing and transport"
+        ],
+        itinerary: [
+            {
+                day: "Day 1",
+                title: "Secluded Southern Cove Exploration",
+                desc: "Head to the southern coves around Mereje for tranquil coastal views, exploration, and a calm return."
+            }
+        ]
+    }
 ];

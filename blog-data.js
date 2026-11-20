@@ -1,62 +1,83 @@
 const rawBlogDatabase = [
     {
-        id: "ultimate-mount-rinjani-packing-guide",
-        title: "The Ultimate Mount Rinjani Packing Guide: What to Bring for Success",
-        category: "Trekking Tips",
-        date: "November 18, 2026",
+        id: "why-company-outings-matter-raw-lombok",
+        title: "Why Company Outings Matter—and How RAW Lombok Crafts Seamless Team Retreats",
+        category: "Corporate & Retreats",
+        date: "November 21, 2026",
         readTime: "5 min read",
-        image: "./assets/images/destinations/east/rinjani/rinjani-summit-sunrise.jpg",
-        excerpt: "Preparing for Indonesia's second-highest volcano? Discover the essential gear, clothing layers, and preparation tips you need for a safe and comfortable summit trek.",
+        image: "./assets/images/blog/outing/outing-hero.webp",
+        images: [
+            "./assets/images/blog/outing/outing-hero.webp",
+            "./assets/images/blog/outing/outing-bonding.webp",
+            "./assets/images/blog/outing/outing-planning.webp",
+            "./assets/images/blog/outing/outing-planning1.webp",
+            "./assets/images/blog/outing/outing-planning2.webp",
+            "./assets/images/blog/outing/outing-planning3.webp",
+            "./assets/images/blog/outing/outing-planning4.webp",
+            "./assets/images/blog/outing/outing-planning5.webp"
+        ],
+        excerpt: "Step away from daily routines and reconnect your team in Lombok. Discover why company outings boost morale and how RAW Lombok designs tailored retreats from planning to execution.",
         content: `
-            <p class="mb-4">Conquering Mount Rinjani is a life-changing adventure, but preparing for a 3,726-meter volcano trek requires careful planning. Whether you are aiming for the summit or relaxing by Segara Anak lake, having the right gear makes all the difference.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">1. Layering Clothing for Changing Climates</h3>
-            <p class="mb-4">Rinjani weather changes drastically. While the base villages are warm and tropical, the crater rim and summit drop to near-freezing temperatures at night. Always pack moisture-wicking base layers, a fleece or down jacket, and a windproof outer shell.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">2. Footwear and Trekking Poles</h3>
-            <p class="mb-4">Invest in broken-in, sturdy trekking shoes or boots with good ankle support. The volcanic gravel on the summit push can be slippery; trekking poles will save your knees during the steep descents.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">3. What RAW Lombok Provides</h3>
-            <p class="mb-4">Don't worry about heavy camping gear! When you book with RAW Lombok, we provide professional tents, thick sleeping mats, warm sleeping bags, and a dedicated porter team to carry your main camping equipment.</p>
-        `
-    },
-    {
-        id: "north-lombok-waterfalls-guide",
-        title: "Chasing Waterfalls: Discovering Sendang Gile & Tiu Kelep in North Lombok",
-        category: "Nature & Explorer",
-        date: "November 19, 2026",
-        readTime: "4 min read",
-        image: "./assets/images/destinations/east/sembalun/east-sembalun.jpg", // Menggunakan aset yang tersedia, nanti bisa disesuaikan jika ada foto khusus air terjun
-        excerpt: "Tucked away at the lush foothills of Mount Rinjani in Senaru, North Lombok's majestic waterfalls offer a refreshing escape into emerald rainforests.",
-        content: `
-            <p class="mb-4">If you think Lombok is only about white sandy beaches and volcanic peaks, wait until you explore the mystical rainforests of Senaru in North Lombok. Home to some of Indonesia's most breathtaking waterfalls, this region is an absolute must-visit for nature lovers.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">1. Sendang Gile: The Accessible Wonder</h3>
-            <p class="mb-4">A short, pleasant walk down from the entrance gate brings you to Sendang Gile. Plunging down a steep rock wall surrounded by lush greenery, this double-tiered waterfall delivers an immediate burst of cool, refreshing mountain mist.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">2. Tiu Kelep: The Hidden Paradise</h3>
-            <p class="mb-4">A bit further along the river trail from Sendang Gile lies Tiu Kelep. Walking through the shaded tropical canopy and crossing a shallow stream reveals a massive, hidden amphitheater where water cascades powerfully behind natural rock formations and hanging vines.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">3. Tips for Visiting</h3>
-            <p class="mb-4">Wear sturdy water shoes or sandals with good grip, as the path involves walking over wet stones and stream crossings. Don't forget a waterproof bag to protect your camera or phone while capturing the magic of the falls!</p>
-        `
-    },
-    {
-        id: "best-time-to-visit-lombok",
-        title: "When is the Best Time to Visit Lombok for Your Dream Vacation?",
-        category: "Travel Guide",
-        date: "November 15, 2026",
-        readTime: "4 min read",
-        image: "./assets/images/destinations/center/tanjung-aan/center-tanjungaan.jpg",
-        excerpt: "Plan your trip perfectly by understanding Lombok's seasonal weather patterns, dry season highlights, and the best months for island hopping and surfing.",
-        content: `
-            <p class="mb-4">Lombok is a tropical paradise year-round, but choosing the right month to visit ensures you get the absolute best weather for your outdoor activities, whether it's surfing in Kuta or trekking Rinjani.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">The Dry Season (May to October)</h3>
-            <p class="mb-4">This is considered the golden window for traveling to Lombok. Skies are clear, humidity is lower, and sea conditions are ideal for boat trips to the Gili Islands and southern surf spots. Mount Rinjani National Park is also fully open during these months.</p>
-            
-            <h3 class="text-xl font-bold mt-6 mb-3">The Green Season (November to April)</h3>
-            <p class="mb-4">Lombok transforms into a lush, vibrant green landscape during these months. While afternoon tropical showers are common, you'll experience fewer crowds and stunning waterfalls at their peak flow.</p>
+            <p class="mb-4">Modern teams spend most of their energy meeting deadlines, coordinating remotely, and solving day-to-day operational challenges. Over time, burnout can quietly build up while genuine human connection takes a back seat. A well-planned company outing gives your team room to breathe, reset their perspective, and rebuild momentum together outside the office.</p>
+
+            <figure class="my-6">
+                <img src="./assets/images/blog/outing/outing-hero.webp" alt="Company outing atmosphere in Lombok" class="w-full h-56 sm:h-72 object-cover rounded-xl border border-stone-200">
+                <figcaption class="text-xs text-stone-500 mt-2 italic">Stepping outside daily routines creates space for genuine conversation and shared perspective.</figcaption>
+            </figure>
+
+            <h3 class="text-xl font-bold mt-6 mb-3">Why Companies Need Meaningful Outings</h3>
+            <p class="mb-4"><strong>Stronger Trust & Cross-Team Bonding:</strong> Shared experiences in a fresh environment break down everyday silos. Whether collaborating on a coastal challenge or sharing a relaxed dinner by the ocean, teammates naturally build deeper trust and clearer communication.</p>
+            <p class="mb-4"><strong>Mental Reset & Renewed Focus:</strong> Stepping out of routine environments helps clear mental fatigue. Teams often return with sharper focus, better problem-solving energy, and renewed motivation for upcoming projects.</p>
+            <p class="mb-4"><strong>Culture in Action:</strong> Company values feel much more real when experienced together—through teamwork, adaptability, and appreciation for one another beyond job titles.</p>
+
+            <figure class="my-6">
+                <img src="./assets/images/blog/outing/outing-bonding.webp" alt="Team bonding session during corporate retreat in Lombok" class="w-full h-56 sm:h-72 object-cover rounded-xl border border-stone-200">
+                <figcaption class="text-xs text-stone-500 mt-2 italic">Shared outdoor moments help teams connect beyond everyday roles and deadlines.</figcaption>
+            </figure>
+
+            <h3 class="text-xl font-bold mt-6 mb-3">How RAW Lombok Crafts Seamless Outings</h3>
+            <p class="mb-4">At RAW Lombok, we treat every company outing as a thoughtfully structured experience rather than a generic group tour. Every detail is tailored to your company goals, team dynamics, and pace:</p>
+            <p class="mb-4"><strong>1. Purpose-Driven Activity Planning:</strong> We design activities around what your team actually needs—whether active outdoor exploration, relaxed coastal unwinding, cultural immersion, or a balanced mix of team-building sessions and downtime.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                <figure>
+                    <img src="./assets/images/blog/outing/outing-planning.webp" alt="Custom outing planning in Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Tailored activity flow aligned with team goals.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./assets/images/blog/outing/outing-planning1.webp" alt="Group experience and logistics setup" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Balanced pacing between group sessions and rest.</figcaption>
+                </figure>
+            </div>
+
+            <p class="mb-4"><strong>2. End-to-End Logistics & Smooth Flow:</strong> From airport pick-up and inter-area transfers to meal timing and backup plans, our local ground team handles the moving parts so leaders and organizers can be present with the team instead of stressing over logistics.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                <figure>
+                    <img src="./assets/images/blog/outing/outing-planning2.webp" alt="Smooth group mobility across Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Coordinated transport and smooth schedule transitions.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./assets/images/blog/outing/outing-planning3.webp" alt="On-ground retreat preparation" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Hands-on local support throughout the trip.</figcaption>
+                </figure>
+            </div>
+
+            <p class="mb-4"><strong>3. Authentic Local Access with Safe Execution:</strong> Operating directly on Lombok allows us to curate memorable settings across the island while prioritizing safety, comfort, and reliable local coordination.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                <figure>
+                    <img src="./assets/images/blog/outing/outing-planning4.webp" alt="Curated local retreat setting in Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Memorable island settings curated for group comfort.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./assets/images/blog/outing/outing-planning5.webp" alt="Team retreat wrap-up and connection" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Safe, reliable execution from start to finish.</figcaption>
+                </figure>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-3">An Investment That Stays Beyond the Trip</h3>
+            <p class="mb-4">A great company outing is not just time off—it is an investment in how your people work and grow together. With clear planning and local execution, RAW Lombok helps turn a simple trip into a meaningful milestone for your team.</p>
         `
     }
 ];

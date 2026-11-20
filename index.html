@@ -215,48 +215,51 @@
 
     <!-- APPLICATION LOGIC -->
     <script>
-        // Ganti dengan nomor WhatsApp bisnis Anda (awali dengan kode negara 62)
-        const WHATSAPP_NUMBER = "6281325523231"; 
+        const WHATSAPP_NUMBER = "6281325523231";
         let cart = [];
+        let blogSlideTimer = null;
 
         // 1. RENDER DESTINATIONS
         function renderDestinations(filter = 'all') {
             const grid = document.getElementById('destinations-grid');
             if (!grid || typeof rawProductsDatabase === 'undefined') return;
 
-            const filtered = filter === 'all' 
-                ? rawProductsDatabase 
+            const filtered = filter === 'all'
+                ? rawProductsDatabase
                 : rawProductsDatabase.filter(item => item.cluster === filter);
 
-            grid.innerHTML = filtered.map(product => `
-                <div class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
-                    <div class="relative h-52 cursor-pointer overflow-hidden group" onclick="openProductModal('${product.id}')">
-                        <img src="${product.images[0]}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
-                            ${product.badge}
-                        </span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between text-xs text-stone-500 mb-1.5">
-                            <span>${product.duration}</span>
-                            <span class="font-semibold text-amber-600">★ ${product.rating}</span>
+            grid.innerHTML = filtered.map(product => {
+                const thumb = (product.images && product.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
+                return `
+                    <div class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                        <div class="relative h-52 cursor-pointer overflow-hidden group" onclick="openProductModal('${product.id}')">
+                            <img src="${thumb}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+                                ${product.badge}
+                            </span>
                         </div>
-                        <h3 onclick="openProductModal('${product.id}')" class="font-bold text-base text-stone-900 leading-snug mb-2 cursor-pointer hover:text-amber-600 transition">
-                            ${product.title}
-                        </h3>
-                        <p class="text-xs text-stone-600 line-clamp-2 mb-4 flex-grow">${product.shortDesc}</p>
-                        <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
-                            <div>
-                                <span class="block text-[10px] uppercase text-stone-400 font-bold">From</span>
-                                <span class="font-extrabold text-sm text-stone-900">${product.priceStr}</span>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center justify-between text-xs text-stone-500 mb-1.5">
+                                <span>${product.duration}</span>
+                                <span class="font-semibold text-amber-600">★ ${product.rating}</span>
                             </div>
-                            <button onclick="addToCart('${product.id}')" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition">
-                                + Add to Plan
-                            </button>
+                            <h3 onclick="openProductModal('${product.id}')" class="font-bold text-base text-stone-900 leading-snug mb-2 cursor-pointer hover:text-amber-600 transition">
+                                ${product.title}
+                            </h3>
+                            <p class="text-xs text-stone-600 line-clamp-2 mb-4 flex-grow">${product.shortDesc}</p>
+                            <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[10px] uppercase text-stone-400 font-bold">From</span>
+                                    <span class="font-extrabold text-sm text-stone-900">${product.priceStr}</span>
+                                </div>
+                                <button onclick="addToCart('${product.id}')" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition">
+                                    + Add to Plan
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function filterDestinations(cluster) {
@@ -277,12 +280,12 @@
             const p = rawProductsDatabase.find(item => item.id === id);
             if (!p) return;
 
-            const galleryHtml = p.images.map(img => `
+            const galleryHtml = (p.images || []).map(img => `
                 <img src="${img}" class="h-40 w-60 object-cover rounded-xl flex-shrink-0 snap-center border border-stone-200">
             `).join('');
 
-            const highlightsHtml = p.highlights.map(h => `<li class="flex items-start gap-2 text-sm text-stone-700"><span class="text-amber-600 font-bold">✓</span> ${h}</li>`).join('');
-            const itineraryHtml = p.itinerary.map(it => `
+            const highlightsHtml = (p.highlights || []).map(h => `<li class="flex items-start gap-2 text-sm text-stone-700"><span class="text-amber-600 font-bold">✓</span> ${h}</li>`).join('');
+            const itineraryHtml = (p.itinerary || []).map(it => `
                 <div class="border-l-2 border-amber-600 pl-4 pb-4">
                     <span class="text-xs font-extrabold uppercase text-amber-600">${it.day}</span>
                     <h5 class="font-bold text-sm text-stone-900">${it.title}</h5>
@@ -329,41 +332,106 @@
             document.getElementById('product-modal').classList.add('hidden');
         }
 
-        // 3. RENDER BLOG CARDS & READER MODAL
+        // 3. RENDER BLOG CARDS WITH SMOOTH SLIDE & READER MODAL
         function renderBlogs() {
             const blogGrid = document.getElementById('blog-grid');
             if (!blogGrid || typeof rawBlogDatabase === 'undefined') return;
 
-            blogGrid.innerHTML = rawBlogDatabase.map(post => `
-                <article onclick="openBlogModal('${post.id}')" class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
-                    <div class="h-52 overflow-hidden">
-                        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            blogGrid.innerHTML = rawBlogDatabase.map((post, postIndex) => {
+                const slides = (Array.isArray(post.images) && post.images.length > 0)
+                    ? post.images
+                    : [post.image];
+
+                const slidesHtml = slides.map(imgSrc => `
+                    <div class="w-full h-full flex-shrink-0">
+                        <img src="${imgSrc}" alt="${post.title}" class="w-full h-full object-cover">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between text-xs text-stone-500 mb-2.5">
-                            <span class="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-bold">${post.category}</span>
-                            <span>${post.readTime}</span>
+                `).join('');
+
+                return `
+                    <article onclick="openBlogModal('${post.id}')" onmouseenter="pauseBlogCard(${postIndex})" onmouseleave="resumeBlogCard(${postIndex})" class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
+                        <div class="relative h-52 overflow-hidden bg-stone-200">
+                            <div id="blog-track-${postIndex}" data-index="0" data-count="${slides.length}" class="flex w-full h-full transition-transform duration-700 ease-in-out">
+                                ${slidesHtml}
+                            </div>
+                            ${slides.length > 1 ? `
+                                <div class="absolute bottom-2.5 right-3 flex gap-1.5 bg-stone-950/50 px-2 py-1 rounded-full">
+                                    ${slides.map((_, idx) => `<span class="blog-dot-${postIndex} w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-white' : 'bg-white/40'} transition"></span>`).join('')}
+                                </div>
+                            ` : ''}
                         </div>
-                        <h3 class="font-bold text-lg text-stone-900 group-hover:text-amber-600 transition leading-snug mb-2">
-                            ${post.title}
-                        </h3>
-                        <p class="text-sm text-stone-600 line-clamp-3 mb-4 flex-grow">${post.excerpt}</p>
-                        <div class="pt-3 border-t border-stone-200/70 flex items-center justify-between text-xs">
-                            <span class="text-stone-400">${post.date}</span>
-                            <span class="font-bold text-stone-900 group-hover:translate-x-1 transition">Read Article &rarr;</span>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center justify-between text-xs text-stone-500 mb-2.5">
+                                <span class="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-bold">${post.category}</span>
+                                <span>${post.readTime}</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-stone-900 group-hover:text-amber-600 transition leading-snug mb-2">
+                                ${post.title}
+                            </h3>
+                            <p class="text-sm text-stone-600 line-clamp-3 mb-4 flex-grow">${post.excerpt}</p>
+                            <div class="pt-3 border-t border-stone-200/70 flex items-center justify-between text-xs">
+                                <span class="text-stone-400">${post.date}</span>
+                                <span class="font-bold text-stone-900 group-hover:translate-x-1 transition">Read Article &rarr;</span>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            `).join('');
+                    </article>
+                `;
+            }).join('');
+
+            startBlogSlideshow();
+        }
+
+        function setBlogSlide(postIndex, nextIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+            const count = parseInt(track.dataset.count, 10) || 1;
+            if (count <= 1) return;
+
+            const safeIndex = ((nextIndex % count) + count) % count;
+            track.dataset.index = safeIndex;
+            track.style.transform = `translateX(-${safeIndex * 100}%)`;
+
+            const dots = document.querySelectorAll(`.blog-dot-${postIndex}`);
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('bg-white', idx === safeIndex);
+                dot.classList.toggle('bg-white/40', idx !== safeIndex);
+            });
+        }
+
+        function pauseBlogCard(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (track) track.dataset.paused = "true";
+        }
+
+        function resumeBlogCard(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (track) track.dataset.paused = "false";
+        }
+
+        function startBlogSlideshow() {
+            if (blogSlideTimer) clearInterval(blogSlideTimer);
+            blogSlideTimer = setInterval(() => {
+                if (typeof rawBlogDatabase === 'undefined') return;
+                rawBlogDatabase.forEach((_, postIndex) => {
+                    const track = document.getElementById(`blog-track-${postIndex}`);
+                    if (!track || track.dataset.paused === "true") return;
+                    const count = parseInt(track.dataset.count, 10) || 1;
+                    if (count <= 1) return;
+                    const current = parseInt(track.dataset.index, 10) || 0;
+                    setBlogSlide(postIndex, current + 1);
+                });
+            }, 3500);
         }
 
         function openBlogModal(id) {
             const post = rawBlogDatabase.find(item => item.id === id);
             if (!post) return;
 
+            const modalCover = (post.images && post.images[0]) || post.image || "./assets/images/blog/outing/outing-hero.webp";
+
             document.getElementById('blog-modal-content').innerHTML = `
                 <div class="clear-both">
-                    <img src="${post.image}" alt="${post.title}" class="w-full h-64 sm:h-80 object-cover">
+                    <img src="${modalCover}" alt="${post.title}" class="w-full h-64 sm:h-80 object-cover">
                     <div class="p-6 sm:p-10">
                         <div class="flex items-center gap-3 text-xs text-stone-500 mb-3">
                             <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">${post.category}</span>
