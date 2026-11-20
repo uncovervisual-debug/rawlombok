@@ -14,6 +14,20 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Smooth Ken Burns (Slow Zoom + Subtle Pan) for Destination Slideshow */
+        @keyframes slowKenBurns {
+            0% {
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+            100% {
+                transform: scale(1.12) translate3d(-1.5%, -1.5%, 0);
+            }
+        }
+
+        .ken-burns-active {
+            animation: slowKenBurns 7s ease-out forwards;
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-900 antialiased selection:bg-stone-900 selection:text-white">
@@ -87,7 +101,7 @@
                 <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900">All Destinations</h2>
                 <p class="text-stone-600 text-sm sm:text-base mt-1">Select tours to build your custom trip estimate and send directly via WhatsApp.</p>
             </div>
-            
+
             <!-- Region Filter Tabs -->
             <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" id="cluster-filters">
                 <button onclick="filterDestinations('all')" data-filter="all" class="filter-btn active px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">All Regions</button>
@@ -195,7 +209,7 @@
 
             <div class="border-t border-stone-200 pt-4 space-y-4">
                 <div class="flex justify-between items-center">
-                    <span class="text-sm text-stone-600">Estimated Total (per pax)</span>
+                    <span class="text-sm text-stone-600">Estimated Total (all pax)</span>
                     <span id="cart-total" class="text-lg font-extrabold text-stone-900">IDR 0</span>
                 </div>
                 <div>
@@ -220,7 +234,17 @@
         let blogSlideTimer = null;
         let destSlideTimer = null;
 
-        // 1B. SMOOTH CROSSFADE SLIDESHOW FOR DESTINATION CARDS
+        // 1B. SMOOTH KEN BURNS + CROSSFADE SLIDESHOW FOR DESTINATION CARDS
+        function applyKenBurns(imgEl, shouldAnimate) {
+            if (!imgEl) return;
+            imgEl.classList.remove('ken-burns-active');
+            imgEl.style.animationPlayState = "running";
+            if (shouldAnimate) {
+                void imgEl.offsetWidth;
+                imgEl.classList.add('ken-burns-active');
+            }
+        }
+
         function setDestSlide(cardIdx, nextIdx) {
             const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
             if (!slides || slides.length <= 1) return;
@@ -231,36 +255,46 @@
                 imgEl.dataset.activeIndex = safeIdx;
                 imgEl.classList.toggle('opacity-100', isActive);
                 imgEl.classList.toggle('opacity-0', !isActive);
+                applyKenBurns(imgEl, isActive);
             });
         }
 
         function pauseDestCard(cardIdx) {
-            const firstSlide = document.querySelector(`.dest-slide-${cardIdx}`);
-            if (firstSlide) firstSlide.dataset.paused = "true";
+            const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+            slides.forEach(imgEl => {
+                imgEl.dataset.paused = "true";
+                imgEl.style.animationPlayState = "paused";
+            });
         }
 
         function resumeDestCard(cardIdx) {
-            const firstSlide = document.querySelector(`.dest-slide-${cardIdx}`);
-            if (firstSlide) firstSlide.dataset.paused = "false";
+            const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+            slides.forEach(imgEl => {
+                imgEl.dataset.paused = "false";
+                imgEl.style.animationPlayState = "running";
+            });
         }
 
         function startDestSlideshow(items) {
             if (destSlideTimer) clearInterval(destSlideTimer);
+
+            items.forEach((_, cardIdx) => {
+                const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+                if (slides && slides.length > 0) {
+                    applyKenBurns(slides[0], true);
+                }
+            });
+
             destSlideTimer = setInterval(() => {
-                items.forEach((item, cardIdx) => {
+                items.forEach((_, cardIdx) => {
                     const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
                     if (!slides || slides.length <= 1) return;
                     if (slides[0].dataset.paused === "true") return;
 
                     const current = parseInt(slides[0].dataset.activeIndex || "0", 10);
-                    const tick = parseInt(slides[0].dataset.tick || "0", 10) + 1;
-                    slides[0].dataset.tick = tick;
-                    const stepEvery = 2 + (cardIdx % 2);
-                    if (tick % stepEvery === 0) {
-                        setDestSlide(cardIdx, current + 1);
-                    }
+                    setDestSlide(cardIdx, current + 1);
                 });
-            }, 2200);
+            }, 4200);
         }
 
         // 1. RENDER DESTINATIONS
@@ -282,8 +316,8 @@
                         src="${imgSrc}"
                         alt="${product.title}"
                         data-active-index="0"
-                        data-tick="0"
-                        class="dest-slide-${cardIdx} absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'} group-hover:scale-105 transition-transform duration-500"
+                        data-paused="false"
+                        class="dest-slide-${cardIdx} absolute inset-0 w-full h-full object-cover will-change-transform transition-opacity duration-1000 ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}"
                     >
                 `).join('');
 
@@ -346,7 +380,7 @@
             if (!p) return;
 
             const galleryHtml = (p.images || []).map(img => `
-                <img src="${img}" class="h-40 w-60 object-cover rounded-xl flex-shrink-0 snap-center border border-stone-200">
+                <img src="${img}" alt="${p.title}" class="h-40 w-60 object-cover rounded-xl flex-shrink-0 snap-center border border-stone-200">
             `).join('');
 
             const highlightsHtml = (p.highlights || []).map(h => `<li class="flex items-start gap-2 text-sm text-stone-700"><span class="text-amber-600 font-bold">✓</span> ${h}</li>`).join('');
@@ -546,70 +580,89 @@
         }
 
         function updateCartBadge() {
-            document.getElementById('cart-badge').innerText = cart.length;
+            const badge = document.getElementById('cart-badge');
+            if (badge) badge.textContent = cart.length;
         }
 
         function toggleCartModal(forceOpen = null) {
             const modal = document.getElementById('cart-modal');
-            if (forceOpen === true) modal.classList.remove('hidden');
-            else if (forceOpen === false) modal.classList.add('hidden');
-            else modal.classList.toggle('hidden');
-            renderCart();
+            if (!modal) return;
+            if (forceOpen === true) {
+                modal.classList.remove('hidden');
+            } else if (forceOpen === false) {
+                modal.classList.add('hidden');
+            } else {
+                modal.classList.toggle('hidden');
+            }
+        }
+
+        function formatIDR(amount) {
+            return "IDR " + Number(amount || 0).toLocaleString("id-ID");
         }
 
         function renderCart() {
-            const list = document.getElementById('cart-items-list');
-            const pax = parseInt(document.getElementById('pax-count').value) || 1;
+            const listEl = document.getElementById('cart-items-list');
+            const totalEl = document.getElementById('cart-total');
+            const paxInput = document.getElementById('pax-count');
+            const pax = Math.max(1, parseInt(paxInput ? paxInput.value : "2", 10) || 1);
+
+            if (!listEl || !totalEl) return;
 
             if (cart.length === 0) {
-                list.innerHTML = `<p class="text-sm text-stone-500 text-center py-8">Your trip plan is empty. Select destinations from the catalog to build your itinerary.</p>`;
-                document.getElementById('cart-total').innerText = "IDR 0";
+                listEl.innerHTML = `<p class="text-sm text-stone-500 text-center py-8">No destinations added yet. Select a tour to build your itinerary.</p>`;
+                totalEl.textContent = formatIDR(0);
                 return;
             }
 
-            let totalPerPax = 0;
-            list.innerHTML = cart.map(item => {
-                totalPerPax += item.priceVal;
+            let perPaxSum = 0;
+            listEl.innerHTML = cart.map(item => {
+                const numericPrice = Number(item.price || 0);
+                perPaxSum += numericPrice;
+                const thumb = (Array.isArray(item.images) && item.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
+
                 return `
-                    <div class="flex items-center justify-between gap-3 bg-stone-50 p-3 rounded-xl border border-stone-200">
-                        <div>
-                            <h5 class="font-bold text-xs text-stone-900">${item.title}</h5>
-                            <span class="text-[11px] text-stone-500">${item.duration} • ${item.priceStr}</span>
+                    <div class="flex items-center gap-3 bg-stone-50 p-3 rounded-xl border border-stone-200">
+                        <img src="${thumb}" alt="${item.title}" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="font-bold text-xs text-stone-900 truncate">${item.title}</h4>
+                            <p class="text-[11px] text-stone-500">${item.duration} • ${item.priceStr}</p>
                         </div>
-                        <button onclick="removeFromCart('${item.id}')" class="text-xs text-red-600 font-bold hover:underline">Remove</button>
+                        <button onclick="removeFromCart('${item.id}')" class="text-xs font-bold text-stone-400 hover:text-red-600 px-2 py-1 transition">
+                            ✕
+                        </button>
                     </div>
                 `;
             }).join('');
 
-            const grandTotal = totalPerPax * pax;
-            document.getElementById('cart-total').innerText = "IDR " + grandTotal.toLocaleString('id-ID');
+            totalEl.textContent = formatIDR(perPaxSum * pax);
         }
 
         function checkoutWhatsApp() {
-            const pax = parseInt(document.getElementById('pax-count').value) || 2;
-            let message = `Hello RAW LOMBOK! I would like to inquire about a private trip for *${pax} travelers*.\n\n`;
+            const paxInput = document.getElementById('pax-count');
+            const pax = Math.max(1, parseInt(paxInput ? paxInput.value : "2", 10) || 1);
 
+            let message = `Hello RAW Lombok! I'd like to inquire about a private trip (${pax} pax).\n\n`;
             if (cart.length > 0) {
-                message += `*Selected Destinations in Trip Plan:*\n`;
-                let total = 0;
+                message += `Selected Destinations:\n`;
                 cart.forEach((item, idx) => {
-                    message += `${idx + 1}. ${item.title} (${item.duration})\n`;
-                    total += item.priceVal;
+                    message += `${idx + 1}. ${item.title} (${item.duration}) - ${item.priceStr}\n`;
                 });
-                message += `\n*Estimated Total (${pax} pax):* IDR ${(total * pax).toLocaleString('id-ID')}\n\n`;
+                const perPaxSum = cart.reduce((acc, item) => acc + Number(item.price || 0), 0);
+                message += `\nEstimated Total (${pax} pax): ${formatIDR(perPaxSum * pax)}`;
             } else {
-                message += `I would like a custom itinerary recommendation for Lombok.\n\n`;
+                message += `Looking for custom itinerary recommendations across Lombok.`;
             }
 
-            message += `Could you share availability and details?`;
             const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            window.open(url, "_blank", "noopener,noreferrer");
         }
 
-        // INITIALIZE ON LOAD
+        // INITIALIZE ON PAGE LOAD
         document.addEventListener('DOMContentLoaded', () => {
-            renderDestinations();
+            renderDestinations('all');
             renderBlogs();
+            updateCartBadge();
+            renderCart();
         });
     </script>
 </body>
