@@ -15,18 +15,31 @@
         /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Smooth Ken Burns (Slow Zoom + Subtle Pan) for Destination Slideshow */
-        @keyframes slowKenBurns {
+        /* Gentle Alternating Ken Burns (Subtle Zoom In & Zoom Out) */
+        @keyframes gentleZoomIn {
             0% {
                 transform: scale(1) translate3d(0, 0, 0);
             }
             100% {
-                transform: scale(1.12) translate3d(-1.5%, -1.5%, 0);
+                transform: scale(1.07) translate3d(-0.8%, -0.6%, 0);
             }
         }
 
-        .ken-burns-active {
-            animation: slowKenBurns 7s ease-out forwards;
+        @keyframes gentleZoomOut {
+            0% {
+                transform: scale(1.07) translate3d(-0.8%, -0.6%, 0);
+            }
+            100% {
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+        }
+
+        .ken-burns-in {
+            animation: gentleZoomIn 8.5s ease-in-out forwards;
+        }
+
+        .ken-burns-out {
+            animation: gentleZoomOut 8.5s ease-in-out forwards;
         }
     </style>
 </head>
@@ -233,15 +246,18 @@
         let cart = [];
         let blogSlideTimer = null;
         let destSlideTimer = null;
+        let isDraggingBlog = false;
 
-        // 1B. SMOOTH KEN BURNS + CROSSFADE SLIDESHOW FOR DESTINATION CARDS
-        function applyKenBurns(imgEl, shouldAnimate) {
+        // 1B. ALTERNATING GENTLE ZOOM IN / ZOOM OUT + SLOW CROSSFADE FOR DESTINATION CARDS
+        function applyAlternatingKenBurns(imgEl, slideIdx, shouldAnimate) {
             if (!imgEl) return;
-            imgEl.classList.remove('ken-burns-active');
+            imgEl.classList.remove('ken-burns-in', 'ken-burns-out');
             imgEl.style.animationPlayState = "running";
             if (shouldAnimate) {
                 void imgEl.offsetWidth;
-                imgEl.classList.add('ken-burns-active');
+                // Genap (0, 2, 4...) -> Zoom In | Ganjil (1, 3, 5...) -> Zoom Out
+                const animClass = (slideIdx % 2 === 0) ? 'ken-burns-in' : 'ken-burns-out';
+                imgEl.classList.add(animClass);
             }
         }
 
@@ -253,9 +269,14 @@
             slides.forEach((imgEl, idx) => {
                 const isActive = idx === safeIdx;
                 imgEl.dataset.activeIndex = safeIdx;
-                imgEl.classList.toggle('opacity-100', isActive);
-                imgEl.classList.toggle('opacity-0', !isActive);
-                applyKenBurns(imgEl, isActive);
+                if (isActive) {
+                    applyAlternatingKenBurns(imgEl, idx, true);
+                    imgEl.classList.remove('opacity-0');
+                    imgEl.classList.add('opacity-100');
+                } else {
+                    imgEl.classList.remove('opacity-100');
+                    imgEl.classList.add('opacity-0');
+                }
             });
         }
 
@@ -281,7 +302,7 @@
             items.forEach((_, cardIdx) => {
                 const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
                 if (slides && slides.length > 0) {
-                    applyKenBurns(slides[0], true);
+                    applyAlternatingKenBurns(slides[0], 0, true);
                 }
             });
 
@@ -294,7 +315,7 @@
                     const current = parseInt(slides[0].dataset.activeIndex || "0", 10);
                     setDestSlide(cardIdx, current + 1);
                 });
-            }, 4200);
+            }, 5200);
         }
 
         // 1. RENDER DESTINATIONS
@@ -317,7 +338,7 @@
                         alt="${product.title}"
                         data-active-index="0"
                         data-paused="false"
-                        class="dest-slide-${cardIdx} absolute inset-0 w-full h-full object-cover will-change-transform transition-opacity duration-1000 ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}"
+                        class="dest-slide-${cardIdx} absolute inset-0 w-full h-full object-cover will-change-transform transition-opacity duration-[1800ms] ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}"
                     >
                 `).join('');
 
@@ -431,7 +452,7 @@
             document.getElementById('product-modal').classList.add('hidden');
         }
 
-        // 3. RENDER BLOG CARDS WITH SMOOTH SLIDE & READER MODAL
+        // 3. RENDER BLOG CARDS WITH MANUAL SWIPE/DRAG + SMOOTH AUTO SLIDE
         function renderBlogs() {
             const blogGrid = document.getElementById('blog-grid');
             if (!blogGrid || typeof rawBlogDatabase === 'undefined') return;
@@ -442,20 +463,34 @@
                     : [post.image];
 
                 const slidesHtml = slides.map(imgSrc => `
-                    <div class="w-full h-full flex-shrink-0">
-                        <img src="${imgSrc}" alt="${post.title}" class="w-full h-full object-cover">
+                    <div class="w-full h-full flex-shrink-0 snap-center select-none">
+                        <img src="${imgSrc}" alt="${post.title}" draggable="false" class="w-full h-full object-cover pointer-events-none">
                     </div>
                 `).join('');
 
                 return `
-                    <article onclick="openBlogModal('${post.id}')" onmouseenter="pauseBlogCard(${postIndex})" onmouseleave="resumeBlogCard(${postIndex})" class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
+                    <article onclick="handleBlogCardClick(event, '${post.id}')" onmouseenter="pauseBlogCard(${postIndex})" onmouseleave="resumeBlogCard(${postIndex})" class="min-w-[85%] sm:min-w-[45%] md:min-w-0 snap-center bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
                         <div class="relative h-52 overflow-hidden bg-stone-200">
-                            <div id="blog-track-${postIndex}" data-index="0" data-count="${slides.length}" class="flex w-full h-full transition-transform duration-700 ease-in-out">
+                            <div
+                                id="blog-track-${postIndex}"
+                                data-index="0"
+                                data-count="${slides.length}"
+                                onscroll="syncBlogDotsOnScroll(${postIndex})"
+                                ontouchstart="pauseBlogCard(${postIndex})"
+                                ontouchend="resumeBlogCard(${postIndex})"
+                                class="flex w-full h-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar cursor-grab active:cursor-grabbing"
+                            >
                                 ${slidesHtml}
                             </div>
                             ${slides.length > 1 ? `
+                                <button type="button" aria-label="Previous photo" onclick="event.stopPropagation(); stepBlogSlide(${postIndex}, -1)" class="hidden sm:flex items-center justify-center absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-stone-950/55 hover:bg-stone-950/80 text-white opacity-0 group-hover:opacity-100 transition">
+                                    &#8249;
+                                </button>
+                                <button type="button" aria-label="Next photo" onclick="event.stopPropagation(); stepBlogSlide(${postIndex}, 1)" class="hidden sm:flex items-center justify-center absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-stone-950/55 hover:bg-stone-950/80 text-white opacity-0 group-hover:opacity-100 transition">
+                                    &#8250;
+                                </button>
                                 <div class="absolute bottom-2.5 right-3 flex gap-1.5 bg-stone-950/50 px-2 py-1 rounded-full">
-                                    ${slides.map((_, idx) => `<span class="blog-dot-${postIndex} w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-white' : 'bg-white/40'} transition"></span>`).join('')}
+                                    ${slides.map((_, idx) => `<button type="button" aria-label="Slide ${idx + 1}" onclick="event.stopPropagation(); setBlogSlide(${postIndex}, ${idx})" class="blog-dot-${postIndex} w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-white' : 'bg-white/40'} transition"></button>`).join('')}
                                 </div>
                             ` : ''}
                         </div>
@@ -477,7 +512,71 @@
                 `;
             }).join('');
 
+            rawBlogDatabase.forEach((_, postIndex) => enableBlogMouseDrag(postIndex));
             startBlogSlideshow();
+        }
+
+        function enableBlogMouseDrag(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+
+            let isDown = false;
+            let startX = 0;
+            let scrollLeft = 0;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDraggingBlog = false;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                track.classList.remove('scroll-smooth');
+            });
+
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const x = e.pageX - track.offsetLeft;
+                const walk = x - startX;
+                if (Math.abs(walk) > 6) {
+                    isDraggingBlog = true;
+                    e.preventDefault();
+                    track.scrollLeft = scrollLeft - walk;
+                }
+            });
+
+            const stopDrag = () => {
+                if (!isDown) return;
+                isDown = false;
+                track.classList.add('scroll-smooth');
+                setTimeout(() => { isDraggingBlog = false; }, 60);
+            };
+
+            track.addEventListener('mouseup', stopDrag);
+            track.addEventListener('mouseleave', stopDrag);
+        }
+
+        function handleBlogCardClick(event, postId) {
+            if (isDraggingBlog) {
+                event.preventDefault();
+                event.stopPropagation();
+                return;
+            }
+            openBlogModal(postId);
+        }
+
+        function updateBlogDotsUI(postIndex, activeIdx) {
+            const dots = document.querySelectorAll(`.blog-dot-${postIndex}`);
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('bg-white', idx === activeIdx);
+                dot.classList.toggle('bg-white/40', idx !== activeIdx);
+            });
+        }
+
+        function syncBlogDotsOnScroll(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track || track.clientWidth === 0) return;
+            const currentIdx = Math.round(track.scrollLeft / track.clientWidth);
+            track.dataset.index = currentIdx;
+            updateBlogDotsUI(postIndex, currentIdx);
         }
 
         function setBlogSlide(postIndex, nextIndex) {
@@ -488,13 +587,18 @@
 
             const safeIndex = ((nextIndex % count) + count) % count;
             track.dataset.index = safeIndex;
-            track.style.transform = `translateX(-${safeIndex * 100}%)`;
-
-            const dots = document.querySelectorAll(`.blog-dot-${postIndex}`);
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('bg-white', idx === safeIndex);
-                dot.classList.toggle('bg-white/40', idx !== safeIndex);
+            track.scrollTo({
+                left: safeIndex * track.clientWidth,
+                behavior: 'smooth'
             });
+            updateBlogDotsUI(postIndex, safeIndex);
+        }
+
+        function stepBlogSlide(postIndex, delta) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+            const current = parseInt(track.dataset.index, 10) || 0;
+            setBlogSlide(postIndex, current + delta);
         }
 
         function pauseBlogCard(postIndex) {
@@ -519,7 +623,7 @@
                     const current = parseInt(track.dataset.index, 10) || 0;
                     setBlogSlide(postIndex, current + 1);
                 });
-            }, 3500);
+            }, 3800);
         }
 
         function openBlogModal(id) {
