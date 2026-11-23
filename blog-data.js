@@ -85,11 +85,11 @@ const rawBlogDatabase = [
 
 {
         id: "lombok-waterfalls-benang-kelambu-sendang-gile-tiu-kelep-tiu-pupus",
-        title: "Waterfalls Across Lombok: Benang Kelambu, Sendang Gile, Tiu Kelep & Tiu Pupus",
+        title: "Chasing Waterfalls in Lombok: Benang Kelambu, Sendang Gile, Tiu Kelep & Tiu Pupus",
         category: "Nature & Guides",
         date: "November 2026",
-        readTime: "5 min read",
-        excerpt: "Explore Lombok’s diverse waterfalls—from curtain-like cascades and misty cliff drops to quieter forest falls framed by lush tropical greenery.",
+        readTime: "6 min read",
+        excerpt: "From delicate curtain-like cascades in Central Lombok to roaring jungle falls at the foot of Mount Rinjani—discover the best waterfalls across the island and how to plan your visit.",
         image: "./assets/images/blog/waterfall/blog-waterfall-benangkelambu2.webp",
         images: [
             "./assets/images/blog/waterfall/blog-waterfall-benangkelambu2.webp",
@@ -100,22 +100,28 @@ const rawBlogDatabase = [
             "./assets/images/blog/waterfall/blog-waterfall-tiupupus.webp"
         ],
         content: `
-            <p>Beyond its coastlines and volcanic hills, Lombok offers cool, green pockets where mountain streams cut through dense tropical vegetation and rocky riverbeds.</p>
+            <p>While Lombok is famous for its southern surf bays and turquoise islands, the interior of the island holds a cooler, greener world. Fed by the volcanic slopes of Mount Rinjani, dozens of mountain streams plunge through mossy cliffs and dense tropical rainforest, creating some of the most refreshing natural escapes in Indonesia.</p>
 
-            <h3>Benang Kelambu</h3>
-            <p>Known for water filtering through lush hanging plants and mossy terraces rather than a single heavy drop, Benang Kelambu gives a soft, curtain-like atmosphere surrounded by rich greenery.</p>
+            <h3>1. Benang Kelambu — The Living Curtain of Central Lombok</h3>
+            <p>Located in the Aik Berik area at the southern foothills of Rinjani, Benang Kelambu (literally translating to "mosquito net") is unlike any conventional waterfall. Instead of a single roaring torrent, crystal-clear spring water filters delicately through thick layers of hanging vines and lush green ferns[cite: 1, 2]. The result is a wide, shimmering veil of water cascading gently down terraced rock walls—calm, serene, and remarkably photogenic[cite: 1, 2].</p>
+            <p><em>Good to know:</em> The walk down is paved with stone steps and takes around 15–20 minutes, making it accessible for most fitness levels. You can also combine it easily with neighboring Benang Stokel just a short walk away.</p>
 
-            <h3>Sendang Gile &amp; Tiu Kelep</h3>
-            <p>Framed by forest foliage and rocky streams, Sendang Gile and Tiu Kelep offer classic waterfall scenery with cool air, rising mist, and dramatic cliffside drops.</p>
+            <h3>2. Sendang Gile — Gateway to the Northern Jungle</h3>
+            <p>Heading north to the village of Senaru in North Lombok (KLU), Sendang Gile is the first major waterfall greeting travelers along the shaded rainforest trail. Framed by towering tropical trees and giant ferns, multiple streams drop gracefully down a steep, dark cliff face into a shallow rocky pool[cite: 3]. Local legend says bathing in its cool mountain water brings youth and vitality.</p>
 
-            <h3>Tiu Pupus</h3>
-            <p>Tiu Pupus brings a tall waterfall drop set against steep green walls and natural river stones, ideal for travelers looking for a calmer, unhurried stop.</p>
+            <h3>3. Tiu Kelep — Misty Power Beneath Rinjani</h3>
+            <p>Continuing roughly 25–30 minutes deeper into the canyon past Sendang Gile leads to Tiu Kelep[cite: 4, 5]. The trail involves stepping over river boulders, crossing shallow clear streams, and walking alongside an old irrigation channel before the jungle opens up into a dramatic amphitheater[cite: 4, 5]. Here, a powerful main cascade plunges alongside finer side streams, sending clouds of cool mist drifting across the dark volcanic rocks[cite: 4, 5].</p>
+            <p><em>Good to know:</em> Hiring a local guide at the Senaru entrance is recommended, as they know the safest river crossings when water levels fluctuate.</p>
 
-            <h3>Practical Tips Before You Go</h3>
+            <h3>4. Tiu Pupus — A Quieter Highland Escape</h3>
+            <p>Also tucked within North Lombok’s forested hills near Gangga, Tiu Pupus offers a tall, graceful drop surrounded by steep green walls and rugged river stones[cite: 6]. Because it sees fewer crowds than Senaru, it is an ideal stop for travelers who want to slow down, listen to the rush of water, and enjoy a peaceful afternoon surrounded by nature[cite: 6].</p>
+
+            <h3>Essential Tips Before You Go</h3>
             <ul>
-                <li><strong>Grip-friendly footwear:</strong> Forest paths, steps, and river stones can be slick—wear sturdy sandals or trail shoes.</li>
-                <li><strong>Start early:</strong> Morning visits usually feel cooler and calmer along the trails.</li>
-                <li><strong>Pack light &amp; protect gear:</strong> Bring a dry bag or pouch for phones and cameras near misty spray.</li>
+                <li><strong>Wear proper grip footwear:</strong> Wet stone steps, mossy roots, and river pebbles get slippery—bring water shoes, trail sandals with straps, or sneakers you do not mind getting wet.</li>
+                <li><strong>Start early in the morning:</strong> Arriving between 8:00 AM and 10:00 AM gives you softer light through the forest canopy, cooler temperatures, and quieter trails.</li>
+                <li><strong>Protect your electronics:</strong> Fine mist—especially at Tiu Kelep and Benang Kelambu—carries far. Pack a dry bag or waterproof phone pouch.</li>
+                <li><strong>Bring a dry layer:</strong> Even on sunny days, shaded jungle canyons feel crisp once you are damp from mist or a quick swim.</li>
             </ul>
         `
     }
