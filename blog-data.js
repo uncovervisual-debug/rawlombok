@@ -81,3 +81,41 @@ const rawBlogDatabase = [
         `
     }
 ];
+
+
+{
+        id: "lombok-waterfalls-benang-kelambu-sendang-gile-tiu-kelep-tiu-pupus",
+        title: "Waterfalls Across Lombok: Benang Kelambu, Sendang Gile, Tiu Kelep & Tiu Pupus",
+        category: "Nature & Guides",
+        date: "November 2026",
+        readTime: "5 min read",
+        excerpt: "Explore Lombok’s diverse waterfalls—from curtain-like cascades and misty cliff drops to quieter forest falls framed by lush tropical greenery.",
+        image: "./assets/images/blog/waterfall/blog-waterfall-benangkelambu2.webp",
+        images: [
+            "./assets/images/blog/waterfall/blog-waterfall-benangkelambu2.webp",
+            "./assets/images/blog/waterfall/blog-waterfall-benangkelambu.webp",
+            "./assets/images/blog/waterfall/blog-waterfall-sendang gile.webp",
+            "./assets/images/blog/waterfall/blog-waterfall-tiukelep.webp",
+            "./assets/images/blog/waterfall/blog-waterfall-tiukelep2.webp",
+            "./assets/images/blog/waterfall/blog-waterfall-tiupupus.webp"
+        ],
+        content: `
+            <p>Beyond its coastlines and volcanic hills, Lombok offers cool, green pockets where mountain streams cut through dense tropical vegetation and rocky riverbeds.</p>
+
+            <h3>Benang Kelambu</h3>
+            <p>Known for water filtering through lush hanging plants and mossy terraces rather than a single heavy drop, Benang Kelambu gives a soft, curtain-like atmosphere surrounded by rich greenery.</p>
+
+            <h3>Sendang Gile &amp; Tiu Kelep</h3>
+            <p>Framed by forest foliage and rocky streams, Sendang Gile and Tiu Kelep offer classic waterfall scenery with cool air, rising mist, and dramatic cliffside drops.</p>
+
+            <h3>Tiu Pupus</h3>
+            <p>Tiu Pupus brings a tall waterfall drop set against steep green walls and natural river stones, ideal for travelers looking for a calmer, unhurried stop.</p>
+
+            <h3>Practical Tips Before You Go</h3>
+            <ul>
+                <li><strong>Grip-friendly footwear:</strong> Forest paths, steps, and river stones can be slick—wear sturdy sandals or trail shoes.</li>
+                <li><strong>Start early:</strong> Morning visits usually feel cooler and calmer along the trails.</li>
+                <li><strong>Pack light &amp; protect gear:</strong> Bring a dry bag or pouch for phones and cameras near misty spray.</li>
+            </ul>
+        `
+    }
