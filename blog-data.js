@@ -153,5 +153,86 @@ const rawBlogDatabase = [
                 <li><strong>Bring a dry layer:</strong> Even on sunny days, shaded jungle canyons feel crisp once you are damp from mist or a quick swim.</li>
             </ul>
         `
+    },
+{
+        id: "complete-lombok-adventure-mountains-coast-culture-islands",
+        title: "One Island, Many Worlds: Crafting a Full-Lombok Adventure Across Mountains, Coasts & Islands",
+        category: "Adventure & Guides",
+        date: "November 23, 2026",
+        readTime: "6 min read",
+        excerpt: "From volcanic ridges and cool waterfalls to living Sasak traditions, southern surf bays, and quiet island escapes—see how different regions of Lombok come together in one journey.",
+        image: "./assets/images/destinations/east/rinjani/rinjani-summit-sunrise.webp",
+        images: [
+            "./assets/images/destinations/east/rinjani/rinjani-summit-sunrise.webp",
+            "./assets/images/destinations/east/sembalun/east-sembalun.webp",
+            "./assets/images/blog/waterfall/blog-waterfall-benangkelambu2.webp",
+            "./assets/images/destinations/center/sade/center-sade.webp",
+            "./assets/images/destinations/center/selong-belanak/center-selongbelanak.webp",
+            "./assets/images/destinations/center/tanjung-aan/center-tanjungaan.webp",
+            "./assets/images/destinations/north/snorkeling/gili-matra-snorkeling.webp",
+            "./assets/images/destinations/south/mereje/south-mereje1.webp"
+        ],
+        content: `
+            <p class="mb-4">Lombok rewards travelers who look beyond a single postcard view. Within one island, volcanic ridges, highland valleys, shaded waterfalls, living Sasak villages, sweeping bays, and offshore islands sit close enough to combine into a varied, deeply memorable route.</p>
+
+            <figure class="my-6">
+                <img src="./assets/images/destinations/east/rinjani/rinjani-summit-sunrise.webp" alt="Sunrise view from Mount Rinjani in Lombok" class="w-full h-56 sm:h-72 object-cover rounded-xl border border-stone-200">
+                <figcaption class="text-xs text-stone-500 mt-2 italic">High volcanic ridges and mountain air set a bold, adventurous tone across Lombok.</figcaption>
+            </figure>
+
+            <h3 class="text-xl font-bold mt-6 mb-3">1. Volcanic Ridges, Sembalun &amp; Waterfalls</h3>
+            <p class="mb-4">Heading toward Rinjani and Sembalun opens up sweeping highland views and cooler air, while forest trails and waterfalls offer refreshing contrast across the island. Pairing mountain scenery with unhurried mornings gives you energy before moving toward the coast.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                <figure>
+                    <img src="./assets/images/destinations/east/sembalun/east-sembalun.webp" alt="Sembalun highland valley in East Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Sembalun’s open valley and highland viewpoints at the foot of Rinjani.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./assets/images/blog/waterfall/blog-waterfall-benangkelambu2.webp" alt="Lush waterfall scenery in Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Cool mountain water and lush greenery along Lombok’s interior trails.</figcaption>
+                </figure>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-3">2. Living Sasak Culture &amp; Southern Bays</h3>
+            <p class="mb-4">Moving through Central and South Lombok connects local heritage with coastal scenery. Traditional Sasak compounds, handwoven textiles, and cultural traditions like Presean add meaning alongside bays like Selong Belanak, Mandalika, and the headlands of Tanjung Aan.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                <figure>
+                    <img src="./assets/images/destinations/center/sade/center-sade.webp" alt="Traditional Sasak village in Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Living Sasak heritage and traditional architecture in Central Lombok.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./assets/images/destinations/center/selong-belanak/center-selongbelanak.webp" alt="Selong Belanak bay in Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Selong Belanak’s sweeping bay suited for swimming, surf, and downtime.</figcaption>
+                </figure>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+                <figure>
+                    <img src="./assets/images/destinations/center/tanjung-aan/center-tanjungaan.webp" alt="Tanjung Aan coastal bays and headlands" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Clear turquoise water and coastal viewpoints around Tanjung Aan.</figcaption>
+                </figure>
+                <figure>
+                    <img src="./assets/images/destinations/south/mereje/south-mereje1.webp" alt="Secluded southern cove near Mereje in Lombok" class="w-full h-48 object-cover rounded-xl border border-stone-200">
+                    <figcaption class="text-xs text-stone-500 mt-1.5 italic">Quieter southern coves around Mereje for a slower, more private pace.</figcaption>
+                </figure>
+            </div>
+
+            <h3 class="text-xl font-bold mt-6 mb-3">3. Islands &amp; Pacing Your Route</h3>
+            <p class="mb-4">Whether you include lively reef snorkeling around the Gilis or quieter southern coves like Mereje, grouping nearby stops together keeps transfers practical and gives your trip a steady rhythm.</p>
+
+            <figure class="my-6">
+                <img src="./assets/images/destinations/north/snorkeling/gili-matra-snorkeling.webp" alt="Snorkeling and clear water around the Gili islands" class="w-full h-56 sm:h-72 object-cover rounded-xl border border-stone-200">
+                <figcaption class="text-xs text-stone-500 mt-2 italic">Clear tropical waters and reef stops around the Gili islands in North Lombok.</figcaption>
+            </figure>
+
+            <h3 class="text-xl font-bold mt-6 mb-3">How to Structure a Multi-Stop Lombok Trip</h3>
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+                <li><strong>Cluster by region:</strong> Group East, North, Center, and South stops thoughtfully so you spend less time backtracking.</li>
+                <li><strong>Balance active &amp; relaxed days:</strong> Alternate higher-energy hikes or boat days with coastal or cultural stops.</li>
+                <li><strong>Keep daily pacing realistic:</strong> Leave buffer time for road travel, weather shifts, and unhurried meals.</li>
+            </ul>
+        `
     }
 ];
