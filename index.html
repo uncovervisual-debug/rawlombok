@@ -258,7 +258,7 @@
                         <span id="faq-icon-2" class="text-amber-600 text-lg font-extrabold">+</span>
                     </button>
                     <div id="faq-panel-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed">
-                        Yes. Use <strong>My Trip Plan</strong> to select destinations you like, set your traveler count, and send your list to WhatsApp—or message us directly for multi-day routes and company retreats.
+                        Yes. Use <strong>My Trip Plan</strong> to select destinations you like, fill in your traveler details, and send your list to WhatsApp—or message us directly for multi-day routes and company retreats.
                     </div>
                 </div>
 
@@ -302,7 +302,7 @@
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Direct Consultation</h4>
                     <p class="text-sm mb-4">Need a custom multi-day itinerary? Chat directly with our Lombok travel specialists.</p>
                     <div class="flex flex-wrap items-center gap-3">
-                        <button type="button" onclick="checkoutWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition">
+                        <button type="button" onclick="openDirectConsultation()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition">
                             Consult on WhatsApp
                         </button>
                         <a href="https://wa.me/6281325523231" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-stone-300 hover:text-white underline underline-offset-4">
@@ -321,7 +321,7 @@
     <!-- FLOATING WHATSAPP BUTTON -->
     <button
         type="button"
-        onclick="checkoutWhatsApp()"
+        onclick="openDirectConsultation()"
         aria-label="Chat with RAW Lombok on WhatsApp"
         title="Chat on WhatsApp"
         class="fixed bottom-5 right-5 z-40 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 rounded-full shadow-xl flex items-center gap-2 font-bold text-xs sm:text-sm transition hover:scale-105"
@@ -362,21 +362,42 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
-                <div id="cart-items-list" class="py-4 space-y-4">
+                <div id="cart-items-list" class="py-4 space-y-3">
                     <!-- Itinerary items injected here -->
                 </div>
             </div>
 
-            <div class="border-t border-stone-200 pt-4 space-y-4">
-                <div class="flex justify-between items-center">
+            <div class="border-t border-stone-200 pt-4 space-y-3">
+                <div class="flex justify-between items-center pb-1">
                     <span class="text-sm text-stone-600">Estimated Total (all pax)</span>
                     <span id="cart-total" class="text-lg font-extrabold text-stone-900">IDR 0</span>
                 </div>
+
                 <div>
-                    <label class="block text-xs font-bold text-stone-700 mb-1">Number of Travelers (Pax)</label>
-                    <input type="number" id="pax-count" value="2" min="1" onchange="renderCart()" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-semibold">
+                    <label for="traveler-name" class="block text-xs font-bold text-stone-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="traveler-name" placeholder="e.g., Alex Morgan" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
                 </div>
-                <button type="button" onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2">
+
+                <div>
+                    <label for="traveler-email" class="block text-xs font-bold text-stone-700 mb-1">Email Address <span class="text-red-500">*</span></label>
+                    <input type="email" id="traveler-email" placeholder="e.g., alex@example.com" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="travel-date" class="block text-xs font-bold text-stone-700 mb-1">Estimated Date <span class="text-red-500">*</span></label>
+                        <input type="date" id="travel-date" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
+                    </div>
+
+                    <div>
+                        <label for="pax-count" class="block text-xs font-bold text-stone-700 mb-1">Travelers (Pax)</label>
+                        <input type="number" id="pax-count" value="2" min="1" onchange="renderCart()" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-semibold focus:outline-none focus:border-stone-900">
+                    </div>
+                </div>
+
+                <p id="cart-form-error" class="hidden text-xs font-semibold text-red-600"></p>
+
+                <button type="button" onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2 mt-1">
                     Send Itinerary via WhatsApp
                 </button>
             </div>
@@ -864,7 +885,7 @@
                                 <h4 class="font-bold text-stone-900 text-sm">Inspired to visit this place?</h4>
                                 <p class="text-xs text-stone-600">Let RAW Lombok organize your private transport and local guide.</p>
                             </div>
-                            <button type="button" onclick="closeBlogModal(); checkoutWhatsApp();" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-5 py-3 rounded-xl transition whitespace-nowrap">
+                            <button type="button" onclick="closeBlogModal(); openDirectConsultation();" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-5 py-3 rounded-xl transition whitespace-nowrap">
                                 Plan This Trip
                             </button>
                         </div>
@@ -913,6 +934,14 @@
             }
         }
 
+        function openDirectConsultation() {
+            toggleCartModal(true);
+            setTimeout(() => {
+                const nameInput = document.getElementById('traveler-name');
+                if (nameInput) nameInput.focus();
+            }, 100);
+        }
+
         function formatIDR(amount) {
             return "IDR " + Number(amount || 0).toLocaleString("id-ID");
         }
@@ -926,7 +955,7 @@
             if (!listEl || !totalEl) return;
 
             if (cart.length === 0) {
-                listEl.innerHTML = `<p class="text-sm text-stone-500 text-center py-8">No destinations added yet. Select a tour to build your itinerary.</p>`;
+                listEl.innerHTML = `<p class="text-sm text-stone-500 text-center py-6">No destinations added yet—or fill in your details below to request a custom itinerary on WhatsApp.</p>`;
                 totalEl.textContent = formatIDR(0);
                 return;
             }
@@ -955,12 +984,38 @@
         }
 
         function checkoutWhatsApp() {
+            const nameInput = document.getElementById('traveler-name');
+            const emailInput = document.getElementById('traveler-email');
+            const dateInput = document.getElementById('travel-date');
             const paxInput = document.getElementById('pax-count');
+            const errorEl = document.getElementById('cart-form-error');
+
+            const travelerName = (nameInput ? nameInput.value : "").trim();
+            const travelerEmail = (emailInput ? emailInput.value : "").trim();
+            const estimatedDate = (dateInput ? dateInput.value : "").trim();
             const pax = Math.max(1, parseInt(paxInput ? paxInput.value : "2", 10) || 1);
 
-            let message = `Hello RAW Lombok! I'd like to inquire about a private trip (${pax} pax).\n`;
+            if (!travelerName || !travelerEmail || !estimatedDate) {
+                toggleCartModal(true);
+                if (errorEl) {
+                    errorEl.textContent = "Please fill in your full name, email address, and estimated travel date before sending to WhatsApp.";
+                    errorEl.classList.remove("hidden");
+                }
+                return;
+            }
+
+            if (errorEl) {
+                errorEl.classList.add("hidden");
+            }
+
+            let message = `Hello RAW Lombok! I'd like to inquire about a private trip.\n\n`;
+            message += `Traveler Details:\n`;
+            message += `- Name: ${travelerName}\n`;
+            message += `- Email: ${travelerEmail}\n`;
+            message += `- Estimated Date: ${estimatedDate}\n`;
+            message += `- Travelers: ${pax} pax\n`;
             if (activeTripType !== 'all') {
-                message += `Trip Style: ${activeTripType.toUpperCase()}\n`;
+                message += `- Trip Style: ${activeTripType.toUpperCase()}\n`;
             }
             message += `\n`;
 
@@ -981,6 +1036,11 @@
 
         // INITIALIZE ON PAGE LOAD
         document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('travel-date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.min = today;
+            }
             updateClusterButtonsUI();
             updateTripTypeButtonsUI();
             renderDestinations();
