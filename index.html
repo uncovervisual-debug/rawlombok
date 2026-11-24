@@ -62,7 +62,7 @@
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <!-- Black RL Logo -->
-            <a href="./index.html" class="flex items-center gap-2.5 group">
+            <a href="#" class="flex items-center gap-2.5 group">
                 <div class="w-9 h-9 bg-stone-900 text-white rounded-lg flex items-center justify-center font-extrabold text-sm tracking-tighter group-hover:bg-amber-600 transition">
                     RL
                 </div>
@@ -71,8 +71,8 @@
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
-                <a href="./destinations.html" class="hover:text-stone-900 transition">All Destinations</a>
-                <a href="./blog.html" class="hover:text-stone-900 transition">Journal & Guides</a>
+                <a href="#destinations" class="hover:text-stone-900 transition">All Destinations</a>
+                <a href="#blog" class="hover:text-stone-900 transition">Journal & Guides</a>
                 <a href="#about" class="hover:text-stone-900 transition">Why Raw Lombok</a>
                 <a href="#faq" class="hover:text-stone-900 transition">FAQ</a>
             </nav>
@@ -111,10 +111,10 @@
                 Curated private journeys across volcanic summits, untouched southern bays, and living Sasak heritage—crafted with local expertise.
             </p>
             <div class="mt-8 flex flex-wrap gap-4">
-                <a href="./destinations.html" class="bg-white text-stone-900 hover:bg-stone-100 font-bold text-sm px-6 py-3.5 rounded-xl transition">
-                    Explore All Destinations
+                <a href="#destinations" class="bg-white text-stone-900 hover:bg-stone-100 font-bold text-sm px-6 py-3.5 rounded-xl transition">
+                    Explore Destinations
                 </a>
-                <a href="./blog.html" class="bg-stone-800/80 hover:bg-stone-800 text-white border border-stone-700 font-semibold text-sm px-6 py-3.5 rounded-xl transition">
+                <a href="#blog" class="bg-stone-800/80 hover:bg-stone-800 text-white border border-stone-700 font-semibold text-sm px-6 py-3.5 rounded-xl transition">
                     Read Travel Guides
                 </a>
             </div>
@@ -126,7 +126,7 @@
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-5">
             <div>
                 <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900">All Destinations</h2>
-                <p class="text-stone-600 text-sm sm:text-base mt-1">Filter by region or trip style, open the full catalog page, or build your custom itinerary for WhatsApp.</p>
+                <p class="text-stone-600 text-sm sm:text-base mt-1">Filter by region or trip style, then build your custom itinerary for WhatsApp.</p>
             </div>
 
             <!-- Region & Trip Type Filters -->
@@ -157,13 +157,6 @@
         <div id="destinations-grid" class="flex md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-4">
             <!-- Rendered dynamically from catalog.js -->
         </div>
-
-        <!-- Dedicated Destinations Page CTA -->
-        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
-            <a href="./destinations.html" class="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl transition">
-                Open Full Destinations Page &rarr;
-            </a>
-        </div>
     </section>
 
     <!-- BLOG & TRAVEL JOURNAL SECTION -->
@@ -175,21 +168,11 @@
                     <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 mt-1">Stories, Guides & Local Insights</h2>
                     <p class="text-stone-600 text-sm sm:text-base mt-1">Practical tips and hidden gems to help you plan your Lombok adventure.</p>
                 </div>
-                <a href="./blog.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-stone-900 hover:text-amber-600 transition">
-                    All Journal Articles &rarr;
-                </a>
             </div>
 
             <!-- Blog Cards Grid -->
             <div id="blog-grid" class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-4">
                 <!-- Rendered dynamically from blog-data.js -->
-            </div>
-
-            <!-- Dedicated Blog Page CTA -->
-            <div class="mt-8 text-center">
-                <a href="./blog.html" class="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl transition">
-                    Open Full Journal & Guides Page &rarr;
-                </a>
             </div>
         </div>
     </section>
@@ -310,8 +293,8 @@
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="./destinations.html" class="hover:text-white transition">All Destinations Page</a></li>
-                        <li><a href="./blog.html" class="hover:text-white transition">Journal & Guides Page</a></li>
+                        <li><a href="#destinations" class="hover:text-white transition">All Destinations</a></li>
+                        <li><a href="#blog" class="hover:text-white transition">Journal & Guides</a></li>
                         <li><a href="#about" class="hover:text-white transition">Why Raw Lombok</a></li>
                         <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
                         <li><button type="button" onclick="toggleCartModal()" class="hover:text-white transition">My Trip Plan</button></li>
@@ -430,16 +413,12 @@
     <!-- APPLICATION LOGIC -->
     <script>
         const WHATSAPP_NUMBER = "6281325523231";
-        let cart = JSON.parse(localStorage.getItem('rawlombok_cart') || '[]');
+        let cart = [];
         let activeCluster = 'all';
         let activeTripType = 'all';
         let blogSlideTimer = null;
         let destSlideTimer = null;
         let isDraggingBlog = false;
-
-        function saveCartState() {
-            localStorage.setItem('rawlombok_cart', JSON.stringify(cart));
-        }
 
         // FAQ ACCORDION TOGGLE
         function toggleFaq(index) {
@@ -893,14 +872,11 @@
                 <div class="clear-both">
                     <img src="${modalCover}" alt="${post.title}" class="w-full h-64 sm:h-80 object-cover">
                     <div class="p-6 sm:p-10">
-                        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500 mb-3">
-                            <div class="flex items-center gap-3">
-                                <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">${post.category}</span>
-                                <span>${post.date}</span>
-                                <span>•</span>
-                                <span>${post.readTime}</span>
-                            </div>
-                            <a href="./blog.html" class="font-bold text-amber-600 hover:underline">All Articles &rarr;</a>
+                        <div class="flex items-center gap-3 text-xs text-stone-500 mb-3">
+                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">${post.category}</span>
+                            <span>${post.date}</span>
+                            <span>•</span>
+                            <span>${post.readTime}</span>
                         </div>
                         <h1 class="text-2xl sm:text-3xl font-extrabold text-stone-900 leading-tight mb-6">${post.title}</h1>
                         <div class="prose prose-stone max-w-none text-stone-700 text-sm sm:text-base leading-relaxed">
@@ -909,16 +885,11 @@
                         <div class="mt-10 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4 bg-stone-50 p-5 rounded-xl">
                             <div>
                                 <h4 class="font-bold text-stone-900 text-sm">Inspired to visit this place?</h4>
-                                <p class="text-xs text-stone-600">Browse all tours or let RAW Lombok organize your private trip.</p>
+                                <p class="text-xs text-stone-600">Let RAW Lombok organize your private transport and local guide.</p>
                             </div>
-                            <div class="flex flex-wrap gap-2.5">
-                                <a href="./destinations.html" class="bg-white border border-stone-300 hover:border-stone-900 text-stone-900 text-xs font-bold px-4 py-3 rounded-xl transition whitespace-nowrap">
-                                    All Destinations
-                                </a>
-                                <button type="button" onclick="closeBlogModal(); openDirectConsultation();" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-5 py-3 rounded-xl transition whitespace-nowrap">
-                                    Plan This Trip
-                                </button>
-                            </div>
+                            <button type="button" onclick="closeBlogModal(); openDirectConsultation();" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-5 py-3 rounded-xl transition whitespace-nowrap">
+                                Plan This Trip
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -936,7 +907,6 @@
             if (!product) return;
             if (!cart.some(item => item.id === id)) {
                 cart.push(product);
-                saveCartState();
             }
             updateCartBadge();
             renderCart();
@@ -945,7 +915,6 @@
 
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
-            saveCartState();
             updateCartBadge();
             renderCart();
         }
