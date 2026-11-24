@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Journal & Guides — RAW LOMBOK</title>
+    <meta name="description" content="Stories, practical travel guides, and local insights across Lombok Island from RAW Lombok.">
+    <link rel="canonical" href="https://rawlombok.web.id/blog.html">
+
+    <!-- RL SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c1917'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial, sans-serif' font-size='26' font-weight='800'%3ERL%3C/text%3E%3C/svg%3E">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900 antialiased selection:bg-stone-900 selection:text-white">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="./index.html" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 bg-stone-900 text-white rounded-lg flex items-center justify-center font-extrabold text-sm tracking-tighter group-hover:bg-amber-600 transition">
+                    RL
+                </div>
+                <span class="font-extrabold text-lg tracking-tight text-stone-900">RAW LOMBOK</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
+                <a href="./index.html" class="hover:text-stone-900 transition">Home</a>
+                <a href="./destinations.html" class="hover:text-stone-900 transition">All Destinations</a>
+                <a href="./blog.html" class="text-stone-900 font-bold border-b-2 border-amber-600 pb-0.5">Journal & Guides</a>
+                <a href="./index.html#faq" class="hover:text-stone-900 transition">FAQ</a>
+            </nav>
+
+            <a href="./destinations.html" class="px-4 py-2 bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold rounded-xl transition">
+                Explore Tours
+            </a>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="bg-stone-900 text-white py-14 sm:py-20 border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-2 text-xs text-stone-400 mb-4">
+                <a href="./index.html" class="hover:text-white transition">Home</a>
+                <span>/</span>
+                <span class="text-amber-500 font-semibold">Journal & Guides</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight max-w-2xl leading-tight">
+                Lombok Field Notes, Stories & Travel Guides
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-stone-300 max-w-2xl leading-relaxed">
+                Local perspectives, route preparation, seasonal notes, and field stories written by the RAW Lombok team.
+            </p>
+        </div>
+    </section>
+
+    <!-- BLOG LISTING & FILTERS -->
+    <main class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" id="category-filters">
+                <!-- Category pills generated dynamically -->
+            </div>
+
+            <div class="relative w-full md:w-72">
+                <input
+                    type="text"
+                    id="blog-search"
+                    oninput="handleBlogSearch(this.value)"
+                    placeholder="Search articles..."
+                    class="w-full border border-stone-300 rounded-xl pl-9 pr-4 py-2 text-sm font-medium focus:outline-none focus:border-stone-900"
+                >
+                <svg class="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div id="blog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Rendered dynamically from blog-data.js -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 text-stone-400 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <div class="flex items-center gap-2.5 text-white">
+                <div class="w-7 h-7 bg-white text-stone-950 rounded-lg flex items-center justify-center font-extrabold text-xs">RL</div>
+                <span class="font-extrabold text-sm tracking-tight">RAW LOMBOK</span>
+            </div>
+            <div class="flex gap-6">
+                <a href="./index.html" class="hover:text-white transition">Home</a>
+                <a href="./destinations.html" class="hover:text-white transition">All Destinations</a>
+                <a href="./blog.html" class="text-white font-semibold">Journal & Guides</a>
+            </div>
+            <p>&copy; 2026 PT Homeland Nusa Indonesia.</p>
+        </div>
+    </footer>
+
+    <!-- BLOG ARTICLE READER MODAL -->
+    <div id="blog-modal" class="fixed inset-0 z-50 hidden bg-stone-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button type="button" onclick="closeBlogModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="blog-modal-content"></div>
+        </div>
+    </div>
+
+    <script src="./blog-data.js"></script>
+    <script>
+        let activeCategory = 'all';
+        let blogSearchQuery = '';
+        let blogSlideTimer = null;
+        let isDraggingBlog = false;
+
+        function renderCategoryFilters() {
+            const container = document.getElementById('category-filters');
+            if (!container || typeof rawBlogDatabase === 'undefined') return;
+
+            const categories = ['all', ...new Set(rawBlogDatabase.map(p => p.category).filter(Boolean))];
+            container.innerHTML = categories.map(cat => {
+                const isActive = cat === activeCategory;
+                const label = cat === 'all' ? 'All Stories' : cat;
+                return `
+                    <button
+                        type="button"
+                        onclick="setBlogCategory('${cat}')"
+                        class="px-4 py-2 rounded-full text-xs font-bold transition whitespace-nowrap ${isActive ? 'bg-stone-900 text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'}"
+                    >
+                        ${label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setBlogCategory(category) {
+            activeCategory = category;
+            renderCategoryFilters();
+            renderBlogs();
+        }
+
+        function handleBlogSearch(val) {
+            blogSearchQuery = val.trim().toLowerCase();
+            renderBlogs();
+        }
+
+        function renderBlogs() {
+            const blogGrid = document.getElementById('blog-grid');
+            if (!blogGrid || typeof rawBlogDatabase === 'undefined') return;
+
+            const filtered = rawBlogDatabase.filter(post => {
+                const matchCategory = activeCategory === 'all' || post.category === activeCategory;
+                const matchSearch = !blogSearchQuery ||
+                    post.title.toLowerCase().includes(blogSearchQuery) ||
+                    (post.excerpt && post.excerpt.toLowerCase().includes(blogSearchQuery));
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                if (blogSlideTimer) clearInterval(blogSlideTimer);
+                blogGrid.innerHTML = `
+                    <div class="col-span-full text-center py-14 bg-white rounded-2xl border border-stone-200">
+                        <p class="text-sm font-semibold text-stone-700 mb-2">No articles match your search.</p>
+                        <button type="button" onclick="activeCategory='all'; blogSearchQuery=''; document.getElementById('blog-search').value=''; renderCategoryFilters(); renderBlogs();" class="text-xs font-bold text-amber-600 hover:underline">
+                            Show All Articles
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            blogGrid.innerHTML = filtered.map((post, postIndex) => {
+                const slides = (Array.isArray(post.images) && post.images.length > 0) ? post.images : [post.image];
+                const slidesHtml = slides.map(imgSrc => `
+                    <div class="w-full h-full flex-shrink-0 snap-center select-none">
+                        <img src="${imgSrc}" alt="${post.title}" draggable="false" class="w-full h-full object-cover pointer-events-none">
+                    </div>
+                `).join('');
+
+                return `
+                    <article onclick="handleBlogCardClick(event, '${post.id}')" onmouseenter="pauseBlogCard(${postIndex})" onmouseleave="resumeBlogCard(${postIndex})" class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
+                        <div class="relative h-56 overflow-hidden bg-stone-200">
+                            <div
+                                id="blog-track-${postIndex}"
+                                data-index="0"
+                                data-count="${slides.length}"
+                                onscroll="syncBlogDotsOnScroll(${postIndex})"
+                                class="flex w-full h-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar cursor-grab active:cursor-grabbing"
+                            >
+                                ${slidesHtml}
+                            </div>
+                            ${slides.length > 1 ? `
+                                <button type="button" aria-label="Previous photo" onclick="event.stopPropagation(); stepBlogSlide(${postIndex}, -1)" class="hidden sm:flex items-center justify-center absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-stone-950/55 hover:bg-stone-950/80 text-white opacity-0 group-hover:opacity-100 transition">&#8249;</button>
+                                <button type="button" aria-label="Next photo" onclick="event.stopPropagation(); stepBlogSlide(${postIndex}, 1)" class="hidden sm:flex items-center justify-center absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-stone-950/55 hover:bg-stone-950/80 text-white opacity-0 group-hover:opacity-100 transition">&#8250;</button>
+                                <div class="absolute bottom-2.5 right-3 flex gap-1.5 bg-stone-950/50 px-2 py-1 rounded-full">
+                                    ${slides.map((_, idx) => `<button type="button" aria-label="Slide ${idx + 1}" onclick="event.stopPropagation(); setBlogSlide(${postIndex}, ${idx})" class="blog-dot-${postIndex} w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-white' : 'bg-white/40'} transition"></button>`).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center justify-between text-xs text-stone-500 mb-2.5">
+                                <span class="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-bold">${post.category}</span>
+                                <span>${post.readTime}</span>
+                            </div>
+                            <h2 class="font-bold text-lg text-stone-900 group-hover:text-amber-600 transition leading-snug mb-2">
+                                ${post.title}
+                            </h2>
+                            <p class="text-sm text-stone-600 line-clamp-3 mb-4 flex-grow">${post.excerpt}</p>
+                            <div class="pt-3 border-t border-stone-200/70 flex items-center justify-between text-xs">
+                                <span class="text-stone-400">${post.date}</span>
+                                <span class="font-bold text-stone-900 group-hover:translate-x-1 transition">Read Article &rarr;</span>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            filtered.forEach((_, postIndex) => enableBlogMouseDrag(postIndex));
+            startBlogSlideshow(filtered.length);
+        }
+
+        function enableBlogMouseDrag(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+            let isDown = false, startX = 0, scrollLeft = 0;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDraggingBlog = false;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                track.classList.remove('scroll-smooth');
+            });
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const walk = (e.pageX - track.offsetLeft) - startX;
+                if (Math.abs(walk) > 6) {
+                    isDraggingBlog = true;
+                    e.preventDefault();
+                    track.scrollLeft = scrollLeft - walk;
+                }
+            });
+            const stopDrag = () => {
+                if (!isDown) return;
+                isDown = false;
+                track.classList.add('scroll-smooth');
+                setTimeout(() => { isDraggingBlog = false; }, 60);
+            };
+            track.addEventListener('mouseup', stopDrag);
+            track.addEventListener('mouseleave', stopDrag);
+        }
+
+        function handleBlogCardClick(event, postId) {
+            if (isDraggingBlog) {
+                event.preventDefault();
+                event.stopPropagation();
+                return;
+            }
+            openBlogModal(postId);
+        }
+
+        function updateBlogDotsUI(postIndex, activeIdx) {
+            document.querySelectorAll(`.blog-dot-${postIndex}`).forEach((dot, idx) => {
+                dot.classList.toggle('bg-white', idx === activeIdx);
+                dot.classList.toggle('bg-white/40', idx !== activeIdx);
+            });
+        }
+
+        function syncBlogDotsOnScroll(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track || track.clientWidth === 0) return;
+            const currentIdx = Math.round(track.scrollLeft / track.clientWidth);
+            track.dataset.index = currentIdx;
+            updateBlogDotsUI(postIndex, currentIdx);
+        }
+
+        function setBlogSlide(postIndex, nextIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+            const count = parseInt(track.dataset.count, 10) || 1;
+            if (count <= 1) return;
+            const safeIndex = ((nextIndex % count) + count) % count;
+            track.dataset.index = safeIndex;
+            track.scrollTo({ left: safeIndex * track.clientWidth, behavior: 'smooth' });
+            updateBlogDotsUI(postIndex, safeIndex);
+        }
+
+        function stepBlogSlide(postIndex, delta) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+            const current = parseInt(track.dataset.index, 10) || 0;
+            setBlogSlide(postIndex, current + delta);
+        }
+
+        function pauseBlogCard(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (track) track.dataset.paused = "true";
+        }
+
+        function resumeBlogCard(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (track) track.dataset.paused = "false";
+        }
+
+        function startBlogSlideshow(totalCards) {
+            if (blogSlideTimer) clearInterval(blogSlideTimer);
+            blogSlideTimer = setInterval(() => {
+                for (let postIndex = 0; postIndex < totalCards; postIndex++) {
+                    const track = document.getElementById(`blog-track-${postIndex}`);
+                    if (!track || track.dataset.paused === "true") continue;
+                    const count = parseInt(track.dataset.count, 10) || 1;
+                    if (count <= 1) continue;
+                    const current = parseInt(track.dataset.index, 10) || 0;
+                    setBlogSlide(postIndex, current + 1);
+                }
+            }, 3800);
+        }
+
+        function openBlogModal(id) {
+            const post = rawBlogDatabase.find(item => item.id === id);
+            if (!post) return;
+            const modalCover = (post.images && post.images[0]) || post.image || "./assets/images/blog/outing/outing-hero.webp";
+
+            document.getElementById('blog-modal-content').innerHTML = `
+                <div class="clear-both">
+                    <img src="${modalCover}" alt="${post.title}" class="w-full h-64 sm:h-80 object-cover">
+                    <div class="p-6 sm:p-10">
+                        <div class="flex items-center gap-3 text-xs text-stone-500 mb-3">
+                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">${post.category}</span>
+                            <span>${post.date}</span>
+                            <span>•</span>
+                            <span>${post.readTime}</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-stone-900 leading-tight mb-6">${post.title}</h1>
+                        <div class="prose prose-stone max-w-none text-stone-700 text-sm sm:text-base leading-relaxed">
+                            ${post.content}
+                        </div>
+                        <div class="mt-10 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4 bg-stone-50 p-5 rounded-xl">
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Inspired to visit this place?</h4>
+                                <p class="text-xs text-stone-600">Browse all tours or assemble your private itinerary.</p>
+                            </div>
+                            <a href="./destinations.html" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-5 py-3 rounded-xl transition whitespace-nowrap">
+                                Explore Destinations
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('blog-modal').classList.remove('hidden');
+        }
+
+        function closeBlogModal() {
+            document.getElementById('blog-modal').classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategoryFilters();
+            renderBlogs();
+        });
+    </script>
+</body>
+</html>

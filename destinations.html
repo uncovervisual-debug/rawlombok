@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Destinations — RAW LOMBOK</title>
+    <meta name="description" content="Explore all curated private tours and expeditions across Mount Rinjani, Sembalun, Gili islands, Sasak heritage, and Lombok's southern coast.">
+    <link rel="canonical" href="https://rawlombok.web.id/destinations.html">
+
+    <!-- RL SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c1917'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial, sans-serif' font-size='26' font-weight='800'%3ERL%3C/text%3E%3C/svg%3E">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes gentleZoomIn {
+            0% { transform: scale(1) translate3d(0, 0, 0); }
+            100% { transform: scale(1.07) translate3d(-0.8%, -0.6%, 0); }
+        }
+        @keyframes gentleZoomOut {
+            0% { transform: scale(1.07) translate3d(-0.8%, -0.6%, 0); }
+            100% { transform: scale(1) translate3d(0, 0, 0); }
+        }
+        .ken-burns-in { animation: gentleZoomIn 8.5s ease-in-out forwards; }
+        .ken-burns-out { animation: gentleZoomOut 8.5s ease-in-out forwards; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900 antialiased selection:bg-stone-900 selection:text-white">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="./index.html" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 bg-stone-900 text-white rounded-lg flex items-center justify-center font-extrabold text-sm tracking-tighter group-hover:bg-amber-600 transition">
+                    RL
+                </div>
+                <span class="font-extrabold text-lg tracking-tight text-stone-900">RAW LOMBOK</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
+                <a href="./index.html" class="hover:text-stone-900 transition">Home</a>
+                <a href="./destinations.html" class="text-stone-900 font-bold border-b-2 border-amber-600 pb-0.5">All Destinations</a>
+                <a href="./blog.html" class="hover:text-stone-900 transition">Journal & Guides</a>
+                <a href="./index.html#faq" class="hover:text-stone-900 transition">FAQ</a>
+            </nav>
+
+            <button type="button" onclick="toggleCartModal()" class="relative px-3.5 py-2 text-stone-800 hover:bg-stone-100 rounded-xl transition flex items-center gap-2 border border-stone-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                <span class="text-xs font-bold uppercase tracking-wider">My Trip Plan</span>
+                <span id="cart-badge" class="absolute -top-1 -right-1 bg-amber-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="bg-stone-900 text-white py-14 sm:py-20 border-b border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-2 text-xs text-stone-400 mb-4">
+                <a href="./index.html" class="hover:text-white transition">Home</a>
+                <span>/</span>
+                <span class="text-amber-500 font-semibold">All Destinations</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight max-w-2xl leading-tight">
+                All Lombok Destinations & Private Expeditions
+            </h1>
+            <p class="mt-4 text-sm sm:text-base text-stone-300 max-w-2xl leading-relaxed">
+                Browse our complete catalog across East, Center, North, and South Lombok. Filter by region, travel style, or keyword to assemble your bespoke itinerary.
+            </p>
+        </div>
+    </section>
+
+    <!-- FULL CATALOG & FILTERS -->
+    <main class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Search & Filter Controls -->
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-sm mb-8 space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <!-- Search Input -->
+                <div class="relative flex-grow max-w-md">
+                    <input
+                        type="text"
+                        id="destination-search"
+                        oninput="handleSearchInput(this.value)"
+                        placeholder="Search Rinjani, Mandalika, Gili, waterfall..."
+                        class="w-full border border-stone-300 rounded-xl pl-10 pr-4 py-2.5 text-sm font-medium focus:outline-none focus:border-stone-900"
+                    >
+                    <svg class="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/>
+                    </svg>
+                </div>
+
+                <div class="flex items-center justify-between md:justify-end gap-4">
+                    <span id="results-count" class="text-xs font-bold text-stone-500">Showing all destinations</span>
+                    <button type="button" onclick="resetDestinationFilters()" class="text-xs font-bold text-amber-600 hover:underline">
+                        Reset All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Region Filter Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="cluster-filters">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-stone-400 mr-1 whitespace-nowrap">Region:</span>
+                <button type="button" onclick="filterDestinations('all')" data-filter="all" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">All Regions</button>
+                <button type="button" onclick="filterDestinations('east')" data-filter="east" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">East (Rinjani)</button>
+                <button type="button" onclick="filterDestinations('center')" data-filter="center" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">Center & Culture</button>
+                <button type="button" onclick="filterDestinations('north')" data-filter="north" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">North & Gilis</button>
+                <button type="button" onclick="filterDestinations('south')" data-filter="south" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">South Coast</button>
+            </div>
+
+            <!-- Trip Type Filter Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="triptype-filters">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-stone-400 mr-1 whitespace-nowrap">Trip Style:</span>
+                <button type="button" onclick="filterTripType('all')" data-triptype="all" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-600 text-white border border-amber-600 transition whitespace-nowrap">All Styles</button>
+                <button type="button" onclick="filterTripType('solo')" data-triptype="solo" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Solo Trip</button>
+                <button type="button" onclick="filterTripType('honeymoon')" data-triptype="honeymoon" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Honeymoon</button>
+                <button type="button" onclick="filterTripType('prewedding')" data-triptype="prewedding" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Prewedding</button>
+                <button type="button" onclick="filterTripType('group')" data-triptype="group" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Group</button>
+                <button type="button" onclick="filterTripType('outing')" data-triptype="outing" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Outing</button>
+            </div>
+        </div>
+
+        <!-- Full Responsive Grid (No Horizontal Clipping) -->
+        <div id="destinations-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Rendered dynamically from catalog.js -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 text-stone-400 py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <div class="flex items-center gap-2.5 text-white">
+                <div class="w-7 h-7 bg-white text-stone-950 rounded-lg flex items-center justify-center font-extrabold text-xs">RL</div>
+                <span class="font-extrabold text-sm tracking-tight">RAW LOMBOK</span>
+            </div>
+            <div class="flex gap-6">
+                <a href="./index.html" class="hover:text-white transition">Home</a>
+                <a href="./destinations.html" class="text-white font-semibold">All Destinations</a>
+                <a href="./blog.html" class="hover:text-white transition">Journal & Guides</a>
+            </div>
+            <p>&copy; 2026 PT Homeland Nusa Indonesia.</p>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button type="button" onclick="closeProductModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <div id="product-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- ITINERARY PLANNER DRAWER MODAL -->
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex justify-end">
+        <div class="bg-white w-full max-w-md h-full flex flex-col justify-between p-6 shadow-2xl overflow-y-auto">
+            <div>
+                <div class="flex items-center justify-between border-b border-stone-200 pb-4">
+                    <h3 class="font-extrabold text-lg text-stone-900">Your Curated Trip Plan</h3>
+                    <button type="button" onclick="toggleCartModal()" class="p-1.5 text-stone-500 hover:text-stone-900">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+                <div id="cart-items-list" class="py-4 space-y-3"></div>
+            </div>
+
+            <div class="border-t border-stone-200 pt-4 space-y-3">
+                <div class="flex justify-between items-center pb-1">
+                    <span class="text-sm text-stone-600">Estimated Total (all pax)</span>
+                    <span id="cart-total" class="text-lg font-extrabold text-stone-900">IDR 0</span>
+                </div>
+
+                <div>
+                    <label for="traveler-name" class="block text-xs font-bold text-stone-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+                    <input type="text" id="traveler-name" placeholder="e.g., Alex Morgan" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
+                </div>
+
+                <div>
+                    <label for="traveler-email" class="block text-xs font-bold text-stone-700 mb-1">Email Address <span class="text-red-500">*</span></label>
+                    <input type="email" id="traveler-email" placeholder="e.g., alex@example.com" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="travel-date" class="block text-xs font-bold text-stone-700 mb-1">Estimated Date <span class="text-red-500">*</span></label>
+                        <input type="date" id="travel-date" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
+                    </div>
+
+                    <div>
+                        <label for="pax-count" class="block text-xs font-bold text-stone-700 mb-1">Travelers (Pax)</label>
+                        <input type="number" id="pax-count" value="2" min="1" onchange="renderCart()" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-semibold focus:outline-none focus:border-stone-900">
+                    </div>
+                </div>
+
+                <p id="cart-form-error" class="hidden text-xs font-semibold text-red-600"></p>
+
+                <button type="button" onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2 mt-1">
+                    Send Itinerary via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./catalog.js"></script>
+    <script>
+        const WHATSAPP_NUMBER = "6281325523231";
+        let cart = JSON.parse(localStorage.getItem('rawlombok_cart') || '[]');
+        let activeCluster = 'all';
+        let activeTripType = 'all';
+        let searchQuery = '';
+        let destSlideTimer = null;
+
+        function saveCartState() {
+            localStorage.setItem('rawlombok_cart', JSON.stringify(cart));
+        }
+
+        function applyAlternatingKenBurns(imgEl, slideIdx, shouldAnimate) {
+            if (!imgEl) return;
+            imgEl.classList.remove('ken-burns-in', 'ken-burns-out');
+            imgEl.style.animationPlayState = "running";
+            if (shouldAnimate) {
+                void imgEl.offsetWidth;
+                imgEl.classList.add((slideIdx % 2 === 0) ? 'ken-burns-in' : 'ken-burns-out');
+            }
+        }
+
+        function setDestSlide(cardIdx, nextIdx) {
+            const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+            if (!slides || slides.length <= 1) return;
+            const safeIdx = ((nextIdx % slides.length) + slides.length) % slides.length;
+            slides.forEach((imgEl, idx) => {
+                const isActive = idx === safeIdx;
+                imgEl.dataset.activeIndex = safeIdx;
+                if (isActive) {
+                    applyAlternatingKenBurns(imgEl, idx, true);
+                    imgEl.classList.remove('opacity-0');
+                    imgEl.classList.add('opacity-100');
+                } else {
+                    imgEl.classList.remove('opacity-100');
+                    imgEl.classList.add('opacity-0');
+                }
+            });
+        }
+
+        function pauseDestCard(cardIdx) {
+            document.querySelectorAll(`.dest-slide-${cardIdx}`).forEach(imgEl => {
+                imgEl.dataset.paused = "true";
+                imgEl.style.animationPlayState = "paused";
+            });
+        }
+
+        function resumeDestCard(cardIdx) {
+            document.querySelectorAll(`.dest-slide-${cardIdx}`).forEach(imgEl => {
+                imgEl.dataset.paused = "false";
+                imgEl.style.animationPlayState = "running";
+            });
+        }
+
+        function startDestSlideshow(items) {
+            if (destSlideTimer) clearInterval(destSlideTimer);
+            items.forEach((_, cardIdx) => {
+                const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+                if (slides && slides.length > 0) applyAlternatingKenBurns(slides[0], 0, true);
+            });
+            destSlideTimer = setInterval(() => {
+                items.forEach((_, cardIdx) => {
+                    const slides = document.querySelectorAll(`.dest-slide-${cardIdx}`);
+                    if (!slides || slides.length <= 1 || slides[0].dataset.paused === "true") return;
+                    const current = parseInt(slides[0].dataset.activeIndex || "0", 10);
+                    setDestSlide(cardIdx, current + 1);
+                });
+            }, 5200);
+        }
+
+        function handleSearchInput(val) {
+            searchQuery = val.trim().toLowerCase();
+            renderDestinations();
+        }
+
+        function renderDestinations() {
+            const grid = document.getElementById('destinations-grid');
+            const countEl = document.getElementById('results-count');
+            if (!grid || typeof rawProductsDatabase === 'undefined') return;
+
+            const filtered = rawProductsDatabase.filter(item => {
+                const matchCluster = activeCluster === 'all' || item.cluster === activeCluster;
+                const itemTypes = Array.isArray(item.tripTypes) ? item.tripTypes : [];
+                const matchTripType = activeTripType === 'all' || itemTypes.includes(activeTripType);
+                const matchQuery = !searchQuery ||
+                    item.title.toLowerCase().includes(searchQuery) ||
+                    (item.shortDesc && item.shortDesc.toLowerCase().includes(searchQuery)) ||
+                    (item.badge && item.badge.toLowerCase().includes(searchQuery));
+                return matchCluster && matchTripType && matchQuery;
+            });
+
+            if (countEl) {
+                countEl.textContent = `Showing ${filtered.length} of ${rawProductsDatabase.length} destinations`;
+            }
+
+            if (filtered.length === 0) {
+                if (destSlideTimer) clearInterval(destSlideTimer);
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-14 bg-white rounded-2xl border border-stone-200">
+                        <p class="text-sm font-semibold text-stone-700 mb-2">No destinations match your current filters.</p>
+                        <button type="button" onclick="resetDestinationFilters()" class="text-xs font-bold text-amber-600 hover:underline">
+                            Reset All Filters
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((product, cardIdx) => {
+                const gallery = (Array.isArray(product.images) && product.images.length > 0)
+                    ? product.images
+                    : ["./assets/images/blog/outing/outing-hero.webp"];
+
+                const slidesHtml = gallery.map((imgSrc, imgIdx) => `
+                    <img
+                        src="${imgSrc}"
+                        alt="${product.title}"
+                        data-active-index="0"
+                        data-paused="false"
+                        class="dest-slide-${cardIdx} absolute inset-0 w-full h-full object-cover will-change-transform transition-opacity duration-[1800ms] ease-in-out ${imgIdx === 0 ? 'opacity-100' : 'opacity-0'}"
+                    >
+                `).join('');
+
+                return `
+                    <div onmouseenter="pauseDestCard(${cardIdx})" onmouseleave="resumeDestCard(${cardIdx})" class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                        <div class="relative h-52 cursor-pointer overflow-hidden bg-stone-200" onclick="openProductModal('${product.id}')">
+                            ${slidesHtml}
+                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-950/35 via-transparent to-transparent"></div>
+                            <span class="relative z-10 inline-block mt-3 ml-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+                                ${product.badge}
+                            </span>
+                            ${gallery.length > 1 ? `
+                                <span class="pointer-events-none absolute bottom-2.5 right-3 z-10 bg-stone-950/55 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                                    ${gallery.length} photos
+                                </span>
+                            ` : ''}
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center justify-between text-xs text-stone-500 mb-1.5">
+                                <span>${product.duration}</span>
+                                <span class="font-semibold text-amber-600">★ ${product.rating}</span>
+                            </div>
+                            <h3 onclick="openProductModal('${product.id}')" class="font-bold text-base text-stone-900 leading-snug mb-2 cursor-pointer hover:text-amber-600 transition">
+                                ${product.title}
+                            </h3>
+                            <p class="text-xs text-stone-600 line-clamp-2 mb-4 flex-grow">${product.shortDesc}</p>
+                            <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[10px] uppercase text-stone-400 font-bold">From</span>
+                                    <span class="font-extrabold text-sm text-stone-900">${product.priceStr}</span>
+                                </div>
+                                <button type="button" onclick="addToCart('${product.id}')" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition">
+                                    + Add to Plan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            startDestSlideshow(filtered);
+        }
+
+        function updateClusterButtonsUI() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const isActive = btn.dataset.filter === activeCluster;
+                btn.className = isActive
+                    ? "filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap"
+                    : "filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap";
+            });
+        }
+
+        function updateTripTypeButtonsUI() {
+            document.querySelectorAll('.triptype-btn').forEach(btn => {
+                const isActive = btn.dataset.triptype === activeTripType;
+                btn.className = isActive
+                    ? "triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-600 text-white border border-amber-600 transition whitespace-nowrap"
+                    : "triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap";
+            });
+        }
+
+        function filterDestinations(cluster) {
+            activeCluster = cluster;
+            updateClusterButtonsUI();
+            renderDestinations();
+        }
+
+        function filterTripType(tripType) {
+            activeTripType = tripType;
+            updateTripTypeButtonsUI();
+            renderDestinations();
+        }
+
+        function resetDestinationFilters() {
+            activeCluster = 'all';
+            activeTripType = 'all';
+            searchQuery = '';
+            const searchInput = document.getElementById('destination-search');
+            if (searchInput) searchInput.value = '';
+            updateClusterButtonsUI();
+            updateTripTypeButtonsUI();
+            renderDestinations();
+        }
+
+        function openProductModal(id) {
+            const p = rawProductsDatabase.find(item => item.id === id);
+            if (!p) return;
+
+            const galleryHtml = (p.images || []).map(img => `
+                <img src="${img}" alt="${p.title}" class="h-40 w-60 object-cover rounded-xl flex-shrink-0 snap-center border border-stone-200">
+            `).join('');
+            const highlightsHtml = (p.highlights || []).map(h => `<li class="flex items-start gap-2 text-sm text-stone-700"><span class="text-amber-600 font-bold">✓</span> ${h}</li>`).join('');
+            const itineraryHtml = (p.itinerary || []).map(it => `
+                <div class="border-l-2 border-amber-600 pl-4 pb-4">
+                    <span class="text-xs font-extrabold uppercase text-amber-600">${it.day}</span>
+                    <h5 class="font-bold text-sm text-stone-900">${it.title}</h5>
+                    <p class="text-xs text-stone-600 mt-0.5">${it.desc}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('product-modal-content').innerHTML = `
+                <div class="p-6 sm:p-8 clear-both">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-600">${p.badge} • ${p.duration}</span>
+                    <h2 class="text-2xl font-extrabold text-stone-900 mt-1">${p.title}</h2>
+                    <p class="text-sm text-stone-600 mt-2">${p.shortDesc}</p>
+                    <div class="flex gap-3 overflow-x-auto snap-x py-4 no-scrollbar">${galleryHtml}</div>
+                    <div class="grid md:grid-cols-2 gap-6 mt-4">
+                        <div>
+                            <h4 class="font-bold text-sm uppercase tracking-wider text-stone-900 mb-3">Trip Highlights</h4>
+                            <ul class="space-y-2">${highlightsHtml}</ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm uppercase tracking-wider text-stone-900 mb-3">Itinerary</h4>
+                            <div>${itineraryHtml}</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-stone-500 block">Price per person</span>
+                            <span class="text-xl font-extrabold text-stone-900">${p.priceStr}</span>
+                        </div>
+                        <button type="button" onclick="addToCart('${p.id}'); closeProductModal();" class="bg-stone-900 hover:bg-amber-600 text-white font-bold text-sm px-6 py-3 rounded-xl transition">
+                            Add to My Trip Plan
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function addToCart(id) {
+            const product = rawProductsDatabase.find(p => p.id === id);
+            if (!product) return;
+            if (!cart.some(item => item.id === id)) {
+                cart.push(product);
+                saveCartState();
+            }
+            updateCartBadge();
+            renderCart();
+            toggleCartModal(true);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCartState();
+            updateCartBadge();
+            renderCart();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            if (badge) badge.textContent = cart.length;
+        }
+
+        function toggleCartModal(forceOpen = null) {
+            const modal = document.getElementById('cart-modal');
+            if (!modal) return;
+            if (forceOpen === true) modal.classList.remove('hidden');
+            else if (forceOpen === false) modal.classList.add('hidden');
+            else modal.classList.toggle('hidden');
+        }
+
+        function formatIDR(amount) {
+            return "IDR " + Number(amount || 0).toLocaleString("id-ID");
+        }
+
+        function renderCart() {
+            const listEl = document.getElementById('cart-items-list');
+            const totalEl = document.getElementById('cart-total');
+            const paxInput = document.getElementById('pax-count');
+            const pax = Math.max(1, parseInt(paxInput ? paxInput.value : "2", 10) || 1);
+            if (!listEl || !totalEl) return;
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `<p class="text-sm text-stone-500 text-center py-6">No destinations added yet—or fill in your details below to request a custom itinerary on WhatsApp.</p>`;
+                totalEl.textContent = formatIDR(0);
+                return;
+            }
+
+            let perPaxSum = 0;
+            listEl.innerHTML = cart.map(item => {
+                perPaxSum += Number(item.priceVal || 0);
+                const thumb = (Array.isArray(item.images) && item.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
+                return `
+                    <div class="flex items-center gap-3 bg-stone-50 p-3 rounded-xl border border-stone-200">
+                        <img src="${thumb}" alt="${item.title}" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="font-bold text-xs text-stone-900 truncate">${item.title}</h4>
+                            <p class="text-[11px] text-stone-500">${item.duration} • ${item.priceStr}</p>
+                        </div>
+                        <button type="button" onclick="removeFromCart('${item.id}')" class="text-xs font-bold text-stone-400 hover:text-red-600 px-2 py-1 transition">✕</button>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.textContent = formatIDR(perPaxSum * pax);
+        }
+
+        function checkoutWhatsApp() {
+            const travelerName = (document.getElementById('traveler-name')?.value || "").trim();
+            const travelerEmail = (document.getElementById('traveler-email')?.value || "").trim();
+            const estimatedDate = (document.getElementById('travel-date')?.value || "").trim();
+            const pax = Math.max(1, parseInt(document.getElementById('pax-count')?.value || "2", 10) || 1);
+            const errorEl = document.getElementById('cart-form-error');
+
+            if (!travelerName || !travelerEmail || !estimatedDate) {
+                toggleCartModal(true);
+                if (errorEl) {
+                    errorEl.textContent = "Please fill in your full name, email address, and estimated travel date before sending to WhatsApp.";
+                    errorEl.classList.remove("hidden");
+                }
+                return;
+            }
+            if (errorEl) errorEl.classList.add("hidden");
+
+            let message = `Hello RAW Lombok! I'd like to inquire about a private trip.\n\nTraveler Details:\n- Name: ${travelerName}\n- Email: ${travelerEmail}\n- Estimated Date: ${estimatedDate}\n- Travelers: ${pax} pax\n\n`;
+            if (cart.length > 0) {
+                message += `Selected Destinations:\n`;
+                cart.forEach((item, idx) => {
+                    message += `${idx + 1}. ${item.title} (${item.duration}) - ${item.priceStr}\n`;
+                });
+                const perPaxSum = cart.reduce((acc, item) => acc + Number(item.priceVal || 0), 0);
+                message += `\nEstimated Total (${pax} pax): ${formatIDR(perPaxSum * pax)}`;
+            } else {
+                message += `Looking for custom itinerary recommendations across Lombok.`;
+            }
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('travel-date');
+            if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+            renderDestinations();
+            updateCartBadge();
+            renderCart();
+        });
+    </script>
+</body>
+</html>
