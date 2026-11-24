@@ -71,8 +71,8 @@
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
-                <a href="#destinations" class="hover:text-stone-900 transition">All Destinations</a>
-                <a href="#blog" class="hover:text-stone-900 transition">Journal & Guides</a>
+                <button type="button" onclick="openAllDestinationsModal()" class="hover:text-stone-900 transition">All Destinations</button>
+                <button type="button" onclick="openAllBlogModal()" class="hover:text-stone-900 transition">All Blog</button>
                 <a href="#about" class="hover:text-stone-900 transition">Why Raw Lombok</a>
                 <a href="#faq" class="hover:text-stone-900 transition">FAQ</a>
             </nav>
@@ -111,12 +111,12 @@
                 Curated private journeys across volcanic summits, untouched southern bays, and living Sasak heritage—crafted with local expertise.
             </p>
             <div class="mt-8 flex flex-wrap gap-4">
-                <a href="#destinations" class="bg-white text-stone-900 hover:bg-stone-100 font-bold text-sm px-6 py-3.5 rounded-xl transition">
-                    Explore Destinations
-                </a>
-                <a href="#blog" class="bg-stone-800/80 hover:bg-stone-800 text-white border border-stone-700 font-semibold text-sm px-6 py-3.5 rounded-xl transition">
-                    Read Travel Guides
-                </a>
+                <button type="button" onclick="openAllDestinationsModal()" class="bg-white text-stone-900 hover:bg-stone-100 font-bold text-sm px-6 py-3.5 rounded-xl transition">
+                    All Destinations
+                </button>
+                <button type="button" onclick="openAllBlogModal()" class="bg-stone-800/80 hover:bg-stone-800 text-white border border-stone-700 font-semibold text-sm px-6 py-3.5 rounded-xl transition">
+                    All Blog
+                </button>
             </div>
         </div>
     </section>
@@ -157,6 +157,13 @@
         <div id="destinations-grid" class="flex md:grid md:grid-cols-3 lg:grid-cols-4 gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-4">
             <!-- Rendered dynamically from catalog.js -->
         </div>
+
+        <!-- All Destinations Pop-up Trigger -->
+        <div class="mt-8 text-center">
+            <button type="button" onclick="openAllDestinationsModal()" class="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl transition">
+                All Destinations &rarr;
+            </button>
+        </div>
     </section>
 
     <!-- BLOG & TRAVEL JOURNAL SECTION -->
@@ -168,11 +175,21 @@
                     <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 mt-1">Stories, Guides & Local Insights</h2>
                     <p class="text-stone-600 text-sm sm:text-base mt-1">Practical tips and hidden gems to help you plan your Lombok adventure.</p>
                 </div>
+                <button type="button" onclick="openAllBlogModal()" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-stone-900 hover:text-amber-600 transition self-start md:self-auto">
+                    All Blog &rarr;
+                </button>
             </div>
 
             <!-- Blog Cards Grid -->
             <div id="blog-grid" class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-4">
                 <!-- Rendered dynamically from blog-data.js -->
+            </div>
+
+            <!-- All Blog Pop-up Trigger -->
+            <div class="mt-8 text-center">
+                <button type="button" onclick="openAllBlogModal()" class="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl transition">
+                    All Blog &rarr;
+                </button>
             </div>
         </div>
     </section>
@@ -293,8 +310,8 @@
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
                     <ul class="space-y-2.5 text-sm">
-                        <li><a href="#destinations" class="hover:text-white transition">All Destinations</a></li>
-                        <li><a href="#blog" class="hover:text-white transition">Journal & Guides</a></li>
+                        <li><button type="button" onclick="openAllDestinationsModal()" class="hover:text-white transition">All Destinations</button></li>
+                        <li><button type="button" onclick="openAllBlogModal()" class="hover:text-white transition">All Blog</button></li>
                         <li><a href="#about" class="hover:text-white transition">Why Raw Lombok</a></li>
                         <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
                         <li><button type="button" onclick="toggleCartModal()" class="hover:text-white transition">My Trip Plan</button></li>
@@ -333,6 +350,38 @@
         </svg>
         <span class="hidden sm:inline">WhatsApp</span>
     </button>
+
+    <!-- ALL DESTINATIONS POP-UP MODAL -->
+    <div id="all-destinations-modal" class="fixed inset-0 z-50 hidden bg-stone-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-stone-50 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-stone-200">
+            <div class="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-stone-200 px-6 py-4 flex items-center justify-between gap-4">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-amber-600">Complete Catalog</span>
+                    <h3 class="text-xl font-extrabold text-stone-900">All Destinations</h3>
+                </div>
+                <button type="button" onclick="closeAllDestinationsModal()" class="bg-stone-100 hover:bg-stone-200 text-stone-900 p-2 rounded-full transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div id="all-destinations-modal-body" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- ALL BLOG POP-UP MODAL -->
+    <div id="all-blog-modal" class="fixed inset-0 z-50 hidden bg-stone-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-stone-50 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border border-stone-200">
+            <div class="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-stone-200 px-6 py-4 flex items-center justify-between gap-4">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-amber-600">Travel Journal</span>
+                    <h3 class="text-xl font-extrabold text-stone-900">All Blog</h3>
+                </div>
+                <button type="button" onclick="closeAllBlogModal()" class="bg-stone-100 hover:bg-stone-200 text-stone-900 p-2 rounded-full transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div id="all-blog-modal-body" class="p-6"></div>
+        </div>
+    </div>
 
     <!-- PRODUCT DETAIL MODAL -->
     <div id="product-modal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
@@ -416,6 +465,8 @@
         let cart = [];
         let activeCluster = 'all';
         let activeTripType = 'all';
+        let modalCluster = 'all';
+        let modalBlogCategory = 'all';
         let blogSlideTimer = null;
         let destSlideTimer = null;
         let isDraggingBlog = false;
@@ -429,6 +480,138 @@
             const isHidden = panel.classList.contains('hidden');
             panel.classList.toggle('hidden', !isHidden);
             icon.textContent = isHidden ? '−' : '+';
+        }
+
+        // ALL DESTINATIONS POP-UP MODAL
+        function openAllDestinationsModal() {
+            modalCluster = 'all';
+            renderAllDestinationsModalContent();
+            document.getElementById('all-destinations-modal').classList.remove('hidden');
+        }
+
+        function closeAllDestinationsModal() {
+            document.getElementById('all-destinations-modal').classList.add('hidden');
+        }
+
+        function setModalCluster(cluster) {
+            modalCluster = cluster;
+            renderAllDestinationsModalContent();
+        }
+
+        function renderAllDestinationsModalContent() {
+            const bodyEl = document.getElementById('all-destinations-modal-body');
+            if (!bodyEl || typeof rawProductsDatabase === 'undefined') return;
+
+            const clusters = [
+                { key: 'all', label: 'All Regions' },
+                { key: 'east', label: 'East (Rinjani)' },
+                { key: 'center', label: 'Center & Culture' },
+                { key: 'north', label: 'North & Gilis' },
+                { key: 'south', label: 'South Coast' }
+            ];
+
+            const items = rawProductsDatabase.filter(item => modalCluster === 'all' || item.cluster === modalCluster);
+
+            const filterButtonsHtml = clusters.map(c => `
+                <button type="button" onclick="setModalCluster('${c.key}')" class="px-3.5 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap ${modalCluster === c.key ? 'bg-stone-900 text-white' : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-100'}">
+                    ${c.label}
+                </button>
+            `).join('');
+
+            const cardsHtml = items.map(product => {
+                const thumb = (Array.isArray(product.images) && product.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
+                return `
+                    <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col">
+                        <div class="relative h-48 cursor-pointer overflow-hidden bg-stone-200" onclick="closeAllDestinationsModal(); openProductModal('${product.id}');">
+                            <img src="${thumb}" alt="${product.title}" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-stone-900/80 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+                                ${product.badge}
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center justify-between text-xs text-stone-500 mb-1">
+                                <span>${product.duration}</span>
+                                <span class="font-semibold text-amber-600">★ ${product.rating}</span>
+                            </div>
+                            <h4 onclick="closeAllDestinationsModal(); openProductModal('${product.id}');" class="font-bold text-base text-stone-900 leading-snug mb-2 cursor-pointer hover:text-amber-600 transition">
+                                ${product.title}
+                            </h4>
+                            <p class="text-xs text-stone-600 line-clamp-2 mb-4 flex-grow">${product.shortDesc}</p>
+                            <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
+                                <span class="font-extrabold text-sm text-stone-900">${product.priceStr}</span>
+                                <button type="button" onclick="closeAllDestinationsModal(); addToCart('${product.id}');" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition">
+                                    + Add to Plan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            bodyEl.innerHTML = `
+                <div class="flex flex-wrap gap-2 mb-6">${filterButtonsHtml}</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">${cardsHtml}</div>
+            `;
+        }
+
+        // ALL BLOG POP-UP MODAL
+        function openAllBlogModal() {
+            modalBlogCategory = 'all';
+            renderAllBlogModalContent();
+            document.getElementById('all-blog-modal').classList.remove('hidden');
+        }
+
+        function closeAllBlogModal() {
+            document.getElementById('all-blog-modal').classList.add('hidden');
+        }
+
+        function setModalBlogCategory(cat) {
+            modalBlogCategory = cat;
+            renderAllBlogModalContent();
+        }
+
+        function renderAllBlogModalContent() {
+            const bodyEl = document.getElementById('all-blog-modal-body');
+            if (!bodyEl || typeof rawBlogDatabase === 'undefined') return;
+
+            const categories = ['all', ...new Set(rawBlogDatabase.map(p => p.category).filter(Boolean))];
+            const posts = rawBlogDatabase.filter(p => modalBlogCategory === 'all' || p.category === modalBlogCategory);
+
+            const filterButtonsHtml = categories.map(cat => `
+                <button type="button" onclick="setModalBlogCategory('${cat}')" class="px-3.5 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap ${modalBlogCategory === cat ? 'bg-stone-900 text-white' : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-100'}">
+                    ${cat === 'all' ? 'All Articles' : cat}
+                </button>
+            `).join('');
+
+            const cardsHtml = posts.map(post => {
+                const cover = (Array.isArray(post.images) && post.images[0]) || post.image || "./assets/images/blog/outing/outing-hero.webp";
+                return `
+                    <article onclick="closeAllBlogModal(); openBlogModal('${post.id}');" class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
+                        <div class="h-48 overflow-hidden bg-stone-200">
+                            <img src="${cover}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center justify-between text-xs text-stone-500 mb-2">
+                                <span class="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-bold">${post.category}</span>
+                                <span>${post.readTime}</span>
+                            </div>
+                            <h4 class="font-bold text-base text-stone-900 group-hover:text-amber-600 transition leading-snug mb-2">
+                                ${post.title}
+                            </h4>
+                            <p class="text-xs text-stone-600 line-clamp-3 mb-4 flex-grow">${post.excerpt}</p>
+                            <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
+                                <span class="text-stone-400">${post.date}</span>
+                                <span class="font-bold text-stone-900">Read Article &rarr;</span>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            bodyEl.innerHTML = `
+                <div class="flex flex-wrap gap-2 mb-6">${filterButtonsHtml}</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">${cardsHtml}</div>
+            `;
         }
 
         // 1B. ALTERNATING GENTLE ZOOM IN / ZOOM OUT + SLOW CROSSFADE FOR DESTINATION CARDS
