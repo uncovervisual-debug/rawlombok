@@ -76,7 +76,7 @@
             </nav>
 
             <!-- Trip Plan / Map Button -->
-            <button onclick="toggleCartModal()" class="relative px-3.5 py-2 text-stone-800 hover:bg-stone-100 rounded-xl transition flex items-center gap-2 border border-stone-200">
+            <button type="button" onclick="toggleCartModal()" class="relative px-3.5 py-2 text-stone-800 hover:bg-stone-100 rounded-xl transition flex items-center gap-2 border border-stone-200">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                 </svg>
@@ -121,19 +121,33 @@
 
     <!-- ALL DESTINATIONS SECTION -->
     <section id="destinations" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-5">
             <div>
                 <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900">All Destinations</h2>
-                <p class="text-stone-600 text-sm sm:text-base mt-1">Select tours to build your custom trip estimate and send directly via WhatsApp.</p>
+                <p class="text-stone-600 text-sm sm:text-base mt-1">Filter by region or trip style, then build your custom itinerary for WhatsApp.</p>
             </div>
 
-            <!-- Region Filter Tabs -->
-            <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" id="cluster-filters">
-                <button onclick="filterDestinations('all')" data-filter="all" class="filter-btn active px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">All Regions</button>
-                <button onclick="filterDestinations('east')" data-filter="east" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">East (Rinjani)</button>
-                <button onclick="filterDestinations('center')" data-filter="center" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">Center & Culture</button>
-                <button onclick="filterDestinations('north')" data-filter="north" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">North & Gilis</button>
-                <button onclick="filterDestinations('south')" data-filter="south" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">South Coast</button>
+            <!-- Region & Trip Type Filters -->
+            <div class="flex flex-col items-start lg:items-end gap-2.5">
+                <!-- Region Filter Tabs -->
+                <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 max-w-full" id="cluster-filters">
+                    <button type="button" onclick="filterDestinations('all')" data-filter="all" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">All Regions</button>
+                    <button type="button" onclick="filterDestinations('east')" data-filter="east" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">East (Rinjani)</button>
+                    <button type="button" onclick="filterDestinations('center')" data-filter="center" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">Center & Culture</button>
+                    <button type="button" onclick="filterDestinations('north')" data-filter="north" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">North & Gilis</button>
+                    <button type="button" onclick="filterDestinations('south')" data-filter="south" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">South Coast</button>
+                </div>
+
+                <!-- Trip Type Filter Tabs -->
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 max-w-full" id="triptype-filters">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-stone-400 mr-1 whitespace-nowrap">Trip Style:</span>
+                    <button type="button" onclick="filterTripType('all')" data-triptype="all" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-600 text-white border border-amber-600 transition whitespace-nowrap">All Styles</button>
+                    <button type="button" onclick="filterTripType('solo')" data-triptype="solo" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Solo Trip</button>
+                    <button type="button" onclick="filterTripType('honeymoon')" data-triptype="honeymoon" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Honeymoon</button>
+                    <button type="button" onclick="filterTripType('prewedding')" data-triptype="prewedding" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Prewedding</button>
+                    <button type="button" onclick="filterTripType('group')" data-triptype="group" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Group</button>
+                    <button type="button" onclick="filterTripType('outing')" data-triptype="outing" class="triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap">Outing</button>
+                </div>
             </div>
         </div>
 
@@ -261,7 +275,7 @@
         </div>
     </section>
 
-    <!-- WHY RAW LOMBOK / FOOTER -->
+    <!-- FOOTER -->
     <footer class="bg-stone-950 text-stone-400 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-12 border-b border-stone-800">
@@ -281,14 +295,14 @@
                         <li><a href="#blog" class="hover:text-white transition">Travel Blog & Guides</a></li>
                         <li><a href="#about" class="hover:text-white transition">Why Raw Lombok</a></li>
                         <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
-                        <li><button onclick="toggleCartModal()" class="hover:text-white transition">My Trip Plan</button></li>
+                        <li><button type="button" onclick="toggleCartModal()" class="hover:text-white transition">My Trip Plan</button></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Direct Consultation</h4>
                     <p class="text-sm mb-4">Need a custom multi-day itinerary? Chat directly with our Lombok travel specialists.</p>
                     <div class="flex flex-wrap items-center gap-3">
-                        <button onclick="checkoutWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition">
+                        <button type="button" onclick="checkoutWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition">
                             Consult on WhatsApp
                         </button>
                         <a href="https://wa.me/6281325523231" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-stone-300 hover:text-white underline underline-offset-4">
@@ -321,7 +335,7 @@
     <!-- PRODUCT DETAIL MODAL -->
     <div id="product-modal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
-            <button onclick="closeProductModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
+            <button type="button" onclick="closeProductModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
             <div id="product-modal-content"></div>
@@ -331,7 +345,7 @@
     <!-- BLOG ARTICLE READER MODAL -->
     <div id="blog-modal" class="fixed inset-0 z-50 hidden bg-stone-950/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
-            <button onclick="closeBlogModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
+            <button type="button" onclick="closeBlogModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
             <div id="blog-modal-content"></div>
@@ -344,7 +358,7 @@
             <div>
                 <div class="flex items-center justify-between border-b border-stone-200 pb-4">
                     <h3 class="font-extrabold text-lg text-stone-900">Your Curated Trip Plan</h3>
-                    <button onclick="toggleCartModal()" class="p-1.5 text-stone-500 hover:text-stone-900">
+                    <button type="button" onclick="toggleCartModal()" class="p-1.5 text-stone-500 hover:text-stone-900">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                     </button>
                 </div>
@@ -362,7 +376,7 @@
                     <label class="block text-xs font-bold text-stone-700 mb-1">Number of Travelers (Pax)</label>
                     <input type="number" id="pax-count" value="2" min="1" onchange="renderCart()" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-semibold">
                 </div>
-                <button onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2">
+                <button type="button" onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2">
                     Send Itinerary via WhatsApp
                 </button>
             </div>
@@ -377,6 +391,8 @@
     <script>
         const WHATSAPP_NUMBER = "6281325523231";
         let cart = [];
+        let activeCluster = 'all';
+        let activeTripType = 'all';
         let blogSlideTimer = null;
         let destSlideTimer = null;
         let isDraggingBlog = false;
@@ -399,7 +415,6 @@
             imgEl.style.animationPlayState = "running";
             if (shouldAnimate) {
                 void imgEl.offsetWidth;
-                // Genap (0, 2, 4...) -> Zoom In | Ganjil (1, 3, 5...) -> Zoom Out
                 const animClass = (slideIdx % 2 === 0) ? 'ken-burns-in' : 'ken-burns-out';
                 imgEl.classList.add(animClass);
             }
@@ -462,14 +477,35 @@
             }, 5200);
         }
 
-        // 1. RENDER DESTINATIONS
-        function renderDestinations(filter = 'all') {
+        // 1. RENDER DESTINATIONS (REGION + TRIP STYLE COMBINED)
+        function renderDestinations() {
             const grid = document.getElementById('destinations-grid');
-            if (!grid || typeof rawProductsDatabase === 'undefined') return;
+            if (!grid) return;
 
-            const filtered = filter === 'all'
-                ? rawProductsDatabase
-                : rawProductsDatabase.filter(item => item.cluster === filter);
+            if (typeof rawProductsDatabase === 'undefined') {
+                grid.innerHTML = `<p class="col-span-full text-sm text-red-600 py-6">Catalog data failed to load. Check ./catalog.js</p>`;
+                return;
+            }
+
+            const filtered = rawProductsDatabase.filter(item => {
+                const matchCluster = activeCluster === 'all' || item.cluster === activeCluster;
+                const itemTypes = Array.isArray(item.tripTypes) ? item.tripTypes : [];
+                const matchTripType = activeTripType === 'all' || itemTypes.includes(activeTripType);
+                return matchCluster && matchTripType;
+            });
+
+            if (filtered.length === 0) {
+                if (destSlideTimer) clearInterval(destSlideTimer);
+                grid.innerHTML = `
+                    <div class="col-span-full w-full text-center py-12 bg-white rounded-2xl border border-stone-200">
+                        <p class="text-sm font-semibold text-stone-700 mb-2">No destinations match this region & trip style combination yet.</p>
+                        <button type="button" onclick="resetDestinationFilters()" class="text-xs font-bold text-amber-600 hover:underline">
+                            Reset Filters
+                        </button>
+                    </div>
+                `;
+                return;
+            }
 
             grid.innerHTML = filtered.map((product, cardIdx) => {
                 const gallery = (Array.isArray(product.images) && product.images.length > 0)
@@ -514,7 +550,7 @@
                                     <span class="block text-[10px] uppercase text-stone-400 font-bold">From</span>
                                     <span class="font-extrabold text-sm text-stone-900">${product.priceStr}</span>
                                 </div>
-                                <button onclick="addToCart('${product.id}')" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition">
+                                <button type="button" onclick="addToCart('${product.id}')" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg transition">
                                     + Add to Plan
                                 </button>
                             </div>
@@ -526,17 +562,50 @@
             startDestSlideshow(filtered);
         }
 
-        function filterDestinations(cluster) {
+        function updateClusterButtonsUI() {
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                if (btn.dataset.filter === cluster) {
-                    btn.classList.remove('bg-stone-200', 'text-stone-700');
-                    btn.classList.add('bg-stone-900', 'text-white');
-                } else {
-                    btn.classList.add('bg-stone-200', 'text-stone-700');
-                    btn.classList.remove('bg-stone-900', 'text-white');
-                }
+                const isActive = btn.dataset.filter === activeCluster;
+                btn.className = isActive
+                    ? "filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap"
+                    : "filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap";
             });
-            renderDestinations(cluster);
+        }
+
+        function updateTripTypeButtonsUI() {
+            document.querySelectorAll('.triptype-btn').forEach(btn => {
+                const isActive = btn.dataset.triptype === activeTripType;
+                btn.className = isActive
+                    ? "triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-600 text-white border border-amber-600 transition whitespace-nowrap"
+                    : "triptype-btn px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200 hover:bg-amber-100 transition whitespace-nowrap";
+            });
+        }
+
+        function filterDestinations(cluster) {
+            activeCluster = cluster;
+            updateClusterButtonsUI();
+            renderDestinations();
+        }
+
+        function filterTripType(tripType) {
+            activeTripType = tripType;
+            updateTripTypeButtonsUI();
+
+            const paxInput = document.getElementById('pax-count');
+            if (paxInput) {
+                if (tripType === 'solo') paxInput.value = 1;
+                if (tripType === 'honeymoon' || tripType === 'prewedding') paxInput.value = 2;
+            }
+
+            renderDestinations();
+            renderCart();
+        }
+
+        function resetDestinationFilters() {
+            activeCluster = 'all';
+            activeTripType = 'all';
+            updateClusterButtonsUI();
+            updateTripTypeButtonsUI();
+            renderDestinations();
         }
 
         // 2. PRODUCT DETAIL MODAL
@@ -583,7 +652,7 @@
                             <span class="text-xs text-stone-500 block">Price per person</span>
                             <span class="text-xl font-extrabold text-stone-900">${p.priceStr}</span>
                         </div>
-                        <button onclick="addToCart('${p.id}'); closeProductModal();" class="bg-stone-900 hover:bg-amber-600 text-white font-bold text-sm px-6 py-3 rounded-xl transition">
+                        <button type="button" onclick="addToCart('${p.id}'); closeProductModal();" class="bg-stone-900 hover:bg-amber-600 text-white font-bold text-sm px-6 py-3 rounded-xl transition">
                             Add to My Trip Plan
                         </button>
                     </div>
@@ -718,3 +787,207 @@
         function syncBlogDotsOnScroll(postIndex) {
             const track = document.getElementById(`blog-track-${postIndex}`);
             if (!track || track.clientWidth === 0) return;
+            const currentIdx = Math.round(track.scrollLeft / track.clientWidth);
+            track.dataset.index = currentIdx;
+            updateBlogDotsUI(postIndex, currentIdx);
+        }
+
+        function setBlogSlide(postIndex, nextIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+            const count = parseInt(track.dataset.count, 10) || 1;
+            if (count <= 1) return;
+
+            const safeIndex = ((nextIndex % count) + count) % count;
+            track.dataset.index = safeIndex;
+            track.scrollTo({
+                left: safeIndex * track.clientWidth,
+                behavior: 'smooth'
+            });
+            updateBlogDotsUI(postIndex, safeIndex);
+        }
+
+        function stepBlogSlide(postIndex, delta) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (!track) return;
+            const current = parseInt(track.dataset.index, 10) || 0;
+            setBlogSlide(postIndex, current + delta);
+        }
+
+        function pauseBlogCard(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (track) track.dataset.paused = "true";
+        }
+
+        function resumeBlogCard(postIndex) {
+            const track = document.getElementById(`blog-track-${postIndex}`);
+            if (track) track.dataset.paused = "false";
+        }
+
+        function startBlogSlideshow() {
+            if (blogSlideTimer) clearInterval(blogSlideTimer);
+            blogSlideTimer = setInterval(() => {
+                if (typeof rawBlogDatabase === 'undefined') return;
+                rawBlogDatabase.forEach((_, postIndex) => {
+                    const track = document.getElementById(`blog-track-${postIndex}`);
+                    if (!track || track.dataset.paused === "true") return;
+                    const count = parseInt(track.dataset.count, 10) || 1;
+                    if (count <= 1) return;
+                    const current = parseInt(track.dataset.index, 10) || 0;
+                    setBlogSlide(postIndex, current + 1);
+                });
+            }, 3800);
+        }
+
+        function openBlogModal(id) {
+            const post = rawBlogDatabase.find(item => item.id === id);
+            if (!post) return;
+
+            const modalCover = (post.images && post.images[0]) || post.image || "./assets/images/blog/outing/outing-hero.webp";
+
+            document.getElementById('blog-modal-content').innerHTML = `
+                <div class="clear-both">
+                    <img src="${modalCover}" alt="${post.title}" class="w-full h-64 sm:h-80 object-cover">
+                    <div class="p-6 sm:p-10">
+                        <div class="flex items-center gap-3 text-xs text-stone-500 mb-3">
+                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">${post.category}</span>
+                            <span>${post.date}</span>
+                            <span>•</span>
+                            <span>${post.readTime}</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-stone-900 leading-tight mb-6">${post.title}</h1>
+                        <div class="prose prose-stone max-w-none text-stone-700 text-sm sm:text-base leading-relaxed">
+                            ${post.content}
+                        </div>
+                        <div class="mt-10 pt-6 border-t border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4 bg-stone-50 p-5 rounded-xl">
+                            <div>
+                                <h4 class="font-bold text-stone-900 text-sm">Inspired to visit this place?</h4>
+                                <p class="text-xs text-stone-600">Let RAW Lombok organize your private transport and local guide.</p>
+                            </div>
+                            <button type="button" onclick="closeBlogModal(); checkoutWhatsApp();" class="bg-stone-900 hover:bg-amber-600 text-white text-xs font-bold px-5 py-3 rounded-xl transition whitespace-nowrap">
+                                Plan This Trip
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('blog-modal').classList.remove('hidden');
+        }
+
+        function closeBlogModal() {
+            document.getElementById('blog-modal').classList.add('hidden');
+        }
+
+        // 4. ITINERARY PLANNER & WHATSAPP CHECKOUT LOGIC
+        function addToCart(id) {
+            const product = rawProductsDatabase.find(p => p.id === id);
+            if (!product) return;
+            if (!cart.some(item => item.id === id)) {
+                cart.push(product);
+            }
+            updateCartBadge();
+            renderCart();
+            toggleCartModal(true);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartBadge();
+            renderCart();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            if (badge) badge.textContent = cart.length;
+        }
+
+        function toggleCartModal(forceOpen = null) {
+            const modal = document.getElementById('cart-modal');
+            if (!modal) return;
+            if (forceOpen === true) {
+                modal.classList.remove('hidden');
+            } else if (forceOpen === false) {
+                modal.classList.add('hidden');
+            } else {
+                modal.classList.toggle('hidden');
+            }
+        }
+
+        function formatIDR(amount) {
+            return "IDR " + Number(amount || 0).toLocaleString("id-ID");
+        }
+
+        function renderCart() {
+            const listEl = document.getElementById('cart-items-list');
+            const totalEl = document.getElementById('cart-total');
+            const paxInput = document.getElementById('pax-count');
+            const pax = Math.max(1, parseInt(paxInput ? paxInput.value : "2", 10) || 1);
+
+            if (!listEl || !totalEl) return;
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `<p class="text-sm text-stone-500 text-center py-8">No destinations added yet. Select a tour to build your itinerary.</p>`;
+                totalEl.textContent = formatIDR(0);
+                return;
+            }
+
+            let perPaxSum = 0;
+            listEl.innerHTML = cart.map(item => {
+                const numericPrice = Number(item.priceVal || 0);
+                perPaxSum += numericPrice;
+                const thumb = (Array.isArray(item.images) && item.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
+
+                return `
+                    <div class="flex items-center gap-3 bg-stone-50 p-3 rounded-xl border border-stone-200">
+                        <img src="${thumb}" alt="${item.title}" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="font-bold text-xs text-stone-900 truncate">${item.title}</h4>
+                            <p class="text-[11px] text-stone-500">${item.duration} • ${item.priceStr}</p>
+                        </div>
+                        <button type="button" onclick="removeFromCart('${item.id}')" class="text-xs font-bold text-stone-400 hover:text-red-600 px-2 py-1 transition">
+                            ✕
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.textContent = formatIDR(perPaxSum * pax);
+        }
+
+        function checkoutWhatsApp() {
+            const paxInput = document.getElementById('pax-count');
+            const pax = Math.max(1, parseInt(paxInput ? paxInput.value : "2", 10) || 1);
+
+            let message = `Hello RAW Lombok! I'd like to inquire about a private trip (${pax} pax).\n`;
+            if (activeTripType !== 'all') {
+                message += `Trip Style: ${activeTripType.toUpperCase()}\n`;
+            }
+            message += `\n`;
+
+            if (cart.length > 0) {
+                message += `Selected Destinations:\n`;
+                cart.forEach((item, idx) => {
+                    message += `${idx + 1}. ${item.title} (${item.duration}) - ${item.priceStr}\n`;
+                });
+                const perPaxSum = cart.reduce((acc, item) => acc + Number(item.priceVal || 0), 0);
+                message += `\nEstimated Total (${pax} pax): ${formatIDR(perPaxSum * pax)}`;
+            } else {
+                message += `Looking for custom itinerary recommendations across Lombok.`;
+            }
+
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank", "noopener,noreferrer");
+        }
+
+        // INITIALIZE ON PAGE LOAD
+        document.addEventListener('DOMContentLoaded', () => {
+            updateClusterButtonsUI();
+            updateTripTypeButtonsUI();
+            renderDestinations();
+            renderBlogs();
+            updateCartBadge();
+            renderCart();
+        });
+    </script>
+</body>
+</html>

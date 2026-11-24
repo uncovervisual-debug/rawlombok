@@ -2,6 +2,7 @@ const rawProductsDatabase = [
     {
         id: "rinjani-summit-2d1n",
         cluster: "east",
+        tripTypes: ["solo", "group"],
         badge: "Volcanic Expedition",
         title: "Mount Rinjani Crater Rim & Summit — 2D1N",
         duration: "2 Days / 1 Night",
@@ -40,6 +41,7 @@ const rawProductsDatabase = [
     {
         id: "sembalun-highland-escape",
         cluster: "east",
+        tripTypes: ["solo", "honeymoon", "prewedding", "group"],
         badge: "Highland & Views",
         title: "Sembalun Highland & Valley Escape",
         duration: "Full Day",
@@ -67,6 +69,7 @@ const rawProductsDatabase = [
     {
         id: "gili-matra-snorkeling",
         cluster: "north",
+        tripTypes: ["solo", "honeymoon", "group", "outing"],
         badge: "Turquoise & Reefs",
         title: "Gili Islands Snorkeling & Reef Expedition",
         duration: "Full Day",
@@ -96,6 +99,7 @@ const rawProductsDatabase = [
     {
         id: "sade-sasak-heritage",
         cluster: "center",
+        tripTypes: ["solo", "honeymoon", "prewedding", "group", "outing"],
         badge: "Living Culture",
         title: "Sade Sasak Village, Weaving & Presean Heritage",
         duration: "Half / Full Day",
@@ -124,6 +128,7 @@ const rawProductsDatabase = [
     {
         id: "mandalika-coastline-journey",
         cluster: "center",
+        tripTypes: ["solo", "honeymoon", "prewedding", "group", "outing"],
         badge: "Coastal & Modern Hub",
         title: "Mandalika Coastal & Scenic Drive",
         duration: "Half / Full Day",
@@ -150,6 +155,7 @@ const rawProductsDatabase = [
     {
         id: "selong-belanak-bay-escape",
         cluster: "center",
+        tripTypes: ["solo", "honeymoon", "prewedding", "group", "outing"],
         badge: "Gentle Bay & Surf",
         title: "Selong Belanak Bay Day Experience",
         duration: "Half / Full Day",
@@ -176,6 +182,7 @@ const rawProductsDatabase = [
     {
         id: "tanjung-aan-bays-headlands",
         cluster: "center",
+        tripTypes: ["honeymoon", "prewedding", "group", "outing"],
         badge: "Bays & Headlands",
         title: "Tanjung Aan Bays & Headland Views",
         duration: "Full Day",
@@ -206,6 +213,7 @@ const rawProductsDatabase = [
     {
         id: "mereje-secluded-south-coves",
         cluster: "south",
+        tripTypes: ["solo", "honeymoon", "prewedding"],
         badge: "Hidden Coves",
         title: "Mereje & Secluded Southern Coves",
         duration: "Full Day",
