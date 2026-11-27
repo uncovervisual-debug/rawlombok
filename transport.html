@@ -130,7 +130,7 @@
             </div>
         </section>
 
-        <!-- 2. FLEET SECTION (BLOG-STYLE SLIDE CARDS FOR MOTOR & FLEET) -->
+        <!-- 2. FLEET SECTION (ALL -> MOBIL -> MOTOR) -->
         <section id="fleet-catalog">
             <div class="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-sm mb-8 space-y-4">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -147,7 +147,7 @@
                             type="text"
                             id="fleet-search"
                             oninput="handleFleetSearch(this.value)"
-                            placeholder="Cari Motor 125, PCX, NMAX, Innova..."
+                            placeholder="Cari Brio, Innova, Alphard, PCX, NMAX..."
                             class="w-full border border-stone-300 rounded-xl pl-9 pr-4 py-2 text-sm font-medium focus:outline-none focus:border-stone-900"
                         >
                         <svg class="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,12 +160,14 @@
                     <strong>Aturan pakai:</strong> Paket di <em>All Destinations</em> sudah termasuk <strong>Avanza/Brio + Driver</strong>. Jika memilih <strong>Lepas Kunci</strong> / <strong>Sewa Motor</strong>, unit disewakan untuk berkendara mandiri (bukan paket tur ber-driver). Untuk upgrade mobil saat berwisata, pilih <strong>Include Driver</strong>.
                 </div>
 
+                <!-- Urutan Filter: Semua Unit -> Mobil -> Motor -->
                 <div class="flex flex-wrap items-center gap-2 pt-1" id="fleet-type-filters">
-                    <button type="button" onclick="setFleetFilter('motor')" data-fcat="motor" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-700 text-white ring-2 ring-amber-300 transition whitespace-nowrap">Sewa Motor (125 &amp; 150)</button>
-                    <button type="button" onclick="setFleetFilter('all')" data-fcat="all" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Semua Unit</button>
+                    <button type="button" onclick="setFleetFilter('all')" data-fcat="all" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">Semua Unit</button>
+                    <button type="button" onclick="setFleetFilter('car-all')" data-fcat="car-all" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Mobil</button>
                     <button type="button" onclick="setFleetFilter('car-compact')" data-fcat="car-compact" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Mobil Standar &amp; MPV</button>
                     <button type="button" onclick="setFleetFilter('car-suv-lux')" data-fcat="car-suv-lux" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">SUV &amp; Luxury Car</button>
                     <button type="button" onclick="setFleetFilter('car-van-bus')" data-fcat="car-van-bus" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Hi-Ace, Elf &amp; Bus</button>
+                    <button type="button" onclick="setFleetFilter('motor')" data-fcat="motor" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-600 text-white hover:bg-amber-500 transition whitespace-nowrap">Motor</button>
                 </div>
             </div>
 
@@ -255,7 +257,7 @@
     <script>
         const WHATSAPP_NUMBER = "6281325523231";
         let cart = JSON.parse(localStorage.getItem('rawlombok_cart') || '[]');
-        let activeFleetFilter = 'motor';
+        let activeFleetFilter = 'all';
         let fleetSearchQuery = '';
         let fleetSlideTimer = null;
         let isDraggingSlide = false;
@@ -301,56 +303,7 @@
             { a: "sembalun", b: "kayangan", dist: "~30 km", time: "45–60 mnt", stdCarVal: 175000, motorRideVal: 75000 }
         ];
 
-        // MOTOR: CARD 150 HANYA NMAX & PCX, SISANYA MASUK CARD MOTOR 125 (SLIDE BLOG)
         const fleetDatabase = [
-            {
-                id: "motor-125-series",
-                name: "MOTOR 125CC / HARIAN (VARIO & BEAT SERIES)",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Motor 125cc Series",
-                seats: "1–2 Riders",
-                lepasKunciVal: 110000,
-                lepasKunciStr: "IDR 110.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [
-                    `${TRANSPORT_IMG_BASE}vario-125.webp`,
-                    `${TRANSPORT_IMG_BASE}Vario-150.webp`,
-                    `${TRANSPORT_IMG_BASE}honda-beat.webp`,
-                    `${TRANSPORT_IMG_BASE}beat-street.webp`
-                ],
-                desc: "Geser foto untuk melihat unit Vario 125, Vario 150 (non-PCX/NMAX), BeAT Deluxe, dan BeAT Street—praktis untuk keliling Kuta, Senggigi, & pantai Lombok."
-            },
-            {
-                id: "motor-nmax-155",
-                name: "YAMAHA NMAX 155",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Motor 150cc / 155cc",
-                seats: "1–2 Riders",
-                lepasKunciVal: 165000,
-                lepasKunciStr: "IDR 165.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [`${TRANSPORT_IMG_BASE}nmax-155.webp`],
-                desc: "Posisi duduk nyaman dengan suspensi empuk untuk touring jarak menengah maupun rute menanjak."
-            },
-            {
-                id: "motor-honda-pcx",
-                name: "HONDA PCX",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Motor 150cc / 160cc",
-                seats: "1–2 Riders",
-                lepasKunciVal: 175000,
-                lepasKunciStr: "IDR 175.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [`${TRANSPORT_IMG_BASE}honda-pcx.webp`],
-                desc: "Skuter maxi elegan dengan kenyamanan tinggi untuk perjalanan santai berpasangan."
-            },
-
             // --- MOBIL STANDAR & MPV ---
             {
                 id: "car-honda-brio",
@@ -551,6 +504,55 @@
                 includeDriverStr: "IDR 2.500.000",
                 images: [`${TRANSPORT_IMG_BASE}big-bus.webp`],
                 desc: "Layanan Include Driver untuk rombongan besar, event, atau perusahaan."
+            },
+
+            // --- MOTOR (150 HANYA NMAX & PCX, SISANYA MASUK MOTOR 125 SLIDE BLOG) ---
+            {
+                id: "motor-125-series",
+                name: "MOTOR 125CC / HARIAN (VARIO & BEAT SERIES)",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Motor 125cc Series",
+                seats: "1–2 Riders",
+                lepasKunciVal: 110000,
+                lepasKunciStr: "IDR 110.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [
+                    `${TRANSPORT_IMG_BASE}vario-125.webp`,
+                    `${TRANSPORT_IMG_BASE}Vario-150.webp`,
+                    `${TRANSPORT_IMG_BASE}honda-beat.webp`,
+                    `${TRANSPORT_IMG_BASE}beat-street.webp`
+                ],
+                desc: "Geser foto untuk melihat unit Vario 125, Vario 150 (non-PCX/NMAX), BeAT Deluxe, dan BeAT Street—praktis untuk keliling Kuta, Senggigi, & pantai Lombok."
+            },
+            {
+                id: "motor-nmax-155",
+                name: "YAMAHA NMAX 155",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Motor 150cc / 155cc",
+                seats: "1–2 Riders",
+                lepasKunciVal: 165000,
+                lepasKunciStr: "IDR 165.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [`${TRANSPORT_IMG_BASE}nmax-155.webp`],
+                desc: "Posisi duduk nyaman dengan suspensi empuk untuk touring jarak menengah maupun rute menanjak."
+            },
+            {
+                id: "motor-honda-pcx",
+                name: "HONDA PCX",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Motor 150cc / 160cc",
+                seats: "1–2 Riders",
+                lepasKunciVal: 175000,
+                lepasKunciStr: "IDR 175.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [`${TRANSPORT_IMG_BASE}honda-pcx.webp`],
+                desc: "Skuter maxi elegan dengan kenyamanan tinggi untuk perjalanan santai berpasangan."
             }
         ];
 
@@ -851,12 +853,18 @@
             renderFleet();
         }
 
+        function matchesFleetCategory(item, filterKey) {
+            if (filterKey === 'all') return true;
+            if (filterKey === 'car-all') return item.type === 'car';
+            return item.category === filterKey;
+        }
+
         function renderFleet() {
             const grid = document.getElementById('fleet-grid');
             if (!grid) return;
 
             const filtered = fleetDatabase.filter(item => {
-                const matchCat = activeFleetFilter === 'all' || item.category === activeFleetFilter;
+                const matchCat = matchesFleetCategory(item, activeFleetFilter);
                 const matchSearch = !fleetSearchQuery ||
                     item.name.toLowerCase().includes(fleetSearchQuery) ||
                     item.categoryLabel.toLowerCase().includes(fleetSearchQuery);
