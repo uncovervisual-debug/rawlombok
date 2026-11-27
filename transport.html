@@ -60,14 +60,14 @@
                 Lombok Transport, Custom Fleet &amp; Point-to-Point Ride
             </h1>
             <p class="mt-4 text-sm sm:text-base text-stone-300 max-w-3xl leading-relaxed">
-                Paket wisata destinasi sudah termasuk <strong>Avanza/Brio + Driver</strong>. Di halaman ini kamu bisa <strong>custom/upgrade mobil</strong>, <strong>sewa motor harian</strong>, atau pesan <strong>antar-jemput rute titik ramai</strong> (Bandara, Pelabuhan Lembar, Kuta, Senggigi, Tetebatu, Sembalun, Kayangan). Klik kartu untuk membuka pop-up detail.
+                Paket wisata destinasi sudah termasuk <strong>Avanza/Brio + Driver</strong>. Di halaman ini kamu bisa <strong>custom/upgrade mobil</strong>, <strong>sewa motor harian</strong> (geser foto di tiap card seperti blog), atau pesan <strong>antar-jemput rute titik ramai</strong> (Bandara, Pelabuhan Lembar, Kuta, Senggigi, Tetebatu, Sembalun, Kayangan).
             </p>
         </div>
     </section>
 
     <main class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
 
-        <!-- 1. POINT-TO-POINT RIDE / TRANSFER (GOJEK / GRAB STYLE FOR MAIN HUBS) -->
+        <!-- 1. POINT-TO-POINT RIDE / TRANSFER -->
         <section id="point-to-point" class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-sm">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-stone-100">
                 <div>
@@ -82,7 +82,6 @@
                 </span>
             </div>
 
-            <!-- Interactive Route Calculator -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 pt-6 items-end">
                 <div class="md:col-span-4">
                     <label for="pickup-hub" class="block text-xs font-bold text-stone-700 mb-1.5">Titik Jemput (Pickup)</label>
@@ -123,21 +122,15 @@
                 </div>
             </div>
 
-            <!-- Live Route Result Box -->
-            <div id="route-estimate-box" class="mt-5 bg-stone-50 border border-stone-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <!-- Diisi otomatis oleh updateRouteEstimator() -->
-            </div>
+            <div id="route-estimate-box" class="mt-5 bg-stone-50 border border-stone-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"></div>
 
-            <!-- Quick Route Cards Grid (Click to Open Pop-up Detail) -->
             <div class="mt-8">
                 <h3 class="text-sm font-extrabold uppercase tracking-wider text-stone-700 mb-4">Pilihan Rute Populer (Klik Card untuk Pop-up)</h3>
-                <div id="popular-routes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Rendered dynamically -->
-                </div>
+                <div id="popular-routes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
             </div>
         </section>
 
-        <!-- 2. FLEET SECTION (CARS & MOTORBIKES WITH PHOTOS + POP-UP ON CLICK) -->
+        <!-- 2. FLEET SECTION (BLOG-STYLE SLIDE CARDS FOR MOTOR & FLEET) -->
         <section id="fleet-catalog">
             <div class="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-sm mb-8 space-y-4">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
@@ -145,7 +138,7 @@
                         <span class="text-xs font-bold uppercase tracking-widest text-amber-600">Custom Fleet &amp; Daily Rental</span>
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 mt-1">Sewa &amp; Custom Mobil / Motor</h2>
                         <p class="text-xs sm:text-sm text-stone-600 mt-1">
-                            Klik kartu kendaraan mana pun untuk membuka pop-up detail dan memilih paket.
+                            Geser/swipe foto pada kartu seperti card blog, atau klik judul/area info untuk membuka pop-up detail.
                         </p>
                     </div>
 
@@ -154,7 +147,7 @@
                             type="text"
                             id="fleet-search"
                             oninput="handleFleetSearch(this.value)"
-                            placeholder="Cari Brio, Innova, Alphard, Scoopy, NMAX..."
+                            placeholder="Cari Vario, NMAX, PCX, BeAT, Innova..."
                             class="w-full border border-stone-300 rounded-xl pl-9 pr-4 py-2 text-sm font-medium focus:outline-none focus:border-stone-900"
                         >
                         <svg class="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,20 +157,19 @@
                 </div>
 
                 <div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-3.5 text-xs text-stone-700 leading-relaxed">
-                    <strong>Aturan pakai:</strong> Paket di <em>All Destinations</em> sudah termasuk <strong>Avanza/Brio + Driver</strong>. Jika memilih <strong>Lepas Kunci</strong>, kendaraan disewakan untuk berkendara mandiri (bukan paket tur ber-driver). Untuk upgrade mobil saat berwisata, pilih <strong>Include Driver</strong>.
+                    <strong>Aturan pakai:</strong> Paket di <em>All Destinations</em> sudah termasuk <strong>Avanza/Brio + Driver</strong>. Jika memilih <strong>Lepas Kunci</strong> / <strong>Sewa Motor</strong>, unit disewakan untuk berkendara mandiri (bukan paket tur ber-driver). Untuk upgrade mobil saat berwisata, pilih <strong>Include Driver</strong>.
                 </div>
 
-                <!-- Main Type & Sub-Filter -->
                 <div class="flex flex-wrap items-center gap-2 pt-1" id="fleet-type-filters">
-                    <button type="button" onclick="setFleetFilter('all')" data-fcat="all" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">Semua Unit</button>
+                    <button type="button" onclick="setFleetFilter('motor')" data-fcat="motor" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-700 text-white ring-2 ring-amber-300 transition whitespace-nowrap">Sewa Motor (6 Unit)</button>
+                    <button type="button" onclick="setFleetFilter('all')" data-fcat="all" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Semua Unit</button>
                     <button type="button" onclick="setFleetFilter('car-compact')" data-fcat="car-compact" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Mobil Standar &amp; MPV</button>
                     <button type="button" onclick="setFleetFilter('car-suv-lux')" data-fcat="car-suv-lux" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">SUV &amp; Luxury Car</button>
                     <button type="button" onclick="setFleetFilter('car-van-bus')" data-fcat="car-van-bus" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Hi-Ace, Elf &amp; Bus</button>
-                    <button type="button" onclick="setFleetFilter('motor')" data-fcat="motor" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-600 text-white transition whitespace-nowrap">Sewa Motor</button>
                 </div>
             </div>
 
-            <div id="fleet-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div id="fleet-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Rendered dynamically -->
             </div>
         </section>
@@ -200,7 +192,7 @@
         </div>
     </footer>
 
-    <!-- DETAIL POP-UP MODAL (FOR BOTH FLEET & ROUTE) -->
+    <!-- DETAIL POP-UP MODAL -->
     <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
             <button type="button" onclick="closeDetailModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
@@ -263,8 +255,10 @@
     <script>
         const WHATSAPP_NUMBER = "6281325523231";
         let cart = JSON.parse(localStorage.getItem('rawlombok_cart') || '[]');
-        let activeFleetFilter = 'all';
+        let activeFleetFilter = 'motor';
         let fleetSearchQuery = '';
+        let fleetSlideTimer = null;
+        let isDraggingSlide = false;
 
         const FALLBACK_IMG = "./assets/images/blog/outing/outing-hero.webp";
         const TRANSPORT_IMG_BASE = "./assets/images/transport/";
@@ -279,7 +273,6 @@
             kayangan: "Kayangan"
         };
 
-        // ESTIMASI TARIF ANTAR TITIK RAMAI (MOBIL STANDAR AVANZA/BRIO + DRIVER, ONE-WAY)
         const ROUTE_ESTIMATES = [
             { a: "bandara", b: "kuta", dist: "~22 km", time: "30–40 mnt", stdCarVal: 150000, motorRideVal: 65000 },
             { a: "bandara", b: "senggigi", dist: "~60 km", time: "1,5 jam", stdCarVal: 250000, motorRideVal: 110000 },
@@ -308,8 +301,112 @@
             { a: "sembalun", b: "kayangan", dist: "~30 km", time: "45–60 mnt", stdCarVal: 175000, motorRideVal: 75000 }
         ];
 
-        // DAFTAR MOBIL (FOTO ./assets/images/transport/... + HARGA PERSIS GAMBAR) & SEWA MOTOR
+        // DAFTAR 6 MOTOR DARI GAMBAR YANG DIKIRIM + MOBIL FLEET
         const fleetDatabase = [
+            // --- 6 UNIT MOTOR (SESUAI FILE .WEBP YANG DIKIRIM) ---
+            {
+                id: "motor-honda-beat",
+                name: "HONDA BEAT DELUXE",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Matic 110cc",
+                seats: "1–2 Riders",
+                lepasKunciVal: 95000,
+                lepasKunciStr: "IDR 95.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [
+                    `${TRANSPORT_IMG_BASE}honda-beat.webp`,
+                    `${TRANSPORT_IMG_BASE}beat-street.webp`
+                ],
+                desc: "Ringan, irit, dan lincah untuk keliling Kuta, Senggigi, dan area pantai Lombok."
+            },
+            {
+                id: "motor-beat-street",
+                name: "HONDA BEAT STREET",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Matic 110cc",
+                seats: "1–2 Riders",
+                lepasKunciVal: 95000,
+                lepasKunciStr: "IDR 95.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [
+                    `${TRANSPORT_IMG_BASE}beat-street.webp`,
+                    `${TRANSPORT_IMG_BASE}honda-beat.webp`
+                ],
+                desc: "Stang naked yang santai dan gesit untuk eksplorasi harian maupun jalan desa."
+            },
+            {
+                id: "motor-vario-125",
+                name: "HONDA VARIO 125",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Matic 125cc",
+                seats: "1–2 Riders",
+                lepasKunciVal: 115000,
+                lepasKunciStr: "IDR 115.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [
+                    `${TRANSPORT_IMG_BASE}vario-125.webp`,
+                    `${TRANSPORT_IMG_BASE}Vario-150.webp`
+                ],
+                desc: "Dek rata, bagasi lega, dan tarikan responsif untuk perjalanan dalam kota & pesisir."
+            },
+            {
+                id: "motor-vario-150",
+                name: "HONDA VARIO 150",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Matic 150cc",
+                seats: "1–2 Riders",
+                lepasKunciVal: 135000,
+                lepasKunciStr: "IDR 135.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [
+                    `${TRANSPORT_IMG_BASE}Vario-150.webp`,
+                    `${TRANSPORT_IMG_BASE}vario-125.webp`
+                ],
+                desc: "Tenaga lebih bertenaga untuk rute tanjakan menuju Tetebatu maupun bukit selatan."
+            },
+            {
+                id: "motor-nmax-155",
+                name: "YAMAHA NMAX 155",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Maxi 155cc",
+                seats: "1–2 Riders",
+                lepasKunciVal: 165000,
+                lepasKunciStr: "IDR 165.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [
+                    `${TRANSPORT_IMG_BASE}nmax-155.webp`,
+                    `${TRANSPORT_IMG_BASE}honda-pcx.webp`
+                ],
+                desc: "Posisi duduk nyaman dengan suspensi empuk untuk touring jarak menengah di Lombok."
+            },
+            {
+                id: "motor-honda-pcx",
+                name: "HONDA PCX",
+                type: "motor",
+                category: "motor",
+                categoryLabel: "Maxi Scooter",
+                seats: "1–2 Riders",
+                lepasKunciVal: 175000,
+                lepasKunciStr: "IDR 175.000",
+                includeDriverVal: null,
+                includeDriverStr: "Self-Ride + 2 Helm",
+                images: [
+                    `${TRANSPORT_IMG_BASE}honda-pcx.webp`,
+                    `${TRANSPORT_IMG_BASE}nmax-155.webp`
+                ],
+                desc: "Skuter maxi elegan dengan kenyamanan tinggi untuk perjalanan santai berpasangan."
+            },
+
             // --- MOBIL STANDAR & MPV ---
             {
                 id: "car-honda-brio",
@@ -510,36 +607,6 @@
                 includeDriverStr: "IDR 2.500.000",
                 images: [`${TRANSPORT_IMG_BASE}big-bus.webp`],
                 desc: "Layanan Include Driver untuk rombongan besar, event, atau perusahaan."
-            },
-
-            // --- SEWA MOTOR (ESTIMASI AWAL HARIAN) ---
-            {
-                id: "motor-matic-daily",
-                name: "MATIC DAILY (110–125CC)",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Motor Harian",
-                seats: "1–2 Riders",
-                lepasKunciVal: 110000,
-                lepasKunciStr: "IDR 110.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [FALLBACK_IMG],
-                desc: "Praktis untuk keliling pantai di Kuta/Senggigi atau area sekitar (estimasi awal)."
-            },
-            {
-                id: "motor-maxi-touring",
-                name: "MAXI SCOOTER (150–160CC)",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Motor Touring",
-                seats: "1–2 Riders",
-                lepasKunciVal: 175000,
-                lepasKunciStr: "IDR 175.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [FALLBACK_IMG],
-                desc: "Lebih nyaman untuk rute lebih jauh atau tanjakan menuju Tetebatu (estimasi awal)."
             }
         ];
 
@@ -575,11 +642,7 @@
             if (!box) return;
 
             if (pId === dId) {
-                box.innerHTML = `
-                    <p class="text-xs sm:text-sm font-semibold text-stone-600">
-                        Titik jemput dan tujuan sama (${HUB_NAMES[pId]}). Pilih dua titik berbeda untuk melihat estimasi rute.
-                    </p>
-                `;
+                box.innerHTML = `<p class="text-xs sm:text-sm font-semibold text-stone-600">Titik jemput dan tujuan sama (${HUB_NAMES[pId]}). Pilih dua titik berbeda untuk melihat estimasi rute.</p>`;
                 return;
             }
 
@@ -589,9 +652,7 @@
             box.innerHTML = `
                 <div>
                     <div class="text-xs font-bold uppercase tracking-wider text-amber-600">Estimasi Rute Terpilih</div>
-                    <div class="text-base sm:text-lg font-extrabold text-stone-900 mt-0.5">
-                        ${HUB_NAMES[pId]} &rarr; ${HUB_NAMES[dId]}
-                    </div>
+                    <div class="text-base sm:text-lg font-extrabold text-stone-900 mt-0.5">${HUB_NAMES[pId]} &rarr; ${HUB_NAMES[dId]}</div>
                     <div class="text-xs text-stone-500 mt-0.5">Jarak ${route.dist} • Estimasi tempuh ${route.time}</div>
                 </div>
                 <div class="flex flex-wrap items-center gap-4 sm:gap-6">
@@ -714,6 +775,116 @@
             document.getElementById('detail-modal').classList.remove('hidden');
         }
 
+        // --- BLOG-STYLE SLIDE CONTROLS FOR FLEET CARDS ---
+        function enableSlideMouseDrag(cardIdx) {
+            const track = document.getElementById(`fleet-track-${cardIdx}`);
+            if (!track) return;
+
+            let isDown = false;
+            let startX = 0;
+            let scrollLeft = 0;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDraggingSlide = false;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+                track.classList.remove('scroll-smooth');
+            });
+
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const x = e.pageX - track.offsetLeft;
+                const walk = x - startX;
+                if (Math.abs(walk) > 6) {
+                    isDraggingSlide = true;
+                    e.preventDefault();
+                    track.scrollLeft = scrollLeft - walk;
+                }
+            });
+
+            const stopDrag = () => {
+                if (!isDown) return;
+                isDown = false;
+                track.classList.add('scroll-smooth');
+                setTimeout(() => { isDraggingSlide = false; }, 60);
+            };
+
+            track.addEventListener('mouseup', stopDrag);
+            track.addEventListener('mouseleave', stopDrag);
+        }
+
+        function updateSlideDotsUI(cardIdx, activeIdx) {
+            const dots = document.querySelectorAll(`.fleet-dot-${cardIdx}`);
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('bg-white', idx === activeIdx);
+                dot.classList.toggle('bg-white/40', idx !== activeIdx);
+            });
+        }
+
+        function syncSlideDotsOnScroll(cardIdx) {
+            const track = document.getElementById(`fleet-track-${cardIdx}`);
+            if (!track || track.clientWidth === 0) return;
+            const currentIdx = Math.round(track.scrollLeft / track.clientWidth);
+            track.dataset.index = currentIdx;
+            updateSlideDotsUI(cardIdx, currentIdx);
+        }
+
+        function setFleetSlide(cardIdx, nextIndex) {
+            const track = document.getElementById(`fleet-track-${cardIdx}`);
+            if (!track) return;
+            const count = parseInt(track.dataset.count, 10) || 1;
+            if (count <= 1) return;
+
+            const safeIndex = ((nextIndex % count) + count) % count;
+            track.dataset.index = safeIndex;
+            track.scrollTo({
+                left: safeIndex * track.clientWidth,
+                behavior: 'smooth'
+            });
+            updateSlideDotsUI(cardIdx, safeIndex);
+        }
+
+        function stepFleetSlide(cardIdx, delta) {
+            const track = document.getElementById(`fleet-track-${cardIdx}`);
+            if (!track) return;
+            const current = parseInt(track.dataset.index, 10) || 0;
+            setFleetSlide(cardIdx, current + delta);
+        }
+
+        function pauseFleetCard(cardIdx) {
+            const track = document.getElementById(`fleet-track-${cardIdx}`);
+            if (track) track.dataset.paused = "true";
+        }
+
+        function resumeFleetCard(cardIdx) {
+            const track = document.getElementById(`fleet-track-${cardIdx}`);
+            if (track) track.dataset.paused = "false";
+        }
+
+        function startFleetSlideshow(items) {
+            if (fleetSlideTimer) clearInterval(fleetSlideTimer);
+            fleetSlideTimer = setInterval(() => {
+                items.forEach((_, cardIdx) => {
+                    const track = document.getElementById(`fleet-track-${cardIdx}`);
+                    if (!track || track.dataset.paused === "true") return;
+                    const count = parseInt(track.dataset.count, 10) || 1;
+                    if (count <= 1) return;
+                    const current = parseInt(track.dataset.index, 10) || 0;
+                    setFleetSlide(cardIdx, current + 1);
+                });
+            }, 3800);
+        }
+
+        function handleFleetCardClick(event, itemId) {
+            if (isDraggingSlide) {
+                event.preventDefault();
+                event.stopPropagation();
+                return;
+            }
+            openFleetModal(itemId);
+        }
+
         function setFleetFilter(category) {
             activeFleetFilter = category;
             document.querySelectorAll('.fcat-btn').forEach(btn => {
@@ -748,26 +919,61 @@
                 return matchCat && matchSearch;
             });
 
-            grid.innerHTML = filtered.map(v => {
-                const coverImg = (Array.isArray(v.images) && v.images[0]) || FALLBACK_IMG;
+            if (filtered.length === 0) {
+                if (fleetSlideTimer) clearInterval(fleetSlideTimer);
+                grid.innerHTML = `<p class="col-span-full text-center text-sm text-stone-500 py-10 bg-white rounded-2xl border border-stone-200">Tidak ada unit yang cocok dengan filter/pencarian.</p>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((v, cardIdx) => {
+                const slides = (Array.isArray(v.images) && v.images.length > 0) ? v.images : [FALLBACK_IMG];
                 const hasLepasKunci = typeof v.lepasKunciVal === 'number' && v.lepasKunciVal > 0;
                 const hasDriver = typeof v.includeDriverVal === 'number' && v.includeDriverVal > 0;
 
+                const slidesHtml = slides.map(imgSrc => `
+                    <div class="w-full h-full flex-shrink-0 snap-center select-none bg-white flex items-center justify-center">
+                        <img src="${imgSrc}" alt="${v.name}" draggable="false" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" class="w-full h-full object-contain p-2 pointer-events-none">
+                    </div>
+                `).join('');
+
                 return `
-                    <div onclick="openFleetModal('${v.id}')" class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col">
-                        <div class="relative h-44 bg-stone-200 overflow-hidden">
-                            <img src="${coverImg}" alt="${v.name}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+                    <div onclick="handleFleetCardClick(event, '${v.id}')" onmouseenter="pauseFleetCard(${cardIdx})" onmouseleave="resumeFleetCard(${cardIdx})" class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col group">
+                        <div class="relative h-52 bg-stone-100 overflow-hidden border-b border-stone-100">
+                            <div
+                                id="fleet-track-${cardIdx}"
+                                data-index="0"
+                                data-count="${slides.length}"
+                                onscroll="syncSlideDotsOnScroll(${cardIdx})"
+                                ontouchstart="pauseFleetCard(${cardIdx})"
+                                ontouchend="resumeFleetCard(${cardIdx})"
+                                class="flex w-full h-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar cursor-grab active:cursor-grabbing"
+                            >
+                                ${slidesHtml}
+                            </div>
+
+                            <span class="pointer-events-none absolute top-3 left-3 z-10 bg-stone-900/85 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
                                 ${v.categoryLabel}
                             </span>
-                            <span class="absolute bottom-2.5 right-3 bg-stone-950/60 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                            <span class="pointer-events-none absolute top-3 right-3 z-10 bg-stone-950/65 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
                                 ${v.seats}
                             </span>
+
+                            ${slides.length > 1 ? `
+                                <button type="button" aria-label="Previous photo" onclick="event.stopPropagation(); stepFleetSlide(${cardIdx}, -1)" class="hidden sm:flex items-center justify-center absolute left-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-stone-950/55 hover:bg-stone-950/80 text-white opacity-0 group-hover:opacity-100 transition">
+                                    &#8249;
+                                </button>
+                                <button type="button" aria-label="Next photo" onclick="event.stopPropagation(); stepFleetSlide(${cardIdx}, 1)" class="hidden sm:flex items-center justify-center absolute right-2.5 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-stone-950/55 hover:bg-stone-950/80 text-white opacity-0 group-hover:opacity-100 transition">
+                                    &#8250;
+                                </button>
+                                <div class="z-10 absolute bottom-2.5 right-3 flex gap-1.5 bg-stone-950/60 px-2 py-1 rounded-full">
+                                    ${slides.map((_, idx) => `<button type="button" aria-label="Slide ${idx + 1}" onclick="event.stopPropagation(); setFleetSlide(${cardIdx}, ${idx})" class="fleet-dot-${cardIdx} w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-white' : 'bg-white/40'} transition"></button>`).join('')}
+                                </div>
+                            ` : ''}
                         </div>
 
                         <div class="p-5 flex flex-col flex-grow justify-between">
                             <div>
-                                <h3 class="font-extrabold text-base text-stone-900 tracking-tight mb-1">${v.name}</h3>
+                                <h3 class="font-extrabold text-base text-stone-900 tracking-tight mb-1 group-hover:text-amber-600 transition">${v.name}</h3>
                                 <p class="text-xs text-stone-500 line-clamp-2 mb-4">${v.desc}</p>
 
                                 <div class="space-y-2 bg-stone-50 rounded-xl p-3 border border-stone-200/80 mb-4">
@@ -798,23 +1004,33 @@
                     </div>
                 `;
             }).join('');
+
+            filtered.forEach((_, cardIdx) => enableSlideMouseDrag(cardIdx));
+            startFleetSlideshow(filtered);
         }
 
         function openFleetModal(id) {
             const v = fleetDatabase.find(item => item.id === id);
             if (!v) return;
-            const coverImg = (Array.isArray(v.images) && v.images[0]) || FALLBACK_IMG;
+            const slides = (Array.isArray(v.images) && v.images.length > 0) ? v.images : [FALLBACK_IMG];
             const hasLepasKunci = typeof v.lepasKunciVal === 'number' && v.lepasKunciVal > 0;
             const hasDriver = typeof v.includeDriverVal === 'number' && v.includeDriverVal > 0;
 
+            const modalGalleryHtml = slides.map(imgSrc => `
+                <img src="${imgSrc}" alt="${v.name}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" class="h-44 w-64 object-contain bg-stone-100 p-2 rounded-xl flex-shrink-0 snap-center border border-stone-200">
+            `).join('');
+
             document.getElementById('detail-modal-content').innerHTML = `
-                <img src="${coverImg}" alt="${v.name}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" class="w-full h-56 object-cover">
                 <div class="p-6 sm:p-8">
                     <span class="text-xs font-bold uppercase tracking-wider text-amber-600">${v.categoryLabel} • ${v.seats}</span>
                     <h2 class="text-2xl font-extrabold text-stone-900 mt-1">${v.name}</h2>
                     <p class="text-sm text-stone-600 mt-2">${v.desc}</p>
 
-                    <div class="mt-5 space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
+                    <div class="flex gap-3 overflow-x-auto snap-x py-4 no-scrollbar">
+                        ${modalGalleryHtml}
+                    </div>
+
+                    <div class="mt-2 space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
                         <div class="flex items-center justify-between text-sm">
                             <span class="font-semibold text-stone-700">${v.type === 'motor' ? 'Sewa Harian (24 Jam)' : 'Lepas Kunci (Per Hari)'}</span>
                             <span class="font-extrabold ${hasLepasKunci ? 'text-stone-900' : 'text-stone-400'}">${v.lepasKunciStr}</span>
@@ -949,7 +1165,7 @@
 
                 return `
                     <div class="flex items-center gap-3 bg-stone-50 p-3 rounded-xl border border-stone-200">
-                        <img src="${thumb}" alt="${item.title}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
+                        <img src="${thumb}" alt="${item.title}" onerror="this.onerror=null;this.src='${FALLBACK_IMG}';" class="w-14 h-14 rounded-lg object-contain bg-white p-1 flex-shrink-0">
                         <div class="flex-grow min-w-0">
                             <h4 class="font-bold text-xs text-stone-900 truncate">${item.title}</h4>
                             <p class="text-[11px] text-stone-500">${unitLabel} • ${item.priceStr}</p>
