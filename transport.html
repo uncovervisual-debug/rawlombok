@@ -1,1019 +1,233 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transport, Car, Motor & Point-to-Point Transfer — RAW LOMBOK</title>
-    <meta name="description" content="Rent cars or motorbikes, customize vehicles, or book point-to-point transfers across Bandara, Pelabuhan Lembar, Kuta, Senggigi, Tetebatu, Sembalun, and Kayangan in Lombok.">
-    <link rel="canonical" href="https://rawlombok.web.id/transport.html">
-
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231c1917'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial, sans-serif' font-size='26' font-weight='800'%3ERL%3C/text%3E%3C/svg%3E">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-</head>
-<body class="bg-stone-50 text-stone-900 antialiased selection:bg-stone-900 selection:text-white">
-
-    <!-- TOP NAVIGATION BAR -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="./index.html" class="flex items-center gap-2.5 group">
-                <div class="w-9 h-9 bg-stone-900 text-white rounded-lg flex items-center justify-center font-extrabold text-sm tracking-tighter group-hover:bg-amber-600 transition">
-                    RL
-                </div>
-                <span class="font-extrabold text-lg tracking-tight text-stone-900">RAW LOMBOK</span>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
-                <a href="./index.html" class="hover:text-stone-900 transition">Home</a>
-                <a href="./destinations.html" class="hover:text-stone-900 transition">All Destinations</a>
-                <a href="./transport.html" class="text-stone-900 font-bold border-b-2 border-amber-600 pb-0.5">Transport &amp; Ride</a>
-                <a href="./blog.html" class="hover:text-stone-900 transition">Journal &amp; Guides</a>
-            </nav>
-
-            <button type="button" onclick="toggleCartModal()" class="relative px-3.5 py-2 text-stone-800 hover:bg-stone-100 rounded-xl transition flex items-center gap-2 border border-stone-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                </svg>
-                <span class="text-xs font-bold uppercase tracking-wider">My Trip Plan</span>
-                <span id="cart-badge" class="absolute -top-1 -right-1 bg-amber-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- PAGE HEADER -->
-    <section class="bg-stone-900 text-white py-14 sm:py-20 border-b border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center gap-2 text-xs text-stone-400 mb-4">
-                <a href="./index.html" class="hover:text-white transition">Home</a>
-                <span>/</span>
-                <span class="text-amber-500 font-semibold">Transport, Car, Motor &amp; Transfer</span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight max-w-3xl leading-tight">
-                Lombok Transport, Custom Fleet &amp; Point-to-Point Ride
-            </h1>
-            <p class="mt-4 text-sm sm:text-base text-stone-300 max-w-3xl leading-relaxed">
-                Paket wisata destinasi sudah termasuk <strong>Avanza/Brio + Driver</strong>. Di halaman ini kamu bisa <strong>custom/upgrade mobil</strong>, <strong>sewa motor harian</strong>, atau pesan <strong>antar-jemput rute titik ramai</strong> (Bandara, Pelabuhan Lembar, Kuta, Senggigi, Tetebatu, Sembalun, Kayangan). Klik kartu untuk membuka pop-up detail.
-            </p>
-        </div>
-    </section>
-
-    <main class="py-12 md:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-
-        <!-- 1. POINT-TO-POINT RIDE / TRANSFER (GOJEK / GRAB STYLE FOR MAIN HUBS) -->
-        <section id="point-to-point" class="bg-white rounded-2xl border border-stone-200 p-6 sm:p-8 shadow-sm">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-stone-100">
-                <div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-amber-600">Point-to-Point Ride &amp; Transfer</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 mt-1">Antar-Jemput Titik Ramai Lombok</h2>
-                    <p class="text-xs sm:text-sm text-stone-600 mt-1">
-                        Pilih titik jemput &amp; tujuan antara Bandara, Pelabuhan Lembar, Kuta, Senggigi, Tetebatu, Sembalun, dan Kayangan.
-                    </p>
-                </div>
-                <span class="inline-flex items-center gap-1.5 text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-full self-start md:self-auto">
-                    Estimasi Sekali Jalan (One-Way)
-                </span>
-            </div>
-
-            <!-- Interactive Route Calculator -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 pt-6 items-end">
-                <div class="md:col-span-4">
-                    <label for="pickup-hub" class="block text-xs font-bold text-stone-700 mb-1.5">Titik Jemput (Pickup)</label>
-                    <select id="pickup-hub" onchange="updateRouteEstimator()" class="w-full border border-stone-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold bg-stone-50 focus:outline-none focus:border-stone-900">
-                        <option value="bandara">Bandara (LOP)</option>
-                        <option value="lembar">Pelabuhan Lembar</option>
-                        <option value="kuta" selected>Kuta (Mandalika)</option>
-                        <option value="senggigi">Senggigi</option>
-                        <option value="tetebatu">Tetebatu</option>
-                        <option value="sembalun">Sembalun</option>
-                        <option value="kayangan">Kayangan</option>
-                    </select>
-                </div>
-
-                <div class="md:col-span-1 flex justify-center pb-1">
-                    <button type="button" onclick="swapRouteHubs()" title="Tukar arah rute" aria-label="Tukar arah rute" class="p-2.5 rounded-xl bg-stone-100 hover:bg-amber-100 text-stone-800 hover:text-amber-700 border border-stone-200 transition">
-                        &#8644;
-                    </button>
-                </div>
-
-                <div class="md:col-span-4">
-                    <label for="dropoff-hub" class="block text-xs font-bold text-stone-700 mb-1.5">Titik Tujuan (Drop-off)</label>
-                    <select id="dropoff-hub" onchange="updateRouteEstimator()" class="w-full border border-stone-300 rounded-xl px-3.5 py-2.5 text-sm font-semibold bg-stone-50 focus:outline-none focus:border-stone-900">
-                        <option value="bandara">Bandara (LOP)</option>
-                        <option value="lembar">Pelabuhan Lembar</option>
-                        <option value="kuta">Kuta (Mandalika)</option>
-                        <option value="senggigi" selected>Senggigi</option>
-                        <option value="tetebatu">Tetebatu</option>
-                        <option value="sembalun">Sembalun</option>
-                        <option value="kayangan">Kayangan</option>
-                    </select>
-                </div>
-
-                <div class="md:col-span-3">
-                    <button type="button" onclick="addSelectedRouteToPlan()" class="w-full bg-stone-900 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold py-3 px-4 rounded-xl transition">
-                        + Tambah Rute ke Plan
-                    </button>
-                </div>
-            </div>
-
-            <!-- Live Route Result Box -->
-            <div id="route-estimate-box" class="mt-5 bg-stone-50 border border-stone-200 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <!-- Diisi otomatis oleh updateRouteEstimator() -->
-            </div>
-
-            <!-- Quick Route Cards Grid (Click to Open Pop-up Detail) -->
-            <div class="mt-8">
-                <h3 class="text-sm font-extrabold uppercase tracking-wider text-stone-700 mb-4">Pilihan Rute Populer (Klik Card untuk Pop-up)</h3>
-                <div id="popular-routes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Rendered dynamically -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. FLEET SECTION (CARS & MOTORBIKES WITH PHOTOS + POP-UP ON CLICK) -->
-        <section id="fleet-catalog">
-            <div class="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200 shadow-sm mb-8 space-y-4">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                    <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-amber-600">Custom Fleet &amp; Daily Rental</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 mt-1">Sewa &amp; Custom Mobil / Motor</h2>
-                        <p class="text-xs sm:text-sm text-stone-600 mt-1">
-                            Klik kartu kendaraan mana pun untuk membuka pop-up detail dan memilih paket.
-                        </p>
-                    </div>
-
-                    <div class="relative w-full lg:w-72">
-                        <input
-                            type="text"
-                            id="fleet-search"
-                            oninput="handleFleetSearch(this.value)"
-                            placeholder="Cari Brio, Innova, Alphard, Scoopy, NMAX..."
-                            class="w-full border border-stone-300 rounded-xl pl-9 pr-4 py-2 text-sm font-medium focus:outline-none focus:border-stone-900"
-                        >
-                        <svg class="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-3.5 text-xs text-stone-700 leading-relaxed">
-                    <strong>Aturan pakai:</strong> Paket di <em>All Destinations</em> sudah termasuk <strong>Avanza/Brio + Driver</strong>. Jika memilih <strong>Lepas Kunci</strong>, kendaraan disewakan untuk berkendara mandiri (bukan paket tur ber-driver). Untuk upgrade mobil saat berwisata, pilih <strong>Include Driver</strong>.
-                </div>
-
-                <!-- Main Type & Sub-Filter -->
-                <div class="flex flex-wrap items-center gap-2 pt-1" id="fleet-type-filters">
-                    <button type="button" onclick="setFleetFilter('all')" data-fcat="all" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">Semua Unit</button>
-                    <button type="button" onclick="setFleetFilter('car-compact')" data-fcat="car-compact" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Mobil Standar &amp; MPV</button>
-                    <button type="button" onclick="setFleetFilter('car-suv-lux')" data-fcat="car-suv-lux" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">SUV &amp; Luxury Car</button>
-                    <button type="button" onclick="setFleetFilter('car-van-bus')" data-fcat="car-van-bus" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Hi-Ace, Elf &amp; Bus</button>
-                    <button type="button" onclick="setFleetFilter('motor')" data-fcat="motor" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-600 text-white transition whitespace-nowrap">Sewa Motor</button>
-                </div>
-            </div>
-
-            <div id="fleet-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Rendered dynamically -->
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-stone-950 text-stone-400 py-12 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-            <div class="flex items-center gap-2.5 text-white">
-                <div class="w-7 h-7 bg-white text-stone-950 rounded-lg flex items-center justify-center font-extrabold text-xs">RL</div>
-                <span class="font-extrabold text-sm tracking-tight">RAW LOMBOK</span>
-            </div>
-            <div class="flex gap-6">
-                <a href="./index.html" class="hover:text-white transition">Home</a>
-                <a href="./destinations.html" class="hover:text-white transition">All Destinations</a>
-                <a href="./transport.html" class="text-white font-semibold">Transport &amp; Ride</a>
-                <a href="./blog.html" class="hover:text-white transition">Journal &amp; Guides</a>
-            </div>
-            <p>&copy; 2026 PT Homeland Nusa Indonesia.</p>
-        </div>
-    </footer>
-
-    <!-- DETAIL POP-UP MODAL (FOR BOTH FLEET & ROUTE) -->
-    <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
-            <button type="button" onclick="closeDetailModal()" class="sticky top-4 float-right mr-4 mt-4 z-10 bg-white/90 hover:bg-stone-100 text-stone-900 p-2 rounded-full shadow">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-            <div id="detail-modal-content" class="clear-both"></div>
-        </div>
-    </div>
-
-    <!-- ITINERARY PLANNER DRAWER MODAL -->
-    <div id="cart-modal" class="fixed inset-0 z-50 hidden bg-stone-950/70 backdrop-blur-sm flex justify-end">
-        <div class="bg-white w-full max-w-md h-full flex flex-col justify-between p-6 shadow-2xl overflow-y-auto">
-            <div>
-                <div class="flex items-center justify-between border-b border-stone-200 pb-4">
-                    <h3 class="font-extrabold text-lg text-stone-900">Your Curated Trip Plan</h3>
-                    <button type="button" onclick="toggleCartModal()" class="p-1.5 text-stone-500 hover:text-stone-900">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                    </button>
-                </div>
-                <div id="cart-items-list" class="py-4 space-y-3"></div>
-            </div>
-
-            <div class="border-t border-stone-200 pt-4 space-y-3">
-                <div class="flex justify-between items-center pb-1">
-                    <span class="text-sm text-stone-600">Estimated Total</span>
-                    <span id="cart-total" class="text-lg font-extrabold text-stone-900">IDR 0</span>
-                </div>
-
-                <div>
-                    <label for="traveler-name" class="block text-xs font-bold text-stone-700 mb-1">Full Name <span class="text-red-500">*</span></label>
-                    <input type="text" id="traveler-name" placeholder="e.g., Alex Morgan" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
-                </div>
-
-                <div>
-                    <label for="traveler-email" class="block text-xs font-bold text-stone-700 mb-1">Email Address <span class="text-red-500">*</span></label>
-                    <input type="email" id="traveler-email" placeholder="e.g., alex@example.com" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label for="travel-date" class="block text-xs font-bold text-stone-700 mb-1">Estimated Date <span class="text-red-500">*</span></label>
-                        <input type="date" id="travel-date" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-medium focus:outline-none focus:border-stone-900">
-                    </div>
-
-                    <div>
-                        <label for="pax-count" class="block text-xs font-bold text-stone-700 mb-1">Travelers (Pax)</label>
-                        <input type="number" id="pax-count" value="2" min="1" onchange="renderCart()" class="w-full border border-stone-300 rounded-xl px-3 py-2 text-sm font-semibold focus:outline-none focus:border-stone-900">
-                    </div>
-                </div>
-
-                <p id="cart-form-error" class="hidden text-xs font-semibold text-red-600"></p>
-
-                <button type="button" onclick="checkoutWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2 mt-1">
-                    Send Request via WhatsApp
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const WHATSAPP_NUMBER = "6281325523231";
-        let cart = JSON.parse(localStorage.getItem('rawlombok_cart') || '[]');
-        let activeFleetFilter = 'all';
-        let fleetSearchQuery = '';
-
-        const FALLBACK_IMG = "./assets/images/blog/outing/outing-hero.webp";
-
-        const HUB_NAMES = {
-            bandara: "Bandara (LOP)",
-            lembar: "Pelabuhan Lembar",
-            kuta: "Kuta",
-            senggigi: "Senggigi",
-            tetebatu: "Tetebatu",
-            sembalun: "Sembalun",
-            kayangan: "Kayangan"
-        };
-
-        // ESTIMASI TARIF ANTAR TITIK RAMAI (MOBIL STANDAR AVANZA/BRIO + DRIVER, ONE-WAY)
-        const ROUTE_ESTIMATES = [
-            { a: "bandara", b: "kuta", dist: "~22 km", time: "30–40 mnt", stdCarVal: 150000, motorRideVal: 65000 },
-            { a: "bandara", b: "senggigi", dist: "~60 km", time: "1,5 jam", stdCarVal: 250000, motorRideVal: 110000 },
-            { a: "bandara", b: "tetebatu", dist: "~50 km", time: "1,5 jam", stdCarVal: 250000, motorRideVal: 100000 },
-            { a: "bandara", b: "sembalun", dist: "~105 km", time: "2,5–3 jam", stdCarVal: 450000, motorRideVal: 185000 },
-            { a: "bandara", b: "kayangan", dist: "~92 km", time: "2–2,5 jam", stdCarVal: 400000, motorRideVal: 165000 },
-
-            { a: "lembar", b: "senggigi", dist: "~42 km", time: "1 jam", stdCarVal: 225000, motorRideVal: 90000 },
-            { a: "lembar", b: "kuta", dist: "~60 km", time: "1,5 jam", stdCarVal: 275000, motorRideVal: 115000 },
-            { a: "lembar", b: "tetebatu", dist: "~65 km", time: "1,5–2 jam", stdCarVal: 300000, motorRideVal: 120000 },
-            { a: "lembar", b: "sembalun", dist: "~118 km", time: "3 jam", stdCarVal: 500000, motorRideVal: 200000 },
-            { a: "lembar", b: "kayangan", dist: "~108 km", time: "2,5–3 jam", stdCarVal: 450000, motorRideVal: 185000 },
-
-            { a: "kuta", b: "senggigi", dist: "~80 km", time: "1,5–2 jam", stdCarVal: 300000, motorRideVal: 135000 },
-            { a: "kuta", b: "tetebatu", dist: "~50 km", time: "1,5 jam", stdCarVal: 250000, motorRideVal: 100000 },
-            { a: "kuta", b: "sembalun", dist: "~112 km", time: "3 jam", stdCarVal: 475000, motorRideVal: 195000 },
-            { a: "kuta", b: "kayangan", dist: "~102 km", time: "2,5–3 jam", stdCarVal: 425000, motorRideVal: 175000 },
-
-            { a: "senggigi", b: "tetebatu", dist: "~70 km", time: "2 jam", stdCarVal: 325000, motorRideVal: 130000 },
-            { a: "senggigi", b: "sembalun", dist: "~108 km", time: "2,5–3 jam", stdCarVal: 450000, motorRideVal: 190000 },
-            { a: "senggigi", b: "kayangan", dist: "~88 km", time: "2–2,5 jam", stdCarVal: 375000, motorRideVal: 155000 },
-
-            { a: "tetebatu", b: "sembalun", dist: "~60 km", time: "1,5–2 jam", stdCarVal: 300000, motorRideVal: 120000 },
-            { a: "tetebatu", b: "kayangan", dist: "~50 km", time: "1–1,5 jam", stdCarVal: 250000, motorRideVal: 100000 },
-
-            { a: "sembalun", b: "kayangan", dist: "~30 km", time: "45–60 mnt", stdCarVal: 175000, motorRideVal: 75000 }
-        ];
-
-        // DAFTAR MOBIL (PERSIS GAMBAR) + SEWA MOTOR (ESTIMASI AWAL)
-        const fleetDatabase = [
-            // --- MOBIL STANDAR & MPV ---
-            {
-                id: "car-honda-brio",
-                name: "HONDA BRIO",
-                type: "car",
-                category: "car-compact",
-                categoryLabel: "City Car",
-                seats: "4–5 Seats",
-                lepasKunciVal: 350000,
-                lepasKunciStr: "IDR 350.000",
-                includeDriverVal: 650000,
-                includeDriverStr: "IDR 650.000",
-                images: [FALLBACK_IMG],
-                desc: "Lincah & hemat untuk sewa mandiri (Lepas Kunci) maupun perjalanan harian."
-            },
-            {
-                id: "car-avanza-all-new",
-                name: "AVANZA ALL NEW",
-                type: "car",
-                category: "car-compact",
-                categoryLabel: "MPV Standar",
-                seats: "6–7 Seats",
-                lepasKunciVal: 350000,
-                lepasKunciStr: "IDR 350.000",
-                includeDriverVal: 650000,
-                includeDriverStr: "IDR 650.000",
-                images: [FALLBACK_IMG],
-                desc: "Unit standar keluarga yang sudah termasuk di paket destinasi atau bisa disewa harian."
-            },
-            {
-                id: "car-innova-reborn",
-                name: "INNOVA REBORN",
-                type: "car",
-                category: "car-compact",
-                categoryLabel: "MPV Upgrade",
-                seats: "7 Seats",
-                lepasKunciVal: 550000,
-                lepasKunciStr: "IDR 550.000",
-                includeDriverVal: 850000,
-                includeDriverStr: "IDR 850.000",
-                images: [FALLBACK_IMG],
-                desc: "Kabin lega dan bertenaga untuk custom trip Sembalun/Tetebatu atau sewa harian."
-            },
-            {
-                id: "car-innova-zenix-g",
-                name: "INNOVA ZENIX G",
-                type: "car",
-                category: "car-compact",
-                categoryLabel: "Modern MPV",
-                seats: "7 Seats",
-                lepasKunciVal: 900000,
-                lepasKunciStr: "IDR 900.000",
-                includeDriverVal: 1250000,
-                includeDriverStr: "IDR 1.250.000",
-                images: [FALLBACK_IMG],
-                desc: "MPV modern dengan kenyamanan kabin halus untuk keluarga maupun tamu."
-            },
-
-            // --- SUV & LUXURY ---
-            {
-                id: "car-fortuner",
-                name: "FORTUNER",
-                type: "car",
-                category: "car-suv-lux",
-                categoryLabel: "SUV",
-                seats: "7 Seats",
-                lepasKunciVal: 1200000,
-                lepasKunciStr: "IDR 1.200.000",
-                includeDriverVal: 1750000,
-                includeDriverStr: "IDR 1.750.000",
-                images: [FALLBACK_IMG],
-                desc: "SUV tangguh untuk rute menanjak, pantai selatan, atau perjalanan eksekutif."
-            },
-            {
-                id: "car-pajero-sport",
-                name: "PAJERO SPORT",
-                type: "car",
-                category: "car-suv-lux",
-                categoryLabel: "SUV",
-                seats: "7 Seats",
-                lepasKunciVal: 1200000,
-                lepasKunciStr: "IDR 1.200.000",
-                includeDriverVal: 1750000,
-                includeDriverStr: "IDR 1.750.000",
-                images: [FALLBACK_IMG],
-                desc: "SUV nyaman dengan performa kuat untuk eksplorasi pulau maupun sewa."
-            },
-            {
-                id: "car-innova-zenix-q",
-                name: "INNOVA ZENIX Q",
-                type: "car",
-                category: "car-suv-lux",
-                categoryLabel: "Executive MPV",
-                seats: "6–7 Seats",
-                lepasKunciVal: 1200000,
-                lepasKunciStr: "IDR 1.200.000",
-                includeDriverVal: 1750000,
-                includeDriverStr: "IDR 1.750.000",
-                images: [FALLBACK_IMG],
-                desc: "Varian premium Zenix untuk kenyamanan ekstra saat custom trip atau sewa."
-            },
-            {
-                id: "car-alphard-g",
-                name: "ALPHARD G",
-                type: "car",
-                category: "car-suv-lux",
-                categoryLabel: "Luxury MPV",
-                seats: "6 Seats",
-                lepasKunciVal: null,
-                lepasKunciStr: "IDR -",
-                includeDriverVal: 3500000,
-                includeDriverStr: "IDR 3.500.000",
-                images: [FALLBACK_IMG],
-                desc: "Layanan Include Driver untuk honeymoon, prewedding, dan tamu VIP."
-            },
-            {
-                id: "car-alphard-hev",
-                name: "ALPHARD HEV",
-                type: "car",
-                category: "car-suv-lux",
-                categoryLabel: "Luxury Hybrid",
-                seats: "6 Seats",
-                lepasKunciVal: null,
-                lepasKunciStr: "IDR -",
-                includeDriverVal: 6500000,
-                includeDriverStr: "IDR 6.500.000",
-                images: [FALLBACK_IMG],
-                desc: "Layanan Include Driver kelas atas dengan kabin senyap dan eksklusif."
-            },
-
-            // --- VAN, ELF & BUS ---
-            {
-                id: "car-hiace-commuter",
-                name: "HI-ACE COMMUTER",
-                type: "car",
-                category: "car-van-bus",
-                categoryLabel: "Van",
-                seats: "14–15 Seats",
-                lepasKunciVal: null,
-                lepasKunciStr: "IDR -",
-                includeDriverVal: 1200000,
-                includeDriverStr: "IDR 1.200.000",
-                images: [FALLBACK_IMG],
-                desc: "Layanan Include Driver untuk rombongan keluarga atau grup wisata."
-            },
-            {
-                id: "car-hiace-premio",
-                name: "HI-ACE PREMIO",
-                type: "car",
-                category: "car-van-bus",
-                categoryLabel: "Premium Van",
-                seats: "12–14 Seats",
-                lepasKunciVal: null,
-                lepasKunciStr: "IDR -",
-                includeDriverVal: 1500000,
-                includeDriverStr: "IDR 1.500.000",
-                images: [FALLBACK_IMG],
-                desc: "Layanan Include Driver dengan ruang kabin lebih lapang dan nyaman."
-            },
-            {
-                id: "car-elf-long",
-                name: "ELF LONG",
-                type: "car",
-                category: "car-van-bus",
-                categoryLabel: "Microbus",
-                seats: "17–19 Seats",
-                lepasKunciVal: null,
-                lepasKunciStr: "IDR -",
-                includeDriverVal: 1500000,
-                includeDriverStr: "IDR 1.500.000",
-                images: [FALLBACK_IMG],
-                desc: "Layanan Include Driver untuk rombongan besar atau corporate outing."
-            },
-            {
-                id: "car-medium-bus",
-                name: "MEDIUM BUS",
-                type: "car",
-                category: "car-van-bus",
-                categoryLabel: "Medium Bus",
-                seats: "27–33 Seats",
-                lepasKunciVal: null,
-                lepasKunciStr: "IDR -",
-                includeDriverVal: 1800000,
-                includeDriverStr: "IDR 1.800.000",
-                images: [FALLBACK_IMG],
-                desc: "Layanan Include Driver untuk rombongan outing, gathering, dan tur."
-            },
-            {
-                id: "car-big-bus",
-                name: "BIG BUS",
-                type: "car",
-                category: "car-van-bus",
-                categoryLabel: "Big Bus",
-                seats: "45–59 Seats",
-                lepasKunciVal: null,
-                lepasKunciStr: "IDR -",
-                includeDriverVal: 2500000,
-                includeDriverStr: "IDR 2.500.000",
-                images: [FALLBACK_IMG],
-                desc: "Layanan Include Driver untuk rombongan besar, event, atau perusahaan."
-            },
-
-            // --- SEWA MOTOR (ESTIMASI AWAL HARIAN) ---
-            {
-                id: "motor-matic-daily",
-                name: "MATIC DAILY (110–125CC)",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Motor Harian",
-                seats: "1–2 Riders",
-                lepasKunciVal: 110000,
-                lepasKunciStr: "IDR 110.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [FALLBACK_IMG],
-                desc: "Praktis untuk keliling pantai di Kuta/Senggigi atau area sekitar (estimasi awal)."
-            },
-            {
-                id: "motor-maxi-touring",
-                name: "MAXI SCOOTER (150–160CC)",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Motor Touring",
-                seats: "1–2 Riders",
-                lepasKunciVal: 175000,
-                lepasKunciStr: "IDR 175.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [FALLBACK_IMG],
-                desc: "Lebih nyaman untuk rute lebih jauh atau tanjakan menuju Tetebatu (estimasi awal)."
-            }
-        ];
-
-        function formatIDR(amount) {
-            return "IDR " + Number(amount || 0).toLocaleString("id-ID");
-        }
-
-        function saveCartState() {
-            localStorage.setItem('rawlombok_cart', JSON.stringify(cart));
-        }
-
-        function findRoute(fromId, toId) {
-            if (fromId === toId) return null;
-            return ROUTE_ESTIMATES.find(r =>
-                (r.a === fromId && r.b === toId) || (r.a === toId && r.b === fromId)
-            ) || null;
-        }
-
-        function swapRouteHubs() {
-            const pEl = document.getElementById('pickup-hub');
-            const dEl = document.getElementById('dropoff-hub');
-            if (!pEl || !dEl) return;
-            const temp = pEl.value;
-            pEl.value = dEl.value;
-            dEl.value = temp;
-            updateRouteEstimator();
-        }
-
-        function updateRouteEstimator() {
-            const pId = document.getElementById('pickup-hub')?.value;
-            const dId = document.getElementById('dropoff-hub')?.value;
-            const box = document.getElementById('route-estimate-box');
-            if (!box) return;
-
-            if (pId === dId) {
-                box.innerHTML = `
-                    <p class="text-xs sm:text-sm font-semibold text-stone-600">
-                        Titik jemput dan tujuan sama (${HUB_NAMES[pId]}). Pilih dua titik berbeda untuk melihat estimasi rute.
-                    </p>
-                `;
-                return;
-            }
-
-            const route = findRoute(pId, dId);
-            if (!route) return;
-
-            box.innerHTML = `
-                <div>
-                    <div class="text-xs font-bold uppercase tracking-wider text-amber-600">Estimasi Rute Terpilih</div>
-                    <div class="text-base sm:text-lg font-extrabold text-stone-900 mt-0.5">
-                        ${HUB_NAMES[pId]} &rarr; ${HUB_NAMES[dId]}
-                    </div>
-                    <div class="text-xs text-stone-500 mt-0.5">Jarak ${route.dist} • Estimasi tempuh ${route.time}</div>
-                </div>
-                <div class="flex flex-wrap items-center gap-4 sm:gap-6">
-                    <div>
-                        <span class="block text-[10px] font-bold uppercase text-stone-400">Mobil Standar + Driver</span>
-                        <span class="text-base sm:text-lg font-extrabold text-stone-900">${formatIDR(route.stdCarVal)}</span>
-                    </div>
-                    <div>
-                        <span class="block text-[10px] font-bold uppercase text-stone-400">Motor Ride (Solo)</span>
-                        <span class="text-sm sm:text-base font-extrabold text-amber-700">${formatIDR(route.motorRideVal)}</span>
-                    </div>
-                </div>
-            `;
-        }
-
-        function addSelectedRouteToPlan() {
-            const pId = document.getElementById('pickup-hub')?.value;
-            const dId = document.getElementById('dropoff-hub')?.value;
-            if (pId === dId) return;
-            const route = findRoute(pId, dId);
-            if (!route) return;
-            addRouteItemToCart(pId, dId, route.stdCarVal, "Mobil Standar + Driver");
-        }
-
-        function addRouteItemToCart(fromId, toId, priceVal, modeLabel) {
-            const label = `${HUB_NAMES[fromId]} → ${HUB_NAMES[toId]} (${modeLabel})`;
-            const itemId = `route__${fromId}__${toId}__${modeLabel.toLowerCase().replace(/\s+/g, '-')}`;
-
-            const existing = cart.find(item => item.id === itemId);
-            if (existing) {
-                existing.qty = (existing.qty || 1) + 1;
-            } else {
-                cart.push({
-                    id: itemId,
-                    title: label,
-                    duration: "One-Way",
-                    qty: 1,
-                    priceVal: Number(priceVal || 0),
-                    priceStr: formatIDR(priceVal),
-                    isRoute: true,
-                    images: [FALLBACK_IMG]
-                });
-            }
-
-            saveCartState();
-            updateCartBadge();
-            renderCart();
-            toggleCartModal(true);
-        }
-
-        function renderPopularRoutes() {
-            const grid = document.getElementById('popular-routes-grid');
-            if (!grid) return;
-
-            const highlights = [
-                ["bandara", "kuta"],
-                ["bandara", "senggigi"],
-                ["kuta", "tetebatu"],
-                ["tetebatu", "sembalun"],
-                ["sembalun", "kayangan"],
-                ["lembar", "senggigi"],
-                ["kuta", "senggigi"],
-                ["bandara", "sembalun"]
-            ];
-
-            grid.innerHTML = highlights.map(([fromId, toId]) => {
-                const r = findRoute(fromId, toId);
-                if (!r) return "";
-                return `
-                    <div onclick="openRouteModal('${fromId}', '${toId}')" class="bg-stone-50 hover:bg-amber-50/50 rounded-xl border border-stone-200 p-4 cursor-pointer transition flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between text-[11px] text-stone-500 mb-1.5">
-                                <span>${r.dist}</span>
-                                <span>${r.time}</span>
-                            </div>
-                            <h4 class="font-extrabold text-sm text-stone-900">${HUB_NAMES[fromId]} &rarr; ${HUB_NAMES[toId]}</h4>
-                        </div>
-                        <div class="mt-3 pt-2.5 border-t border-stone-200/80 flex items-center justify-between text-xs">
-                            <span class="text-stone-500">Mobil Standar</span>
-                            <span class="font-extrabold text-stone-900">${formatIDR(r.stdCarVal)}</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function openRouteModal(fromId, toId) {
-            const r = findRoute(fromId, toId);
-            if (!r) return;
-
-            document.getElementById('detail-modal-content').innerHTML = `
-                <div class="p-6 sm:p-8">
-                    <span class="text-xs font-bold uppercase tracking-wider text-amber-600">Point-to-Point Transfer • ${r.dist} • ${r.time}</span>
-                    <h2 class="text-2xl font-extrabold text-stone-900 mt-1">${HUB_NAMES[fromId]} &rarr; ${HUB_NAMES[toId]}</h2>
-                    <p class="text-sm text-stone-600 mt-2">
-                        Estimasi sekali jalan antar titik ramai di Lombok. Klik salah satu opsi di bawah untuk memasukkan ke My Trip Plan.
-                    </p>
-
-                    <div class="mt-5 space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="font-semibold text-stone-700">Mobil Standar (Avanza/Brio + Driver)</span>
-                            <span class="font-extrabold text-stone-900">${formatIDR(r.stdCarVal)}</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm pt-3 border-t border-stone-200">
-                            <span class="font-semibold text-stone-700">Motor Ride (Solo + Rider)</span>
-                            <span class="font-extrabold text-amber-700">${formatIDR(r.motorRideVal)}</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                        <button type="button" onclick="addRouteItemToCart('${fromId}', '${toId}', ${r.stdCarVal}, 'Mobil Standar + Driver'); closeDetailModal();" class="flex-1 bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl transition">
-                            + Mobil Standar (${formatIDR(r.stdCarVal)})
-                        </button>
-                        <button type="button" onclick="addRouteItemToCart('${fromId}', '${toId}', ${r.motorRideVal}, 'Motor Ride'); closeDetailModal();" class="flex-1 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold py-3.5 px-4 rounded-xl transition">
-                            + Motor Ride (${formatIDR(r.motorRideVal)})
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.getElementById('detail-modal').classList.remove('hidden');
-        }
-
-        function setFleetFilter(category) {
-            activeFleetFilter = category;
-            document.querySelectorAll('.fcat-btn').forEach(btn => {
-                const isActive = btn.dataset.fcat === category;
-                if (btn.dataset.fcat === 'motor') {
-                    btn.className = isActive
-                        ? "fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-700 text-white ring-2 ring-amber-300 transition whitespace-nowrap"
-                        : "fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-600 text-white hover:bg-amber-500 transition whitespace-nowrap";
-                } else {
-                    btn.className = isActive
-                        ? "fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap"
-                        : "fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap";
-                }
-            });
-            renderFleet();
-        }
-
-        function handleFleetSearch(val) {
-            fleetSearchQuery = val.trim().toLowerCase();
-            renderFleet();
-        }
-
-        function renderFleet() {
-            const grid = document.getElementById('fleet-grid');
-            if (!grid) return;
-
-            const filtered = fleetDatabase.filter(item => {
-                const matchCat = activeFleetFilter === 'all' || item.category === activeFleetFilter;
-                const matchSearch = !fleetSearchQuery ||
-                    item.name.toLowerCase().includes(fleetSearchQuery) ||
-                    item.categoryLabel.toLowerCase().includes(fleetSearchQuery);
-                return matchCat && matchSearch;
-            });
-
-            grid.innerHTML = filtered.map(v => {
-                const coverImg = (Array.isArray(v.images) && v.images[0]) || FALLBACK_IMG;
-                const hasLepasKunci = typeof v.lepasKunciVal === 'number' && v.lepasKunciVal > 0;
-                const hasDriver = typeof v.includeDriverVal === 'number' && v.includeDriverVal > 0;
-
-                return `
-                    <div onclick="openFleetModal('${v.id}')" class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col">
-                        <div class="relative h-44 bg-stone-200 overflow-hidden">
-                            <img src="${coverImg}" alt="${v.name}" class="w-full h-full object-cover">
-                            <span class="absolute top-3 left-3 bg-stone-900/80 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
-                                ${v.categoryLabel}
-                            </span>
-                            <span class="absolute bottom-2.5 right-3 bg-stone-950/60 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
-                                ${v.seats}
-                            </span>
-                        </div>
-
-                        <div class="p-5 flex flex-col flex-grow justify-between">
-                            <div>
-                                <h3 class="font-extrabold text-base text-stone-900 tracking-tight mb-1">${v.name}</h3>
-                                <p class="text-xs text-stone-500 line-clamp-2 mb-4">${v.desc}</p>
-
-                                <div class="space-y-2 bg-stone-50 rounded-xl p-3 border border-stone-200/80 mb-4">
-                                    <div class="flex items-center justify-between text-xs">
-                                        <span class="font-semibold text-stone-600">${v.type === 'motor' ? 'SEWA / HARI' : 'LEPAS KUNCI'}</span>
-                                        <span class="font-extrabold ${hasLepasKunci ? 'text-stone-900' : 'text-stone-400'}">${v.lepasKunciStr}</span>
-                                    </div>
-                                    <div class="flex items-center justify-between text-xs pt-2 border-t border-stone-200/70">
-                                        <span class="font-semibold text-stone-600">${v.type === 'motor' ? 'PAKET' : 'INCLUDE DRIVER'}</span>
-                                        <span class="font-extrabold ${hasDriver ? 'text-amber-700' : 'text-stone-500'}">${v.includeDriverStr}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="space-y-2" onclick="event.stopPropagation()">
-                                ${hasLepasKunci ? `
-                                    <button type="button" onclick="addFleetToCart('${v.id}', 'lepas-kunci')" class="w-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold py-2.5 rounded-xl transition">
-                                        + ${v.type === 'motor' ? 'Sewa Motor' : 'Lepas Kunci'} (${v.lepasKunciStr})
-                                    </button>
-                                ` : ''}
-                                ${hasDriver ? `
-                                    <button type="button" onclick="addFleetToCart('${v.id}', 'include-driver')" class="w-full bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold py-2.5 rounded-xl transition">
-                                        + Include Driver (${v.includeDriverStr})
-                                    </button>
-                                ` : ''}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function openFleetModal(id) {
-            const v = fleetDatabase.find(item => item.id === id);
-            if (!v) return;
-            const coverImg = (Array.isArray(v.images) && v.images[0]) || FALLBACK_IMG;
-            const hasLepasKunci = typeof v.lepasKunciVal === 'number' && v.lepasKunciVal > 0;
-            const hasDriver = typeof v.includeDriverVal === 'number' && v.includeDriverVal > 0;
-
-            document.getElementById('detail-modal-content').innerHTML = `
-                <img src="${coverImg}" alt="${v.name}" class="w-full h-56 object-cover">
-                <div class="p-6 sm:p-8">
-                    <span class="text-xs font-bold uppercase tracking-wider text-amber-600">${v.categoryLabel} • ${v.seats}</span>
-                    <h2 class="text-2xl font-extrabold text-stone-900 mt-1">${v.name}</h2>
-                    <p class="text-sm text-stone-600 mt-2">${v.desc}</p>
-
-                    <div class="mt-5 space-y-3 bg-stone-50 p-4 rounded-2xl border border-stone-200">
-                        <div class="flex items-center justify-between text-sm">
-                            <span class="font-semibold text-stone-700">${v.type === 'motor' ? 'Sewa Harian (24 Jam)' : 'Lepas Kunci (Per Hari)'}</span>
-                            <span class="font-extrabold ${hasLepasKunci ? 'text-stone-900' : 'text-stone-400'}">${v.lepasKunciStr}</span>
-                        </div>
-                        <div class="flex items-center justify-between text-sm pt-3 border-t border-stone-200">
-                            <span class="font-semibold text-stone-700">${v.type === 'motor' ? 'Kelengkapan' : 'Include Driver (Per Hari)'}</span>
-                            <span class="font-extrabold ${hasDriver ? 'text-amber-700' : 'text-stone-600'}">${v.includeDriverStr}</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 flex flex-col sm:flex-row gap-3">
-                        ${hasLepasKunci ? `
-                            <button type="button" onclick="addFleetToCart('${v.id}', 'lepas-kunci'); closeDetailModal();" class="flex-1 bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl transition">
-                                + ${v.type === 'motor' ? 'Pilih Sewa Motor' : 'Pilih Lepas Kunci'} (${v.lepasKunciStr})
-                            </button>
-                        ` : ''}
-                        ${hasDriver ? `
-                            <button type="button" onclick="addFleetToCart('${v.id}', 'include-driver'); closeDetailModal();" class="flex-1 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold py-3.5 px-4 rounded-xl transition">
-                                + Pilih Include Driver (${v.includeDriverStr})
-                            </button>
-                        ` : ''}
-                    </div>
-                </div>
-            `;
-            document.getElementById('detail-modal').classList.remove('hidden');
-        }
-
-        function closeDetailModal() {
-            document.getElementById('detail-modal').classList.add('hidden');
-        }
-
-        function addFleetToCart(id, mode) {
-            const v = fleetDatabase.find(item => item.id === id);
-            if (!v) return;
-
-            const isLepasKunci = mode === 'lepas-kunci';
-            if (isLepasKunci && !v.lepasKunciVal) return;
-            if (!isLepasKunci && !v.includeDriverVal) return;
-
-            const labelMode = v.type === 'motor'
-                ? 'Sewa Motor'
-                : (isLepasKunci ? 'Lepas Kunci' : 'Include Driver');
-            const priceVal = isLepasKunci ? v.lepasKunciVal : v.includeDriverVal;
-            const priceStr = isLepasKunci ? v.lepasKunciStr : v.includeDriverStr;
-            const itemId = `${v.id}__${mode}`;
-
-            const existing = cart.find(item => item.id === itemId);
-            if (existing) {
-                existing.days = (existing.days || 1) + 1;
-                existing.duration = `${existing.days} Days`;
-            } else {
-                cart.push({
-                    id: itemId,
-                    title: `${v.name} (${labelMode})`,
-                    duration: "1 Day",
-                    days: 1,
-                    priceVal: priceVal,
-                    priceStr: `${priceStr}/day`,
-                    isVehicle: true,
-                    images: v.images || [FALLBACK_IMG]
-                });
-            }
-
-            saveCartState();
-            updateCartBadge();
-            renderCart();
-            toggleCartModal(true);
-        }
-
-        function stepItemQty(itemId, delta) {
-            const target = cart.find(item => item.id === itemId);
-            if (!target) return;
-            const key = target.isVehicle ? 'days' : 'qty';
-            const nextVal = (target[key] || 1) + delta;
-            if (nextVal <= 0) {
-                removeFromCart(itemId);
-                return;
-            }
-            target[key] = nextVal;
-            if (target.isVehicle) {
-                target.duration = `${nextVal} ${nextVal === 1 ? 'Day' : 'Days'}`;
-            }
-            saveCartState();
-            renderCart();
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
-            saveCartState();
-            updateCartBadge();
-            renderCart();
-        }
-
-        function updateCartBadge() {
-            const badge = document.getElementById('cart-badge');
-            if (badge) badge.textContent = cart.length;
-        }
-
-        function toggleCartModal(forceOpen = null) {
-            const modal = document.getElementById('cart-modal');
-            if (!modal) return;
-            if (forceOpen === true) modal.classList.remove('hidden');
-            else if (forceOpen === false) modal.classList.add('hidden');
-            else modal.classList.toggle('hidden');
-        }
-
-        function renderCart() {
-            const listEl = document.getElementById('cart-items-list');
-            const totalEl = document.getElementById('cart-total');
-            const pax = Math.max(1, parseInt(document.getElementById('pax-count')?.value || "2", 10) || 1);
-            if (!listEl || !totalEl) return;
-
-            if (cart.length === 0) {
-                listEl.innerHTML = `<p class="text-sm text-stone-500 text-center py-6">Belum ada rute atau kendaraan dipilih.</p>`;
-                totalEl.textContent = formatIDR(0);
-                return;
-            }
-
-            let totalSum = 0;
-            listEl.innerHTML = cart.map(item => {
-                const isDayUnit = Boolean(item.isVehicle);
-                const isTripRoute = Boolean(item.isRoute);
-                const countVal = Math.max(1, Number(isDayUnit ? (item.days || 1) : (item.qty || 1)));
-                const numericPrice = Number(item.priceVal || 0);
-                const subtotal = (isDayUnit || isTripRoute) ? (numericPrice * countVal) : (numericPrice * pax);
-                totalSum += subtotal;
-                const thumb = (Array.isArray(item.images) && item.images[0]) || FALLBACK_IMG;
-
-                const unitLabel = isDayUnit
-                    ? `${countVal} day(s)`
-                    : (isTripRoute ? `${countVal} trip(s)` : item.duration);
-
-                return `
-                    <div class="flex items-center gap-3 bg-stone-50 p-3 rounded-xl border border-stone-200">
-                        <img src="${thumb}" alt="${item.title}" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
-                        <div class="flex-grow min-w-0">
-                            <h4 class="font-bold text-xs text-stone-900 truncate">${item.title}</h4>
-                            <p class="text-[11px] text-stone-500">${unitLabel} • ${item.priceStr}</p>
-                            ${(isDayUnit || isTripRoute) ? `
-                                <div class="flex items-center gap-2 mt-1.5">
-                                    <button type="button" onclick="stepItemQty('${item.id}', -1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">−</button>
-                                    <span class="text-[11px] font-bold text-stone-700">${countVal}${isDayUnit ? 'd' : 'x'}</span>
-                                    <button type="button" onclick="stepItemQty('${item.id}', 1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">+</button>
-                                </div>
-                            ` : ''}
-                        </div>
-                        <button type="button" onclick="removeFromCart('${item.id}')" class="text-xs font-bold text-stone-400 hover:text-red-600 px-2 py-1 transition">✕</button>
-                    </div>
-                `;
-            }).join('');
-
-            totalEl.textContent = formatIDR(totalSum);
-        }
-
-        function checkoutWhatsApp() {
-            const travelerName = (document.getElementById('traveler-name')?.value || "").trim();
-            const travelerEmail = (document.getElementById('traveler-email')?.value || "").trim();
-            const estimatedDate = (document.getElementById('travel-date')?.value || "").trim();
-            const pax = Math.max(1, parseInt(document.getElementById('pax-count')?.value || "2", 10) || 1);
-            const errorEl = document.getElementById('cart-form-error');
-
-            if (!travelerName || !travelerEmail || !estimatedDate) {
-                if (errorEl) {
-                    errorEl.textContent = "Please fill in your full name, email address, and estimated travel date before sending to WhatsApp.";
-                    errorEl.classList.remove("hidden");
-                }
-                return;
-            }
-            if (errorEl) errorEl.classList.add("hidden");
-
-            let message = `Hello RAW Lombok! I'd like to inquire about transport / trip plan.\n\nTraveler Details:\n- Name: ${travelerName}\n- Email: ${travelerEmail}\n- Estimated Date: ${estimatedDate}\n- Travelers: ${pax} pax\n\n`;
-            if (cart.length > 0) {
-                message += `Selected Plan:\n`;
-                let grandTotal = 0;
-                cart.forEach((item, idx) => {
-                    const isDayUnit = Boolean(item.isVehicle);
-                    const isTripRoute = Boolean(item.isRoute);
-                    const countVal = Math.max(1, Number(isDayUnit ? (item.days || 1) : (item.qty || 1)));
-                    const numericPrice = Number(item.priceVal || 0);
-                    const sub = (isDayUnit || isTripRoute) ? (numericPrice * countVal) : (numericPrice * pax);
-                    grandTotal += sub;
-                    const unitInfo = isDayUnit ? `${countVal} day(s)` : (isTripRoute ? `${countVal} trip(s)` : `${pax} pax`);
-                    message += `${idx + 1}. ${item.title} (${unitInfo}) - ${item.priceStr} [Sub: ${formatIDR(sub)}]\n`;
-                });
-                message += `\nEstimated Total: ${formatIDR(grandTotal)}`;
-            } else {
-                message += `Looking for transport / route recommendations in Lombok.`;
-            }
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const dateInput = document.getElementById('travel-date');
-            if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
-            updateRouteEstimator();
-            renderPopularRoutes();
-            renderFleet();
-            updateCartBadge();
-            renderCart();
-        });
-    </script>
-</body>
-</html>
+const fleetDatabase = [
+    // --- MOBIL STANDAR & MPV ---
+    {
+        id: "car-honda-brio",
+        name: "HONDA BRIO",
+        type: "car",
+        category: "car-compact",
+        categoryLabel: "City Car",
+        seats: "4–5 Seats",
+        lepasKunciVal: 350000,
+        lepasKunciStr: "IDR 350.000",
+        includeDriverVal: 650000,
+        includeDriverStr: "IDR 650.000",
+        images: ["./assets/images/transport/honda-brio.webp"],
+        desc: "Lincah & hemat untuk sewa mandiri (Lepas Kunci) maupun perjalanan harian."
+    },
+    {
+        id: "car-avanza-all-new",
+        name: "AVANZA ALL NEW",
+        type: "car",
+        category: "car-compact",
+        categoryLabel: "MPV Standar",
+        seats: "6–7 Seats",
+        lepasKunciVal: 350000,
+        lepasKunciStr: "IDR 350.000",
+        includeDriverVal: 650000,
+        includeDriverStr: "IDR 650.000",
+        images: ["./assets/images/transport/avanza-all-new.webp"],
+        desc: "Unit standar keluarga yang sudah termasuk di paket destinasi atau bisa disewa harian."
+    },
+    {
+        id: "car-innova-reborn",
+        name: "INNOVA REBORN",
+        type: "car",
+        category: "car-compact",
+        categoryLabel: "MPV Upgrade",
+        seats: "7 Seats",
+        lepasKunciVal: 550000,
+        lepasKunciStr: "IDR 550.000",
+        includeDriverVal: 850000,
+        includeDriverStr: "IDR 850.000",
+        images: ["./assets/images/transport/innova-reborn.webp"],
+        desc: "Kabin lega dan bertenaga untuk custom trip Sembalun/Tetebatu atau sewa harian."
+    },
+    {
+        id: "car-innova-zenix-g",
+        name: "INNOVA ZENIX G",
+        type: "car",
+        category: "car-compact",
+        categoryLabel: "Modern MPV",
+        seats: "7 Seats",
+        lepasKunciVal: 900000,
+        lepasKunciStr: "IDR 900.000",
+        includeDriverVal: 1250000,
+        includeDriverStr: "IDR 1.250.000",
+        images: ["./assets/images/transport/innova-zenix-g.webp"],
+        desc: "MPV modern dengan kenyamanan kabin halus untuk keluarga maupun tamu."
+    },
+
+    // --- SUV & LUXURY ---
+    {
+        id: "car-fortuner",
+        name: "FORTUNER",
+        type: "car",
+        category: "car-suv-lux",
+        categoryLabel: "SUV",
+        seats: "7 Seats",
+        lepasKunciVal: 1200000,
+        lepasKunciStr: "IDR 1.200.000",
+        includeDriverVal: 1750000,
+        includeDriverStr: "IDR 1.750.000",
+        images: ["./assets/images/transport/fortuner.webp"],
+        desc: "SUV tangguh untuk rute menanjak, pantai selatan, atau perjalanan eksekutif."
+    },
+    {
+        id: "car-pajero-sport",
+        name: "PAJERO SPORT",
+        type: "car",
+        category: "car-suv-lux",
+        categoryLabel: "SUV",
+        seats: "7 Seats",
+        lepasKunciVal: 1200000,
+        lepasKunciStr: "IDR 1.200.000",
+        includeDriverVal: 1750000,
+        includeDriverStr: "IDR 1.750.000",
+        images: ["./assets/images/transport/pajero-sport.webp"],
+        desc: "SUV nyaman dengan performa kuat untuk eksplorasi pulau maupun sewa."
+    },
+    {
+        id: "car-innova-zenix-q",
+        name: "INNOVA ZENIX Q",
+        type: "car",
+        category: "car-suv-lux",
+        categoryLabel: "Executive MPV",
+        seats: "6–7 Seats",
+        lepasKunciVal: 1200000,
+        lepasKunciStr: "IDR 1.200.000",
+        includeDriverVal: 1750000,
+        includeDriverStr: "IDR 1.750.000",
+        images: ["./assets/images/transport/innova-zenix-q.webp"],
+        desc: "Varian premium Zenix untuk kenyamanan ekstra saat custom trip atau sewa."
+    },
+    {
+        id: "car-alphard-g",
+        name: "ALPHARD G",
+        type: "car",
+        category: "car-suv-lux",
+        categoryLabel: "Luxury MPV",
+        seats: "6 Seats",
+        lepasKunciVal: null,
+        lepasKunciStr: "IDR -",
+        includeDriverVal: 3500000,
+        includeDriverStr: "IDR 3.500.000",
+        images: ["./assets/images/transport/alphard-g.webp"],
+        desc: "Layanan Include Driver untuk honeymoon, prewedding, dan tamu VIP."
+    },
+    {
+        id: "car-alphard-hev",
+        name: "ALPHARD HEV",
+        type: "car",
+        category: "car-suv-lux",
+        categoryLabel: "Luxury Hybrid",
+        seats: "6 Seats",
+        lepasKunciVal: null,
+        lepasKunciStr: "IDR -",
+        includeDriverVal: 6500000,
+        includeDriverStr: "IDR 6.500.000",
+        images: ["./assets/images/transport/alphard-hev.webp"],
+        desc: "Layanan Include Driver kelas atas dengan kabin senyap dan eksklusif."
+    },
+
+    // --- VAN, ELF & BUS ---
+    {
+        id: "car-hiace-commuter",
+        name: "HI-ACE COMMUTER",
+        type: "car",
+        category: "car-van-bus",
+        categoryLabel: "Van",
+        seats: "14–15 Seats",
+        lepasKunciVal: null,
+        lepasKunciStr: "IDR -",
+        includeDriverVal: 1200000,
+        includeDriverStr: "IDR 1.200.000",
+        images: ["./assets/images/transport/hiace-commuter.webp"],
+        desc: "Layanan Include Driver untuk rombongan keluarga atau grup wisata."
+    },
+    {
+        id: "car-hiace-premio",
+        name: "HI-ACE PREMIO",
+        type: "car",
+        category: "car-van-bus",
+        categoryLabel: "Premium Van",
+        seats: "12–14 Seats",
+        lepasKunciVal: null,
+        lepasKunciStr: "IDR -",
+        includeDriverVal: 1500000,
+        includeDriverStr: "IDR 1.500.000",
+        images: ["./assets/images/transport/hiace-premio.webp"],
+        desc: "Layanan Include Driver dengan ruang kabin lebih lapang dan nyaman."
+    },
+    {
+        id: "car-elf-long",
+        name: "ELF LONG",
+        type: "car",
+        category: "car-van-bus",
+        categoryLabel: "Microbus",
+        seats: "17–19 Seats",
+        lepasKunciVal: null,
+        lepasKunciStr: "IDR -",
+        includeDriverVal: 1500000,
+        includeDriverStr: "IDR 1.500.000",
+        images: ["./assets/images/transport/elf-long.webp"],
+        desc: "Layanan Include Driver untuk rombongan besar atau corporate outing."
+    },
+    {
+        id: "car-medium-bus",
+        name: "MEDIUM BUS",
+        type: "car",
+        category: "car-van-bus",
+        categoryLabel: "Medium Bus",
+        seats: "27–33 Seats",
+        lepasKunciVal: null,
+        lepasKunciStr: "IDR -",
+        includeDriverVal: 1800000,
+        includeDriverStr: "IDR 1.800.000",
+        images: ["./assets/images/transport/medium-bus.webp"],
+        desc: "Layanan Include Driver untuk rombongan outing, gathering, dan tur."
+    },
+    {
+        id: "car-big-bus",
+        name: "BIG BUS",
+        type: "car",
+        category: "car-van-bus",
+        categoryLabel: "Big Bus",
+        seats: "45–59 Seats",
+        lepasKunciVal: null,
+        lepasKunciStr: "IDR -",
+        includeDriverVal: 2500000,
+        includeDriverStr: "IDR 2.500.000",
+        images: ["./assets/images/transport/big-bus.webp"],
+        desc: "Layanan Include Driver untuk rombongan besar, event, atau perusahaan."
+    },
+
+    // --- SEWA MOTOR (ESTIMASI AWAL HARIAN) ---
+    {
+        id: "motor-matic-daily",
+        name: "MATIC DAILY (110–125CC)",
+        type: "motor",
+        category: "motor",
+        categoryLabel: "Motor Harian",
+        seats: "1–2 Riders",
+        lepasKunciVal: 110000,
+        lepasKunciStr: "IDR 110.000",
+        includeDriverVal: null,
+        includeDriverStr: "Self-Ride + 2 Helm",
+        images: [FALLBACK_IMG],
+        desc: "Praktis untuk keliling pantai di Kuta/Senggigi atau area sekitar (estimasi awal)."
+    },
+    {
+        id: "motor-maxi-touring",
+        name: "MAXI SCOOTER (150–160CC)",
+        type: "motor",
+        category: "motor",
+        categoryLabel: "Motor Touring",
+        seats: "1–2 Riders",
+        lepasKunciVal: 175000,
+        lepasKunciStr: "IDR 175.000",
+        includeDriverVal: null,
+        includeDriverStr: "Self-Ride + 2 Helm",
+        images: [FALLBACK_IMG],
+        desc: "Lebih nyaman untuk rute lebih jauh atau tanjakan menuju Tetebatu (estimasi awal)."
+    }
+];
