@@ -72,6 +72,7 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
                 <a href="./destinations.html" class="hover:text-stone-900 transition">All Destinations</a>
+                <a href="./car.html" class="hover:text-stone-900 transition">Car & Custom</a>
                 <a href="./blog.html" class="hover:text-stone-900 transition">Journal & Guides</a>
                 <a href="#about" class="hover:text-stone-900 transition">Why Raw Lombok</a>
                 <a href="#faq" class="hover:text-stone-900 transition">FAQ</a>
@@ -113,6 +114,9 @@
             <div class="mt-8 flex flex-wrap gap-4">
                 <a href="./destinations.html" class="bg-white text-stone-900 hover:bg-stone-100 font-bold text-sm px-6 py-3.5 rounded-xl transition">
                     All Destinations
+                </a>
+                <a href="./car.html" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition">
+                    Car & Custom
                 </a>
                 <a href="./blog.html" class="bg-stone-800/80 hover:bg-stone-800 text-white border border-stone-700 font-semibold text-sm px-6 py-3.5 rounded-xl transition">
                     Journal & Guides
@@ -311,6 +315,7 @@
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
                     <ul class="space-y-2.5 text-sm">
                         <li><a href="./destinations.html" class="hover:text-white transition">All Destinations</a></li>
+                        <li><a href="./car.html" class="hover:text-white transition">Car & Custom</a></li>
                         <li><a href="./blog.html" class="hover:text-white transition">Journal & Guides</a></li>
                         <li><a href="#about" class="hover:text-white transition">Why Raw Lombok</a></li>
                         <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
@@ -927,7 +932,7 @@
             const product = rawProductsDatabase.find(p => p.id === id);
             if (!product) return;
             if (!cart.some(item => item.id === id)) {
-                cart.push(product);
+                cart.push({ ...product, days: 1 });
                 saveCartState();
             }
             updateCartBadge();
@@ -939,6 +944,20 @@
             cart = cart.filter(item => item.id !== id);
             saveCartState();
             updateCartBadge();
+            renderCart();
+        }
+
+        function stepVehicleDays(itemId, delta) {
+            const target = cart.find(item => item.id === itemId);
+            if (!target) return;
+            const nextDays = (target.days || 1) + delta;
+            if (nextDays <= 0) {
+                removeFromCart(itemId);
+                return;
+            }
+            target.days = nextDays;
+            target.duration = `${nextDays} ${nextDays === 1 ? 'Day' : 'Days'}`;
+            saveCartState();
             renderCart();
         }
 
@@ -985,10 +1004,12 @@
                 return;
             }
 
-            let perPaxSum = 0;
+            let totalSum = 0;
             listEl.innerHTML = cart.map(item => {
+                const days = Math.max(1, Number(item.days || 1));
                 const numericPrice = Number(item.priceVal || 0);
-                perPaxSum += numericPrice;
+                const subtotal = item.isVehicle ? (numericPrice * days) : (numericPrice * pax);
+                totalSum += subtotal;
                 const thumb = (Array.isArray(item.images) && item.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
 
                 return `
@@ -996,7 +1017,14 @@
                         <img src="${thumb}" alt="${item.title}" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
                         <div class="flex-grow min-w-0">
                             <h4 class="font-bold text-xs text-stone-900 truncate">${item.title}</h4>
-                            <p class="text-[11px] text-stone-500">${item.duration} • ${item.priceStr}</p>
+                            <p class="text-[11px] text-stone-500">${item.isVehicle ? `${days} day(s)` : item.duration} • ${item.priceStr}</p>
+                            ${item.isVehicle ? `
+                                <div class="flex items-center gap-2 mt-1.5">
+                                    <button type="button" onclick="stepVehicleDays('${item.id}', -1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">−</button>
+                                    <span class="text-[11px] font-bold text-stone-700">${days}d</span>
+                                    <button type="button" onclick="stepVehicleDays('${item.id}', 1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">+</button>
+                                </div>
+                            ` : ''}
                         </div>
                         <button type="button" onclick="removeFromCart('${item.id}')" class="text-xs font-bold text-stone-400 hover:text-red-600 px-2 py-1 transition">
                             ✕
@@ -1005,7 +1033,7 @@
                 `;
             }).join('');
 
-            totalEl.textContent = formatIDR(perPaxSum * pax);
+            totalEl.textContent = formatIDR(totalSum);
         }
 
         function checkoutWhatsApp() {
@@ -1045,12 +1073,16 @@
             message += `\n`;
 
             if (cart.length > 0) {
-                message += `Selected Destinations:\n`;
+                message += `Selected Destinations & Vehicles:\n`;
+                let grandTotal = 0;
                 cart.forEach((item, idx) => {
-                    message += `${idx + 1}. ${item.title} (${item.duration}) - ${item.priceStr}\n`;
+                    const days = Math.max(1, Number(item.days || 1));
+                    const numericPrice = Number(item.priceVal || 0);
+                    const sub = item.isVehicle ? (numericPrice * days) : (numericPrice * pax);
+                    grandTotal += sub;
+                    message += `${idx + 1}. ${item.title} (${item.isVehicle ? `${days} day(s)` : item.duration}) - ${item.priceStr} [Sub: ${formatIDR(sub)}]\n`;
                 });
-                const perPaxSum = cart.reduce((acc, item) => acc + Number(item.priceVal || 0), 0);
-                message += `\nEstimated Total (${pax} pax): ${formatIDR(perPaxSum * pax)}`;
+                message += `\nEstimated Total: ${formatIDR(grandTotal)}`;
             } else {
                 message += `Looking for custom itinerary recommendations across Lombok.`;
             }
