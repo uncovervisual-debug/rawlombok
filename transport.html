@@ -147,7 +147,7 @@
                             type="text"
                             id="fleet-search"
                             oninput="handleFleetSearch(this.value)"
-                            placeholder="Cari Vario, NMAX, PCX, BeAT, Innova..."
+                            placeholder="Cari Motor 125, PCX, NMAX, Innova..."
                             class="w-full border border-stone-300 rounded-xl pl-9 pr-4 py-2 text-sm font-medium focus:outline-none focus:border-stone-900"
                         >
                         <svg class="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-2 pt-1" id="fleet-type-filters">
-                    <button type="button" onclick="setFleetFilter('motor')" data-fcat="motor" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-700 text-white ring-2 ring-amber-300 transition whitespace-nowrap">Sewa Motor (6 Unit)</button>
+                    <button type="button" onclick="setFleetFilter('motor')" data-fcat="motor" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-amber-700 text-white ring-2 ring-amber-300 transition whitespace-nowrap">Sewa Motor (125 &amp; 150)</button>
                     <button type="button" onclick="setFleetFilter('all')" data-fcat="all" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Semua Unit</button>
                     <button type="button" onclick="setFleetFilter('car-compact')" data-fcat="car-compact" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">Mobil Standar &amp; MPV</button>
                     <button type="button" onclick="setFleetFilter('car-suv-lux')" data-fcat="car-suv-lux" class="fcat-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition whitespace-nowrap">SUV &amp; Luxury Car</button>
@@ -301,109 +301,53 @@
             { a: "sembalun", b: "kayangan", dist: "~30 km", time: "45–60 mnt", stdCarVal: 175000, motorRideVal: 75000 }
         ];
 
-        // DAFTAR 6 MOTOR DARI GAMBAR YANG DIKIRIM + MOBIL FLEET
+        // MOTOR: CARD 150 HANYA NMAX & PCX, SISANYA MASUK CARD MOTOR 125 (SLIDE BLOG)
         const fleetDatabase = [
-            // --- 6 UNIT MOTOR (SESUAI FILE .WEBP YANG DIKIRIM) ---
             {
-                id: "motor-honda-beat",
-                name: "HONDA BEAT DELUXE",
+                id: "motor-125-series",
+                name: "MOTOR 125CC / HARIAN (VARIO & BEAT SERIES)",
                 type: "motor",
                 category: "motor",
-                categoryLabel: "Matic 110cc",
+                categoryLabel: "Motor 125cc Series",
                 seats: "1–2 Riders",
-                lepasKunciVal: 95000,
-                lepasKunciStr: "IDR 95.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [
-                    `${TRANSPORT_IMG_BASE}honda-beat.webp`,
-                    `${TRANSPORT_IMG_BASE}beat-street.webp`
-                ],
-                desc: "Ringan, irit, dan lincah untuk keliling Kuta, Senggigi, dan area pantai Lombok."
-            },
-            {
-                id: "motor-beat-street",
-                name: "HONDA BEAT STREET",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Matic 110cc",
-                seats: "1–2 Riders",
-                lepasKunciVal: 95000,
-                lepasKunciStr: "IDR 95.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [
-                    `${TRANSPORT_IMG_BASE}beat-street.webp`,
-                    `${TRANSPORT_IMG_BASE}honda-beat.webp`
-                ],
-                desc: "Stang naked yang santai dan gesit untuk eksplorasi harian maupun jalan desa."
-            },
-            {
-                id: "motor-vario-125",
-                name: "HONDA VARIO 125",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Matic 125cc",
-                seats: "1–2 Riders",
-                lepasKunciVal: 115000,
-                lepasKunciStr: "IDR 115.000",
+                lepasKunciVal: 110000,
+                lepasKunciStr: "IDR 110.000",
                 includeDriverVal: null,
                 includeDriverStr: "Self-Ride + 2 Helm",
                 images: [
                     `${TRANSPORT_IMG_BASE}vario-125.webp`,
-                    `${TRANSPORT_IMG_BASE}Vario-150.webp`
-                ],
-                desc: "Dek rata, bagasi lega, dan tarikan responsif untuk perjalanan dalam kota & pesisir."
-            },
-            {
-                id: "motor-vario-150",
-                name: "HONDA VARIO 150",
-                type: "motor",
-                category: "motor",
-                categoryLabel: "Matic 150cc",
-                seats: "1–2 Riders",
-                lepasKunciVal: 135000,
-                lepasKunciStr: "IDR 135.000",
-                includeDriverVal: null,
-                includeDriverStr: "Self-Ride + 2 Helm",
-                images: [
                     `${TRANSPORT_IMG_BASE}Vario-150.webp`,
-                    `${TRANSPORT_IMG_BASE}vario-125.webp`
+                    `${TRANSPORT_IMG_BASE}honda-beat.webp`,
+                    `${TRANSPORT_IMG_BASE}beat-street.webp`
                 ],
-                desc: "Tenaga lebih bertenaga untuk rute tanjakan menuju Tetebatu maupun bukit selatan."
+                desc: "Geser foto untuk melihat unit Vario 125, Vario 150 (non-PCX/NMAX), BeAT Deluxe, dan BeAT Street—praktis untuk keliling Kuta, Senggigi, & pantai Lombok."
             },
             {
                 id: "motor-nmax-155",
                 name: "YAMAHA NMAX 155",
                 type: "motor",
                 category: "motor",
-                categoryLabel: "Maxi 155cc",
+                categoryLabel: "Motor 150cc / 155cc",
                 seats: "1–2 Riders",
                 lepasKunciVal: 165000,
                 lepasKunciStr: "IDR 165.000",
                 includeDriverVal: null,
                 includeDriverStr: "Self-Ride + 2 Helm",
-                images: [
-                    `${TRANSPORT_IMG_BASE}nmax-155.webp`,
-                    `${TRANSPORT_IMG_BASE}honda-pcx.webp`
-                ],
-                desc: "Posisi duduk nyaman dengan suspensi empuk untuk touring jarak menengah di Lombok."
+                images: [`${TRANSPORT_IMG_BASE}nmax-155.webp`],
+                desc: "Posisi duduk nyaman dengan suspensi empuk untuk touring jarak menengah maupun rute menanjak."
             },
             {
                 id: "motor-honda-pcx",
                 name: "HONDA PCX",
                 type: "motor",
                 category: "motor",
-                categoryLabel: "Maxi Scooter",
+                categoryLabel: "Motor 150cc / 160cc",
                 seats: "1–2 Riders",
                 lepasKunciVal: 175000,
                 lepasKunciStr: "IDR 175.000",
                 includeDriverVal: null,
                 includeDriverStr: "Self-Ride + 2 Helm",
-                images: [
-                    `${TRANSPORT_IMG_BASE}honda-pcx.webp`,
-                    `${TRANSPORT_IMG_BASE}nmax-155.webp`
-                ],
+                images: [`${TRANSPORT_IMG_BASE}honda-pcx.webp`],
                 desc: "Skuter maxi elegan dengan kenyamanan tinggi untuk perjalanan santai berpasangan."
             },
 
