@@ -72,8 +72,8 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600">
                 <a href="./destinations.html" class="hover:text-stone-900 transition">All Destinations</a>
-                <a href="./car.html" class="hover:text-stone-900 transition">Car & Custom</a>
-                <a href="./blog.html" class="hover:text-stone-900 transition">Journal & Guides</a>
+                <a href="./transport.html" class="hover:text-stone-900 transition">Transport &amp; Ride</a>
+                <a href="./blog.html" class="hover:text-stone-900 transition">Journal &amp; Guides</a>
                 <a href="#about" class="hover:text-stone-900 transition">Why Raw Lombok</a>
                 <a href="#faq" class="hover:text-stone-900 transition">FAQ</a>
             </nav>
@@ -115,11 +115,11 @@
                 <a href="./destinations.html" class="bg-white text-stone-900 hover:bg-stone-100 font-bold text-sm px-6 py-3.5 rounded-xl transition">
                     All Destinations
                 </a>
-                <a href="./car.html" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition">
-                    Car & Custom
+                <a href="./transport.html" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition">
+                    Transport &amp; Ride
                 </a>
                 <a href="./blog.html" class="bg-stone-800/80 hover:bg-stone-800 text-white border border-stone-700 font-semibold text-sm px-6 py-3.5 rounded-xl transition">
-                    Journal & Guides
+                    Journal &amp; Guides
                 </a>
             </div>
         </div>
@@ -130,7 +130,9 @@
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-5">
             <div>
                 <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900">Featured Destinations</h2>
-                <p class="text-stone-600 text-sm sm:text-base mt-1">Filter by region or trip style, or open All Destinations for the full catalog page.</p>
+                <p class="text-stone-600 text-sm sm:text-base mt-1">
+                    Paket wisata sudah termasuk Avanza/Brio + Driver. Butuh custom mobil, sewa motor, atau antar-jemput rute? Buka <a href="./transport.html" class="font-bold text-amber-700 hover:underline">Transport &amp; Ride</a>.
+                </p>
             </div>
 
             <!-- Region & Trip Type Filters -->
@@ -139,8 +141,8 @@
                 <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 max-w-full" id="cluster-filters">
                     <button type="button" onclick="filterDestinations('all')" data-filter="all" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white transition whitespace-nowrap">All Regions</button>
                     <button type="button" onclick="filterDestinations('east')" data-filter="east" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">East (Rinjani)</button>
-                    <button type="button" onclick="filterDestinations('center')" data-filter="center" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">Center & Culture</button>
-                    <button type="button" onclick="filterDestinations('north')" data-filter="north" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">North & Gilis</button>
+                    <button type="button" onclick="filterDestinations('center')" data-filter="center" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">Center &amp; Culture</button>
+                    <button type="button" onclick="filterDestinations('north')" data-filter="north" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">North &amp; Gilis</button>
                     <button type="button" onclick="filterDestinations('south')" data-filter="south" class="filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-200 text-stone-700 hover:bg-stone-300 transition whitespace-nowrap">South Coast</button>
                 </div>
 
@@ -176,11 +178,11 @@
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-widest text-amber-600">Travel Journal</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 mt-1">Stories, Guides & Local Insights</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-stone-900 mt-1">Stories, Guides &amp; Local Insights</h2>
                     <p class="text-stone-600 text-sm sm:text-base mt-1">Practical tips and hidden gems to help you plan your Lombok adventure.</p>
                 </div>
                 <a href="./blog.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-stone-900 hover:text-amber-600 transition self-start md:self-auto">
-                    Journal & Guides &rarr;
+                    Journal &amp; Guides &rarr;
                 </a>
             </div>
 
@@ -192,7 +194,7 @@
             <!-- Link to Full Journal & Guides Page -->
             <div class="mt-8 text-center">
                 <a href="./blog.html" class="inline-flex items-center gap-2 bg-stone-900 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl transition">
-                    All Journal & Guides &rarr;
+                    All Journal &amp; Guides &rarr;
                 </a>
             </div>
         </div>
@@ -281,7 +283,7 @@
                         <span id="faq-icon-2" class="text-amber-600 text-lg font-extrabold">+</span>
                     </button>
                     <div id="faq-panel-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed">
-                        Yes. Use <strong>My Trip Plan</strong> to select destinations you like, fill in your traveler details, and send your list to WhatsApp—or message us directly for multi-day routes and company retreats.
+                        Yes. Destination packages already include <strong>Avanza/Brio + Driver</strong>. Use <strong>My Trip Plan</strong> to select destinations you like, or open <a href="./transport.html" class="font-bold text-amber-700 hover:underline">Transport &amp; Ride</a> to customize/upgrade vehicles, rent a motorbike, or book point-to-point transfers across Bandara, Pelabuhan Lembar, Kuta, Senggigi, Tetebatu, Sembalun, and Kayangan.
                     </div>
                 </div>
 
@@ -315,8 +317,8 @@
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
                     <ul class="space-y-2.5 text-sm">
                         <li><a href="./destinations.html" class="hover:text-white transition">All Destinations</a></li>
-                        <li><a href="./car.html" class="hover:text-white transition">Car & Custom</a></li>
-                        <li><a href="./blog.html" class="hover:text-white transition">Journal & Guides</a></li>
+                        <li><a href="./transport.html" class="hover:text-white transition">Transport &amp; Ride</a></li>
+                        <li><a href="./blog.html" class="hover:text-white transition">Journal &amp; Guides</a></li>
                         <li><a href="#about" class="hover:text-white transition">Why Raw Lombok</a></li>
                         <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
                         <li><button type="button" onclick="toggleCartModal()" class="hover:text-white transition">My Trip Plan</button></li>
@@ -547,7 +549,7 @@
                 if (destSlideTimer) clearInterval(destSlideTimer);
                 grid.innerHTML = `
                     <div class="col-span-full w-full text-center py-12 bg-white rounded-2xl border border-stone-200">
-                        <p class="text-sm font-semibold text-stone-700 mb-2">No destinations match this region & trip style combination yet.</p>
+                        <p class="text-sm font-semibold text-stone-700 mb-2">No destinations match this region &amp; trip style combination yet.</p>
                         <button type="button" onclick="resetDestinationFilters()" class="text-xs font-bold text-amber-600 hover:underline">
                             Reset Filters
                         </button>
@@ -947,16 +949,19 @@
             renderCart();
         }
 
-        function stepVehicleDays(itemId, delta) {
+        function stepItemQty(itemId, delta) {
             const target = cart.find(item => item.id === itemId);
             if (!target) return;
-            const nextDays = (target.days || 1) + delta;
-            if (nextDays <= 0) {
+            const key = target.isVehicle ? 'days' : 'qty';
+            const nextVal = (target[key] || 1) + delta;
+            if (nextVal <= 0) {
                 removeFromCart(itemId);
                 return;
             }
-            target.days = nextDays;
-            target.duration = `${nextDays} ${nextDays === 1 ? 'Day' : 'Days'}`;
+            target[key] = nextVal;
+            if (target.isVehicle) {
+                target.duration = `${nextVal} ${nextVal === 1 ? 'Day' : 'Days'}`;
+            }
             saveCartState();
             renderCart();
         }
@@ -1006,23 +1011,29 @@
 
             let totalSum = 0;
             listEl.innerHTML = cart.map(item => {
-                const days = Math.max(1, Number(item.days || 1));
+                const isDayUnit = Boolean(item.isVehicle);
+                const isTripRoute = Boolean(item.isRoute);
+                const countVal = Math.max(1, Number(isDayUnit ? (item.days || 1) : (item.qty || 1)));
                 const numericPrice = Number(item.priceVal || 0);
-                const subtotal = item.isVehicle ? (numericPrice * days) : (numericPrice * pax);
+                const subtotal = (isDayUnit || isTripRoute) ? (numericPrice * countVal) : (numericPrice * pax);
                 totalSum += subtotal;
                 const thumb = (Array.isArray(item.images) && item.images[0]) || "./assets/images/blog/outing/outing-hero.webp";
+
+                const unitLabel = isDayUnit
+                    ? `${countVal} day(s)`
+                    : (isTripRoute ? `${countVal} trip(s)` : item.duration);
 
                 return `
                     <div class="flex items-center gap-3 bg-stone-50 p-3 rounded-xl border border-stone-200">
                         <img src="${thumb}" alt="${item.title}" class="w-14 h-14 rounded-lg object-cover flex-shrink-0">
                         <div class="flex-grow min-w-0">
                             <h4 class="font-bold text-xs text-stone-900 truncate">${item.title}</h4>
-                            <p class="text-[11px] text-stone-500">${item.isVehicle ? `${days} day(s)` : item.duration} • ${item.priceStr}</p>
-                            ${item.isVehicle ? `
+                            <p class="text-[11px] text-stone-500">${unitLabel} • ${item.priceStr}</p>
+                            ${(isDayUnit || isTripRoute) ? `
                                 <div class="flex items-center gap-2 mt-1.5">
-                                    <button type="button" onclick="stepVehicleDays('${item.id}', -1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">−</button>
-                                    <span class="text-[11px] font-bold text-stone-700">${days}d</span>
-                                    <button type="button" onclick="stepVehicleDays('${item.id}', 1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">+</button>
+                                    <button type="button" onclick="stepItemQty('${item.id}', -1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">−</button>
+                                    <span class="text-[11px] font-bold text-stone-700">${countVal}${isDayUnit ? 'd' : 'x'}</span>
+                                    <button type="button" onclick="stepItemQty('${item.id}', 1)" class="w-5 h-5 rounded bg-stone-200 hover:bg-stone-300 text-xs font-bold">+</button>
                                 </div>
                             ` : ''}
                         </div>
@@ -1073,14 +1084,17 @@
             message += `\n`;
 
             if (cart.length > 0) {
-                message += `Selected Destinations & Vehicles:\n`;
+                message += `Selected Destinations, Transport & Vehicles:\n`;
                 let grandTotal = 0;
                 cart.forEach((item, idx) => {
-                    const days = Math.max(1, Number(item.days || 1));
+                    const isDayUnit = Boolean(item.isVehicle);
+                    const isTripRoute = Boolean(item.isRoute);
+                    const countVal = Math.max(1, Number(isDayUnit ? (item.days || 1) : (item.qty || 1)));
                     const numericPrice = Number(item.priceVal || 0);
-                    const sub = item.isVehicle ? (numericPrice * days) : (numericPrice * pax);
+                    const sub = (isDayUnit || isTripRoute) ? (numericPrice * countVal) : (numericPrice * pax);
                     grandTotal += sub;
-                    message += `${idx + 1}. ${item.title} (${item.isVehicle ? `${days} day(s)` : item.duration}) - ${item.priceStr} [Sub: ${formatIDR(sub)}]\n`;
+                    const unitInfo = isDayUnit ? `${countVal} day(s)` : (isTripRoute ? `${countVal} trip(s)` : `${pax} pax`);
+                    message += `${idx + 1}. ${item.title} (${unitInfo}) - ${item.priceStr} [Sub: ${formatIDR(sub)}]\n`;
                 });
                 message += `\nEstimated Total: ${formatIDR(grandTotal)}`;
             } else {
